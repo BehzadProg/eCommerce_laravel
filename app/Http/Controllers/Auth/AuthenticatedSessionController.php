@@ -28,11 +28,14 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        if($request->user()->role == 'admin'){
+        if ($request->user()->role == 'admin') {
+            toastr()->success('Welcome back to your Admin dashboard', 'Hello Again');
             return redirect()->intended('admin/management/dashboard');
-        }elseif($request->user()->role == 'vendor'){
+        } elseif ($request->user()->role == 'vendor') {
+            toastr()->success('Welcome back to your Vendor dashboard', 'Hello Again');
             return redirect()->intended('vendor/management/dashboard');
         }
+        toastr()->success('Welcome back to your dashboard', 'Hello Again');
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
