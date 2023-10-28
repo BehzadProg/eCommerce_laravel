@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <title>Sazao || e-Commerce HTML Template</title>
+    <title>Sazao || e-Commerce - @yield('title')</title>
     <link rel="icon" type="image/png" href="{{asset('frontend/images/favicon.png')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{asset('frontend/css/ranger_style.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/jquery.classycountdown.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/venobox.min.css')}}">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
@@ -142,6 +143,15 @@
 
     <!--main/custom js-->
     <script src="{{asset('frontend/js/main.js')}}"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+            toastr.error("{{$error}}")
+            @endforeach
+        @endif
+    </script>
 </body>
 
 </html>
