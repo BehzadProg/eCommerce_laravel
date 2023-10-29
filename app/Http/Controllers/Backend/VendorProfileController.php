@@ -21,7 +21,7 @@ class VendorProfileController extends Controller
         ]);
 
         $profile = Auth::user();
-        $imagePath = handleUpload('image',$profile,env('VENDOR_PROFILE_IMAGE_UPLOAD_PATH'));
+        $imagePath = handleUpload('image',$profile,env('VENDOR_PROFILE_IMAGE_UPLOAD_PATH') , 'Vendor_profile');
         $profile->name = $request->name;
         $profile->username = $request->username;
         $profile->email = $request->email;

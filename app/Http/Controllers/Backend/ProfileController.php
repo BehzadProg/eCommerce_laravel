@@ -20,7 +20,7 @@ class ProfileController extends Controller
         ]);
 
         $profile = Auth::user();
-        $imagePath = handleUpload('image',$profile,env('ADMIN_PROFILE_IMAGE_UPLOAD_PATH'));
+        $imagePath = handleUpload('image',$profile,env('ADMIN_PROFILE_IMAGE_UPLOAD_PATH') , 'Admin_profile');
         $profile->name = $request->name;
         $profile->email = $request->email;
         $profile->image = (!empty($imagePath) ? $imagePath : $profile->image);

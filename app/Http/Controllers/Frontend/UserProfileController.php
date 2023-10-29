@@ -21,7 +21,7 @@ class UserProfileController extends Controller
         ]);
 
         $profile = Auth::user();
-        $imagePath = handleUpload('image',$profile,env('USER_PROFILE_IMAGE_UPLOAD_PATH'));
+        $imagePath = handleUpload('image',$profile,env('USER_PROFILE_IMAGE_UPLOAD_PATH') , 'User_profile');
         $profile->name = $request->name;
         $profile->username = $request->username;
         $profile->email = $request->email;
