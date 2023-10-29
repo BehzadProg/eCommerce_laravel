@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class UserProfileController extends Controller
+class VendorProfileController extends Controller
 {
     public function index() {
-        return view('frontend.dashboard.profile');
+        return view('vendor.dashboard.profile');
     }
 
     public function profileUpdate(Request $request) {
@@ -21,7 +21,7 @@ class UserProfileController extends Controller
         ]);
 
         $profile = Auth::user();
-        $imagePath = handleUpload('image',$profile,env('USER_PROFILE_IMAGE_UPLOAD_PATH'));
+        $imagePath = handleUpload('image',$profile,env('VENDOR_PROFILE_IMAGE_UPLOAD_PATH'));
         $profile->name = $request->name;
         $profile->username = $request->username;
         $profile->email = $request->email;

@@ -36,4 +36,5 @@ Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' =>
     /** user profile routes */
     Route::get('profile' , [UserProfileController::class , 'index'])->name('profile');
     Route::put('profile/update' , [UserProfileController::class , 'profileUpdate'])->name('profile.update');
+    Route::post('profile/password/update' , [UserProfileController::class , 'passwordUpdate'])->name('password.update');
 });

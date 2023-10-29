@@ -1,4 +1,4 @@
-@extends('frontend.dashboard.layouts.master')
+@extends('vendor.dashboard.layouts.master')
 @section('title', '- My Profile')
 @section('content')
     <!--=============================
@@ -6,22 +6,22 @@
               ==============================-->
     <section id="wsus__dashboard">
         <div class="container-fluid">
-            @include('frontend.dashboard.layouts.sidebar')
+            @include('vendor.dashboard.layouts.sidebar')
             <div class="row">
                 <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
                     <div class="dashboard_content mt-2 mt-md-0">
-                        <h3><i class="far fa-user"></i>user profile</h3>
+                        <h3><i class="far fa-user"></i>vendor profile</h3>
                         <div class="wsus__dashboard_profile">
                             <div class="wsus__dash_pro_area">
                                 <h4>basic information</h4>
 
-                                <form action="{{route('user.profile.update')}}" method="post" enctype="multipart/form-data">
+                                <form action="{{route('vendor.profile.update')}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <div class="col-md-12">
                                         <div class="col-md-2">
                                             <div class="wsus__dash_pro_img">
-                                                <img src="{{ Auth::user()->image ? asset(env('USER_PROFILE_IMAGE_UPLOAD_PATH').Auth::user()->image) : asset('frontend/images/avatar-1.png')}}" alt="img"
+                                                <img src="{{ Auth::user()->image ? asset(env('VENDOR_PROFILE_IMAGE_UPLOAD_PATH').Auth::user()->image) : asset('frontend/images/avatar-1.png')}}" alt="img"
                                                     class="img-fluid w-100">
                                                 <input type="file" name="image">
                                             </div>
@@ -54,7 +54,7 @@
                                 </form>
 
                                 <div class="wsus__dash_pass_change mt-2">
-                                    <form action="{{route('user.password.update')}}" method="post">
+                                    <form action="{{route('vendor.password.update')}}" method="post">
                                         @csrf
                                     <div class="row">
                                         <h4>Update Password</h4>
