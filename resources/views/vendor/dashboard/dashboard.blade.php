@@ -1,5 +1,5 @@
 @extends('frontend.dashboard.layouts.master')
-@section('title' , '- User Dashboard')
+@section('title' , 'Vendor Dashboard')
 @section('content')
 <section id="wsus__dashboard">
     <div class="container-fluid">

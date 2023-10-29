@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-
+@section('title' , 'Reset-password')
 @section('content')
     <!--============================
                     BREADCRUMB START
@@ -11,8 +11,8 @@
                     <div class="col-12">
                         <h4>change password</h4>
                         <ul>
-                            <li><a href="#">login</a></li>
-                            <li><a href="#">change password</a></li>
+                            <li><a href="{{route('login')}}">login</a></li>
+                            <li><a href="javascript:void(0)">reset password</a></li>
                         </ul>
                     </div>
                 </div>

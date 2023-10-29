@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Frontend\Homecontroller;
 use App\Http\Controllers\Frontend\UserDashboardController;
+use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,9 @@ require __DIR__.'/auth.php';
 Route::get('admin/login' , [AdminController::class , 'login'])->name('admin.login');
 
 Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' => 'user.'] , function(){
-    
+
     Route::get('dashboard' , [UserDashboardController::class , 'index'])->name('dashboard');
+    /** user profile routes */
+    Route::get('profile' , [UserProfileController::class , 'index'])->name('profile');
+    Route::put('profile/update' , [UserProfileController::class , 'profileUpdate'])->name('profile.update');
 });
