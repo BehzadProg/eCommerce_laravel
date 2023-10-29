@@ -29,7 +29,16 @@ class SliderDataTable extends DataTable
                 return '<a href="' . route('admin.slider.edit', $query->id) . '" class="btn btn-outline-primary"><i class="far fa-edit"></i></a>
             <a href="' . route('admin.slider.destroy', $query->id) . '" class="btn btn-outline-danger delete-item ml-2"><i class="fas fa-trash-alt"></i></a>';
             })
-            ->rawColumns(['banner', 'action'])
+            ->addColumn('status' , function($query){
+                $active = '<i class="badge badge-success">Active</i>';
+                $notActive = '<i class="badge badge-danger">Not Active</i>';
+                if($query->status == 1){
+                    return $active;
+                }else{
+                    return $notActive;
+                }
+            })
+            ->rawColumns(['banner', 'action','status'])
             ->setRowId('id');
     }
 
@@ -70,8 +79,10 @@ class SliderDataTable extends DataTable
     {
         return [
             Column::make('id')->width(50),
-            Column::make('banner'),
+            Column::make('banner')->width(120),
             Column::make('title'),
+            Column::make('priority'),
+            Column::make('status'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
