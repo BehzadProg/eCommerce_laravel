@@ -22,13 +22,11 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="form-group col-md-8 col-12">
-                                        @if (Auth::user()->image)
-                                            <div class="mb-3">
-                                                <img width="100px"
-                                                    src="{{ asset(env('ADMIN_PROFILE_IMAGE_UPLOAD_PATH') . Auth::user()->image) }}"
-                                                    alt="image">
-                                            </div>
-                                        @endif
+                                        <div class="mb-3">
+                                            <img width="100px"
+                                                src="{{ Auth::user()->image ? asset(env('ADMIN_PROFILE_IMAGE_UPLOAD_PATH') . Auth::user()->image) : asset('backend/assets/img/avatar/avatar-1.png') }}"
+                                                alt="image">
+                                        </div>
                                         <label>Image</label>
                                         <input type="file" name="image" class="form-control">
                                         @if ($errors->has('image'))

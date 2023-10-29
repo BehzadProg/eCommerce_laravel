@@ -20,33 +20,24 @@
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Type</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <input name="type" type="text" value="" class="form-control">
+                                    <input name="type" type="text" value="{{old('type')}}" class="form-control">
                                 </div>
                             </div>
 
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Title</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <input name="title" type="text" value="" class="form-control">
+                                    <input name="title" type="text" value="{{old('title')}}" class="form-control">
                                 </div>
                             </div>
 
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Starting Price</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <input name="starting_price" type="text" value="" class="form-control">
+                                    <input name="starting_price" type="text" value="{{old('starting_price')}}" class="form-control">
                                 </div>
                             </div>
 
-                                                       {{-- @if ($hero->image)
-                           <div class="form-group row mb-4">
-                            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Preview
-                                Image</label>
-                            <div class="col-sm-12 col-md-7">
-                               <img class="w-25" src="" alt="">
-                            </div>
-                        </div>
-                           @endif --}}
                            <div class="form-group row mb-4">
                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Banner
                                 Image</label>
@@ -60,20 +51,20 @@
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Button Text</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <input name="btn_text" type="text" value="" class="form-control">
+                                    <input name="btn_text" type="text" value="{{old('btn_text')}}" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Button URL</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <input name="btn_url" type="text" value="" class="form-control">
+                                    <input name="btn_url" type="text" value="{{old('btn_url')}}" class="form-control">
                                 </div>
                             </div>
 
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Priority</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <input name="priority" type="text" value="" class="form-control">
+                                    <input name="priority" type="text" value="{{old('priority')}}" class="form-control">
                                 </div>
                             </div>
 
