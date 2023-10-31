@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -21,5 +22,9 @@ Route::resource('slider', SliderController::class);
 Route::put('change-status',[CategoryController::class , 'changeStatus'])->name('category.change-status');
 Route::resource('category', CategoryController::class);
 /** sub category route */
-Route::put('SubCategory/change-status',[SubCategoryController::class , 'changeStatus'])->name('sub-category.change-status');
+Route::put('subcategory/change-status',[SubCategoryController::class , 'changeStatus'])->name('sub-category.change-status');
 Route::resource('sub-category', SubCategoryController::class);
+/** child category route */
+Route::put('childcategory/change-status',[ChildCategoryController::class , 'changeStatus'])->name('child-category.change-status');
+Route::get('get-subcategories' , [ChildCategoryController::class , 'getSubCategory'])->name('get-subcategories');
+Route::resource('child-category', ChildCategoryController::class);
