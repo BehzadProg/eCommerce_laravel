@@ -37,6 +37,30 @@ function handleUpload($inputName, $model = null, $pathFile = null , $privateName
     }
 }
 
+function handleMultiUpload($inputName, $pathFile, $privateName)
+{
+    try {
+        $imagePaths = [];
+        if (request()->hasFile($inputName)) {
+
+            $files = request()->file($inputName);
+
+            foreach ($files as $file) {
+
+                $fileName = generateFileName($file->getClientOriginalExtension() , $privateName);
+
+                $file->move(public_path($pathFile), $fileName);
+
+                array_push($imagePaths , $fileName);
+            }
+
+            return $imagePaths;
+        }
+    } catch (\Exception $e) {
+        throw $e;
+    }
+}
+
 function deleteFileIfExist($filePath)
 {
     try{
