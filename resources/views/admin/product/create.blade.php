@@ -25,7 +25,7 @@
                                         Image</label>
                                     <div class="col-sm-12 col-md-7">
                                         <div class="custom-file">
-                                            <input type="file" name="image" class="form-control">
+                                            <input type="file" name="thumb_image" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -163,7 +163,7 @@
                                             <option value="featured_product">Featured</option>
                                             <option value="best_product">Best Product</option>
                                             <option value="top_product">Top Product</option>
-                                            
+
                                         </select>
                                     </div>
                                 </div>
