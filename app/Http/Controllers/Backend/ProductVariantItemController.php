@@ -30,6 +30,7 @@ class ProductVariantItemController extends Controller
         $request->validate([
             'variant_id' => 'required|integer',
             'name' => 'required|max:200',
+            'price' => 'required|integer',
             'is_default' => 'required',
             'status' => 'required',
         ]);
@@ -45,6 +46,45 @@ class ProductVariantItemController extends Controller
         toastr('Created Successfully' , 'success');
         return redirect()->route('admin.variant-item.index' , ['productId' => $request->product_id ,'variantId' => $request->variant_id]);
 
+    }
+
+    public function edit(string $productId,string $variantItemId) {
+        $variantItem = ProductVariantItem::findOrFail($variantItemId);
+        $product = Product::findOrFail($productId);
+        return view('admin.product.product-variant-item.edit' , compact('variantItem' , 'product'));
+    }
+
+    public function update(Request $request , $variantItemId){
+        $request->validate([
+            'name' => 'required|max:200',
+            'price' => 'required|integer',
+            'is_default' => 'required',
+            'status' => 'required',
+        ]);
+
+        $variantItem = ProductVariantItem::findOrFail($variantItemId);
+        $variantItem->name = $request->name;
+        $variantItem->price = $request->price;
+        $variantItem->is_default = $request->is_default;
+        $variantItem->status = $request->status;
+        $variantItem->save();
+
+        toastr('Updated Successfully' , 'success');
+        return redirect()->route('admin.variant-item.index' , ['productId' => $request->product_id ,'variantId' => $variantItem->product_variant_id]);
+    }
+
+    public function destroy(string $variantItemId){
+        $variantItem = ProductVariantItem::findOrfail($variantItemId);
+        $variantItem->delete();
+        return response(['status' => 'success' , 'message' => 'Deleted Successfully']);
+    }
+
+    public function changeStatus(Request $request){
+        $variantItem = ProductVariantItem::findOrFail($request->id);
+        $variantItem->status = $request->status == 'true' ? 1 : 0;
+        $variantItem->save();
+
+        return response(['message' => 'status updated successfully']);
     }
 
 }
