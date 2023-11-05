@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
 use App\Http\Controllers\Backend\ProductVariantController;
+use App\Http\Controllers\Backend\ProductVariantItemController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -47,3 +48,9 @@ Route::resource('product-image-gallery', ProductImageGalleryController::class);
 /** Prouduct Variant route */
 Route::put('variant/change-status',[ProductVariantController::class , 'changeStatus'])->name('variant.change-status');
 Route::resource('product-variants', ProductVariantController::class);
+/** Prouduct Variant item route */
+Route::get('product-variant-item/{productId}/{variantId}' , [ProductVariantItemController::class , 'index'])->name('variant-item.index');
+Route::get('product-variant-item/create/{productId}/{variantId}' , [ProductVariantItemController::class , 'create'])->name('variant-item.create');
+Route::post('product-variant-item' , [ProductVariantItemController::class , 'store'])->name('variant-item.store');
+Route::get('product-variant-item/{id}/edit' , [ProductVariantItemController::class , 'edit'])->name('variant-item.edit');
+Route::get('product-variant-item/{id}' , [ProductVariantItemController::class , 'destroy'])->name('variant-item.destroy');

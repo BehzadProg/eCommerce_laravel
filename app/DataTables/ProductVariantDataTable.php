@@ -23,8 +23,8 @@ class ProductVariantDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                return '<a href="' . route('admin.product.edit', $query->id) . '" class="btn btn-outline-info mr-1">Variant Item</a>
-                <a href="' . route('admin.product-variants.edit', $query->id) . '" class="btn btn-outline-primary"><i class="far fa-edit"></i></a>
+                return '<a href="' . route('admin.variant-item.index', ['productId' => request()->product , 'variantId' => $query->id]) . '" class="btn btn-outline-info mr-1">Variant Item</a>
+                <a href="' . route('admin.product-variants.edit', ['product_variant' => $query->id, 'product' => request()->product]) . '" class="btn btn-outline-primary"><i class="far fa-edit"></i></a>
                <a href="' . route('admin.product-variants.destroy', $query->id) . '" class="btn btn-outline-danger delete-item ml-1"><i class="fas fa-trash-alt"></i></a>
          ';
             })

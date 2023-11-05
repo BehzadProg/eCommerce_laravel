@@ -60,10 +60,11 @@ class ProductVariantController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request,string $id)
     {
         $productVariant = ProductVariant::findOrFail($id);
-        return view('admin.product.product-variant.edit' , compact('productVariant'));
+        $product = Product::findOrFail($request->product);
+        return view('admin.product.product-variant.edit' , compact('productVariant' , 'product'));
     }
 
     /**
