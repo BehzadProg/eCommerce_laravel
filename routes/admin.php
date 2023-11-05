@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
+use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -41,4 +42,8 @@ Route::resource('vendor-profile', AdminVendorProfileController::class);
 Route::get('product/get-subcategory' , [ProductController::class , 'getSubCategory'])->name('get-subcategories');
 Route::get('product/get-childcategory' , [ProductController::class , 'getChildCategory'])->name('get-childcategories');
 Route::resource('product', ProductController::class);
+/** Product Gallery route */
 Route::resource('product-image-gallery', ProductImageGalleryController::class);
+/** Prouduct Variant route */
+Route::put('variant/change-status',[ProductVariantController::class , 'changeStatus'])->name('variant.change-status');
+Route::resource('product-variants', ProductVariantController::class);

@@ -20,7 +20,7 @@
                 </ul>
             </li>
 
-            <li class="dropdown {{setActive(['admin.brand.*'])}}">
+            <li class="dropdown {{setActive(['admin.brand.*' , 'admin.product.*'])}}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Manage Products</span></a>
                 <ul class="dropdown-menu">
