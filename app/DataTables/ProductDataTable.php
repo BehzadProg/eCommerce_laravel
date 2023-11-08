@@ -23,7 +23,7 @@ class ProductDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('image', function ($query) {
-                return '<img style="width:100px" src="' . asset(env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH') . $query->thumb_image) . '">';
+                return '<img style="width:100px" src="' . asset(env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH') . $query->thumb_image) . '"></img>';
             })
             ->addColumn('action', function ($query) {
                 return '<a href="' . route('admin.product.edit', $query->id) . '" class="btn btn-outline-primary"><i class="far fa-edit"></i></a>
@@ -35,7 +35,6 @@ class ProductDataTable extends DataTable
                       <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
                         <a class="dropdown-item has-icon" href="'.route('admin.product-image-gallery.index' , ['product' => $query->id]).'"><i class="far fa-heart"></i> Image Gallery</a>
                         <a class="dropdown-item has-icon" href="'.route('admin.product-variants.index' , ['product' => $query->id]).'"><i class="far fa-file"></i> Variants</a>
-                        <a class="dropdown-item has-icon" href="#"><i class="far fa-clock"></i> Something else here</a>
                       </div>
                     </div>
              ';

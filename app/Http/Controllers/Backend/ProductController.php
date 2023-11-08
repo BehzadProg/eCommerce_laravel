@@ -10,8 +10,11 @@ use Illuminate\Http\Request;
 use App\Models\ChildCategory;
 use App\DataTables\ProductDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\ProductImageGallery;
+use App\Models\ProductVariant;
 use Illuminate\Support\Facades\Auth;
 use Str;
+
 class ProductController extends Controller
 {
     /**
@@ -29,7 +32,7 @@ class ProductController extends Controller
     {
         $category = Category::all();
         $brands = Brand::all();
-        return view('admin.product.create' , compact('category' , 'brands'));
+        return view('admin.product.create', compact('category', 'brands'));
     }
 
     /**
@@ -38,7 +41,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => ['required', 'image', 'max:3000'],
+            'thumb_image' => ['required', 'image', 'max:3000'],
             'name' => ['required', 'max:200'],
             'category' => ['required'],
             'brand' => ['required'],
@@ -46,13 +49,13 @@ class ProductController extends Controller
             'qty' => ['required'],
             'short_description' => ['required', 'max:600'],
             'long_description' => ['required'],
-            'seo_title' => ['nullable','max:200'],
-            'seo_description' => ['nullable','max:250'],
+            'seo_title' => ['nullable', 'max:200'],
+            'seo_description' => ['nullable', 'max:250'],
             'status' => ['required']
         ]);
 
         /** Handle the image upload */
-        $imagePath = handleUpload('thumb_image' , null , env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH') , 'Admin_product');
+        $imagePath = handleUpload('thumb_image', null, env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH'), 'Admin_product');
 
         $product = new Product();
         $product->thumb_image = $imagePath;
@@ -100,9 +103,9 @@ class ProductController extends Controller
         $products = Product::findOrFail($id);
         $category = Category::all();
         $brands = Brand::all();
-        $subCategory = SubCategory::where('category_id' , $products->category_id)->get();
-        $childCategory = ChildCategory::where('sub_category_id' , $products->sub_category_id)->get();
-        return view('admin.product.edit' , compact('products' , 'category' , 'brands' , 'subCategory' , 'childCategory'));
+        $subCategory = SubCategory::where('category_id', $products->category_id)->get();
+        $childCategory = ChildCategory::where('sub_category_id', $products->sub_category_id)->get();
+        return view('admin.product.edit', compact('products', 'category', 'brands', 'subCategory', 'childCategory'));
     }
 
     /**
@@ -111,7 +114,7 @@ class ProductController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'image' => ['image', 'max:3000'],
+            'thumb_image' => ['image', 'max:3000'],
             'name' => ['required', 'max:200'],
             'category' => ['required'],
             'brand' => ['required'],
@@ -119,15 +122,15 @@ class ProductController extends Controller
             'qty' => ['required'],
             'short_description' => ['required', 'max:600'],
             'long_description' => ['required'],
-            'seo_title' => ['nullable','max:200'],
-            'seo_description' => ['nullable','max:250'],
+            'seo_title' => ['nullable', 'max:200'],
+            'seo_description' => ['nullable', 'max:250'],
             'status' => ['required']
         ]);
 
         /** Handle the image upload */
 
         $product = Product::findOrFail($id);
-        $imagePath = handleUpload('thumb_image' , $product , env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH') , 'Admin_product');
+        $imagePath = handleUpload('thumb_image', $product, env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH'), 'Admin_product');
         $product->thumb_image = (!empty($imagePath) ? $imagePath : $product->thumb_image);
         $product->name = $request->name;
         $product->slug = Str::slug($request->name);
@@ -162,16 +165,42 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $productGallery = ProductImageGallery::where('product_id' , $product->id)->get();
+        deleteFileIfExist(env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH') . $product->thumb_image);
+        foreach($productGallery as $image){
+            deleteFileIfExist(env('ADMIN_PRODUCT_GALLERY_IMAGE_UPLOAD_PATH').$image->image);
+            $image->delete();
+        }
+        $variants = ProductVariant::where('product_id' , $product->id)->get();
+        foreach ($variants as $variant) {
+            $variant->productVariantItems()->delete();
+            $variant->delete();
+        }
+
+        $product->delete();
+
+        return response(['status' => 'success' , 'message' => 'Product Deleted Successfully']);
     }
 
-    public function getSubCategory(Request $request){
-        $subCategory = SubCategory::where('category_id' , $request->id)->get();
+    public function changeStatus(Request $request)
+    {
+        $product = Product::findOrFail($request->id);
+        $product->status = $request->status == 'true' ? 1 : 0;
+        $product->save();
+
+        return response(['message' => 'status updated successfully']);
+    }
+
+    public function getSubCategory(Request $request)
+    {
+        $subCategory = SubCategory::where('category_id', $request->id)->get();
         return $subCategory;
     }
 
-    public function getChildCategory(Request $request){
-        $childCategory = ChildCategory::where('sub_category_id' , $request->id)->get();
+    public function getChildCategory(Request $request)
+    {
+        $childCategory = ChildCategory::where('sub_category_id', $request->id)->get();
         return $childCategory;
     }
 }

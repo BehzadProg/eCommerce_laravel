@@ -40,6 +40,7 @@ Route::resource('brand', BrandController::class);
 /** Vendor Admin Profile route */
 Route::resource('vendor-profile', AdminVendorProfileController::class);
 /** Product route */
+Route::put('product/change-status',[ProductController::class , 'changeStatus'])->name('product.change-status');
 Route::get('product/get-subcategory' , [ProductController::class , 'getSubCategory'])->name('get-subcategories');
 Route::get('product/get-childcategory' , [ProductController::class , 'getChildCategory'])->name('get-childcategories');
 Route::resource('product', ProductController::class);
