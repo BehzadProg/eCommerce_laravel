@@ -37,6 +37,13 @@
                             </div>
 
                             <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Shop Name</label>
+                                <div class="col-sm-12 col-md-7">
+                                    <input name="shop_name" type="text" value="{{$vendor->shop_name}}" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Phone</label>
                                 <div class="col-sm-12 col-md-7">
                                     <input name="phone" type="text" value="{{$vendor->phone}}" class="form-control">

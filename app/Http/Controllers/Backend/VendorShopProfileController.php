@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class AdminVendorProfileController extends Controller
+class VendorShopProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class AdminVendorProfileController extends Controller
     public function index()
     {
         $vendor = Vendor::where('user_id' , Auth::user()->id)->first();
-        return view('admin.vendor-profile.index' , compact('vendor'));
+        return view('vendor.shop-profile.index' , compact('vendor'));
     }
 
     /**
@@ -44,7 +44,7 @@ class AdminVendorProfileController extends Controller
         ]);
 
         $vendor = Vendor::where('user_id' , Auth::user()->id)->first();
-        $imagePath = handleUpload('banner' , $vendor , env('ADMIN_VENDOR_PROFILE_BANNER_UPLOAD_PATH') , 'vendor_banner');
+        $imagePath = handleUpload('banner' , $vendor , env('VENDOR_SHOP_PROFILE_BANNER_UPLOAD_PATH') , 'vendor_banner');
         $vendor->banner = (!empty($imagePath) ? $imagePath : $vendor->banner);
         $vendor->shop_name = $request->shop_name;
         $vendor->phone = $request->phone;
@@ -56,7 +56,7 @@ class AdminVendorProfileController extends Controller
         $vendor->tw_link = $request->tw_link;
         $vendor->save();
 
-        toastr('Vendor Profile Updated Successfully');
+        toastr('Shop Profile Updated Successfully');
         return redirect()->back();
     }
 
@@ -81,7 +81,7 @@ class AdminVendorProfileController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+       //
     }
 
     /**

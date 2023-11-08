@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\VendorController;
 use App\Http\Controllers\Backend\VendorProfileController;
+use App\Http\Controllers\Backend\VendorShopProfileController;
 
 Route::get('dashboard' , [VendorController::class , 'dashboard'])->name('dashboard');
 
@@ -10,3 +11,6 @@ Route::get('dashboard' , [VendorController::class , 'dashboard'])->name('dashboa
  Route::get('profile' , [VendorProfileController::class , 'index'])->name('profile');
  Route::put('profile/update' , [VendorProfileController::class , 'profileUpdate'])->name('profile.update');
  Route::post('profile/password/update' , [VendorProfileController::class , 'passwordUpdate'])->name('password.update');
+
+ /** vendor shop profile route */
+Route::resource('shop-profile', VendorShopProfileController::class);
