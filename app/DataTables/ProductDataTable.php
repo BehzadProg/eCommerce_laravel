@@ -23,7 +23,7 @@ class ProductDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('image', function ($query) {
-                return '<img style="width:100px" src="' . asset(env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH') . $query->thumb_image) . '"></img>';
+                return '<img style="width:100px; height:70px" src="' . asset(env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH') . $query->thumb_image) . '"></img>';
             })
             ->addColumn('action', function ($query) {
                 return '<a href="' . route('admin.product.edit', $query->id) . '" class="btn btn-outline-primary"><i class="far fa-edit"></i></a>
