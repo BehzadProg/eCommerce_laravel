@@ -4,19 +4,20 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\ProductImageGallery;
 use App\Http\Controllers\Controller;
 use App\DataTables\ProductImageGalleryDataTable;
-use App\Models\ProductImageGallery;
+use App\DataTables\VendorProductImageGalleryDataTable;
 
-class ProductImageGalleryController extends Controller
+class VendorProductImageGallery extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request,ProductImageGalleryDataTable $dataTable)
+    public function index(Request $request , VendorProductImageGalleryDataTable $dataTable)
     {
         $product = Product::findOrFail($request->product);
-        return $dataTable->render('admin.product.image-gallery.index' , compact('product'));
+        return $dataTable->render('vendor.product.image-gallery.index' , compact('product'));
     }
 
     /**

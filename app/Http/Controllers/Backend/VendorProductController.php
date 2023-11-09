@@ -71,8 +71,13 @@ class VendorProductController extends Controller
         $product->sku = $request->sku;
         $product->price = $request->price;
         $product->offer_price = $request->offer_price;
-        $product->offer_start_date = $request->offer_start_date;
-        $product->offer_end_date = $request->offer_end_date;
+        if($request->offer_price){
+            $product->offer_start_date = $request->offer_start_date;
+            $product->offer_end_date = $request->offer_end_date;
+        }else{
+            $product->offer_start_date = null;
+            $product->offer_end_date = null;
+        }
         $product->product_type = $request->product_type;
         $product->status = $request->status;
         $product->is_approved = 0;
@@ -152,8 +157,13 @@ class VendorProductController extends Controller
         $product->sku = $request->sku;
         $product->price = $request->price;
         $product->offer_price = $request->offer_price;
-        $product->offer_start_date = $request->offer_start_date;
-        $product->offer_end_date = $request->offer_end_date;
+        if($request->offer_price){
+            $product->offer_start_date = $request->offer_start_date;
+            $product->offer_end_date = $request->offer_end_date;
+        }else{
+            $product->offer_start_date = null;
+            $product->offer_end_date = null;
+        }
         $product->product_type = $request->product_type;
         $product->status = $request->status;
         $product->is_approved = $product->is_approved;

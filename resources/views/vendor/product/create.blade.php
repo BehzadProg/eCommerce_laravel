@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
                     <div class="dashboard_content mt-2 mt-md-0">
-                        <h3><i class="far fa-user"></i>Create Product </h3>
+                        <h3>Create Product </h3>
                         <div class="back_button">
                             <a href="{{route('vendor.products.index')}}" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back</a>
                         </div>
