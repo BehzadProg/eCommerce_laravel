@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\VendorController;
+use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\VendorProfileController;
 use App\Http\Controllers\Backend\VendorShopProfileController;
 
@@ -14,3 +15,9 @@ Route::get('dashboard' , [VendorController::class , 'dashboard'])->name('dashboa
 
  /** vendor shop profile route */
 Route::resource('shop-profile', VendorShopProfileController::class);
+
+/** vendor product route */
+Route::put('product/change-status',[VendorProductController::class , 'changeStatus'])->name('product.change-status');
+Route::get('product/get-subcategory' , [VendorProductController::class , 'getSubCategory'])->name('get-subcategories');
+Route::get('product/get-childcategory' , [VendorProductController::class , 'getChildCategory'])->name('get-childcategories');
+Route::resource('products', VendorProductController::class);
