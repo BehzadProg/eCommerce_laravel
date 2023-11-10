@@ -1,5 +1,5 @@
 @extends('vendor.layouts.master')
-@section('title', '- Products')
+@section('title', '- Product-Variant')
 @section('content')
 
 
@@ -8,10 +8,13 @@
             @include('vendor.layouts.sidebar')
             <div class="row">
                 <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
+                    <div class="back_button">
+                        <h3><a href="{{route('vendor.products.index')}}" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a> Product Variants </h3>
+                    </div>
                     <div class="dashboard_content mt-2 mt-md-0">
-                        <h3><i class="fas fa-box"></i>Products </h3>
                         <div class="create_button">
-                            <a href="{{route('vendor.products.create')}}" class="btn btn-primary">Create Product <i class="fas fa-plus"></i></a>
+                            <a href="{{route('vendor.product-variants.create' , ['product' => $product->id])}}" class="btn btn-primary">Create Variant <i class="fas fa-plus"></i></a>
+                            <h5 style="text-align: left">Product : {{$product->name}}</h5>
                         </div>
                         <div class="wsus__dashboard_profile">
                             <div class="wsus__dash_pro_area">
@@ -35,7 +38,7 @@
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: "{{route('vendor.product.change-status')}}",
+                    url: "{{route('vendor.variant.change-status')}}",
                     method: 'PUT',
                     data:{
                         status: ischecked,
