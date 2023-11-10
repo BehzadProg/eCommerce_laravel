@@ -3,15 +3,15 @@
 namespace App\DataTables;
 
 use App\Models\ProductVariant;
-use App\Models\VendorProductVariant;
-use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Yajra\DataTables\EloquentDataTable;
-use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
+use App\Models\VendorProductVariant;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Yajra\DataTables\Html\Builder as HtmlBuilder;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class VendorProductVariantDataTable extends DataTable
 {
@@ -24,7 +24,7 @@ class VendorProductVariantDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                return '<a href="' . route('admin.variant-item.index', ['productId' => request()->product, 'variantId' => $query->id]) . '" class="btn btn-outline-info mr-1">Variant Item</a>
+                return '<a href="' . route('vendor.variant-item.index', ['productId' => request()->product, 'variantId' => $query->id]) . '" class="btn btn-outline-info mr-1">Variant Item</a>
             <a href="' . route('vendor.product-variants.edit', ['product_variant' => $query->id, 'product' => request()->product]) . '" class="btn btn-outline-primary"><i class="far fa-edit"></i></a>
            <a href="' . route('vendor.product-variants.destroy', $query->id) . '" class="btn btn-outline-danger delete-item ml-1"><i class="fas fa-trash-alt"></i></a>
      ';
