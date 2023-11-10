@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ProductImageGallery;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\DataTables\ProductImageGalleryDataTable;
 use App\DataTables\VendorProductImageGalleryDataTable;
 
@@ -17,6 +18,10 @@ class VendorProductImageGallery extends Controller
     public function index(Request $request , VendorProductImageGalleryDataTable $dataTable)
     {
         $product = Product::findOrFail($request->product);
+        /** check product owner */
+        if($product->vendor_id !== Auth::user()->vendor->id){
+            abort(404);
+        }
         return $dataTable->render('vendor.product.image-gallery.index' , compact('product'));
     }
 
@@ -34,7 +39,7 @@ class VendorProductImageGallery extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|max:2048',
+            'image' => 'required',
             'image.*' => 'required|image|max:2048'
         ]);
 
@@ -82,6 +87,10 @@ class VendorProductImageGallery extends Controller
     public function destroy(string $id)
     {
         $productImages = ProductImageGallery::findOrFail($id);
+        /** check product owner */
+        if($productImages->product->vendor_id !== Auth::user()->vendor->id){
+            abort(404);
+        }
         deleteFileIfExist(env('ADMIN_PRODUCT_GALLERY_IMAGE_UPLOAD_PATH').$productImages->image);
         $productImages->delete();
 

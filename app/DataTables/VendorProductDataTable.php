@@ -40,6 +40,13 @@ class VendorProductDataTable extends DataTable
                   </div>
                ';
             })
+            ->addColumn('approved' , function($query){
+                if($query->is_approved == 1){
+                    return '<i class="badge bg-success">Approved</i>';
+                }else{
+                    return '<i class="badge bg-warning">Pending</i>';
+                }
+            })
             ->addColumn('status', function ($query) {
                 if ($query->status == 1) {
                     $button =  '<div class="form-check form-switch">
@@ -61,7 +68,7 @@ class VendorProductDataTable extends DataTable
                         return '<i class="badge bg-warning">Featured Product</i>';
                         break;
                     case 'best_product':
-                        return '<i class="badge bg-success">Best Product</i>';
+                        return '<i class="badge bg-info">Best Product</i>';
                         break;
                     case 'top_product':
                         return '<i class="badge bg-danger">Top Product</i>';
@@ -72,7 +79,7 @@ class VendorProductDataTable extends DataTable
                         break;
                 }
             })
-            ->rawColumns(['action', 'image', 'status', 'type'])
+            ->rawColumns(['action', 'image', 'status', 'type' , 'approved'])
             ->setRowId('id');
     }
 
@@ -116,8 +123,9 @@ class VendorProductDataTable extends DataTable
             Column::make('image')->width(100),
             Column::make('name'),
             Column::make('price'),
-            Column::make('type')->width(100),
+            Column::make('approved')->width(100),
             Column::make('status'),
+            Column::make('type')->width(100),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

@@ -9,6 +9,8 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use App\Models\ChildCategory;
+use App\Models\ProductVariant;
+use App\Models\ProductImageGallery;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\DataTables\VendorProductDataTable;
@@ -181,7 +183,25 @@ class VendorProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        if($product->vendor_id !== Auth::user()->vendor->id){
+            abort(404);
+        }
+        deleteFileIfExist(env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH') . $product->thumb_image);
+        $productGallery = ProductImageGallery::where('product_id' , $product->id)->get();
+        foreach($productGallery as $image){
+            deleteFileIfExist(env('ADMIN_PRODUCT_GALLERY_IMAGE_UPLOAD_PATH').$image->image);
+            $image->delete();
+        }
+        $variants = ProductVariant::where('product_id' , $product->id)->get();
+        foreach ($variants as $variant) {
+            $variant->productVariantItems()->delete();
+            $variant->delete();
+        }
+
+        $product->delete();
+
+        return response(['status' => 'success' , 'message' => 'Product Deleted Successfully']);
     }
 
     public function changeStatus(Request $request)

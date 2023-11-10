@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
                     <div class="back_button">
-                        <h3><a href="{{route('vendor.variant-item.index' , ['productId' => $product->id , 'variantId' => $variantItem->product_variant_id])}}" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a> Create Variant Item </h3>
+                        <h3><a href="{{route('vendor.variant-item.index' , ['productId' => $product->id , 'variantId' => $variantItem->product_variant_id])}}" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a> Edit Variant Item </h3>
                     </div>
                     <div class="dashboard_content mt-2 mt-md-0">
                         <div class="back_button"><h5>Variant Name : {{$variantItem->productVariant->name}}</h5></div>
