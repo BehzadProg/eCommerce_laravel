@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\ProductImageGalleryController;
 use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\SellerProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 
@@ -57,3 +58,8 @@ Route::get('product-variant-item-edit/{productId}/{variantItemId}' , [ProductVar
 Route::put('product-variant-item-update/{variantItemId}' , [ProductVariantItemController::class , 'update'])->name('variant-item.update');
 Route::delete('product-variant-item/{variantItemId}' , [ProductVariantItemController::class , 'destroy'])->name('variant-item.destroy');
 Route::put('product-variant-item/change-status',[ProductVariantItemController::class , 'changeStatus'])->name('variant-item.change-status');
+
+/** Seller Product Route */
+Route::get('seller-product' , [SellerProductController::class , 'index'])->name('seller-product.index');
+Route::get('seller-pending-product' , [SellerProductController::class , 'pendingProducts'])->name('seller-pending-product.index');
+Route::put('change-approve-status' , [SellerProductController::class , 'changeApprove'])->name('change-approve-status');

@@ -13,7 +13,7 @@ use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
-class ProductDataTable extends DataTable
+class SellerProductDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -28,29 +28,29 @@ class ProductDataTable extends DataTable
             })
             ->addColumn('action', function ($query) {
                 return '<a href="' . route('admin.product.edit', $query->id) . '" class="btn btn-outline-primary"><i class="far fa-edit"></i></a>
-                   <a href="' . route('admin.product.destroy', $query->id) . '" class="btn btn-outline-danger delete-item ml-1"><i class="fas fa-trash-alt"></i></a>
-                   <div class="dropdown dropleft d-inline">
-                      <button class="btn btn-primary dropdown-toggle ml-1" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-cog"></i>
-                      </button>
-                      <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                        <a class="dropdown-item has-icon" href="'.route('admin.product-image-gallery.index' , ['product' => $query->id]).'"><i class="fas fa-images"></i> Image Gallery</a>
-                        <a class="dropdown-item has-icon" href="'.route('admin.product-variants.index' , ['product' => $query->id]).'"><i class="fas fa-ellipsis-v"></i> Variants</a>
-                      </div>
-                    </div>
-             ';
+               <a href="' . route('admin.product.destroy', $query->id) . '" class="btn btn-outline-danger delete-item ml-1"><i class="fas fa-trash-alt"></i></a>
+               <div class="dropdown dropleft d-inline">
+                  <button class="btn btn-primary dropdown-toggle ml-1" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-cog"></i>
+                  </button>
+                  <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
+                    <a class="dropdown-item has-icon" href="' . route('admin.product-image-gallery.index', ['product' => $query->id]) . '"><i class="fas fa-images"></i> Image Gallery</a>
+                    <a class="dropdown-item has-icon" href="' . route('admin.product-variants.index', ['product' => $query->id]) . '"><i class="fas fa-ellipsis-v"></i> Variants</a>
+                  </div>
+                </div>
+         ';
             })
             ->addColumn('status', function ($query) {
                 if ($query->status == 1) {
                     $button = '<label class="custom-switch mt-2">
-                    <input type="checkbox" checked name="custom-switch-checkbox" data-id="' . $query->id . '" class="custom-switch-input change-status">
-                    <span class="custom-switch-indicator"></span>
-                  </label>';
+                <input type="checkbox" checked name="custom-switch-checkbox" data-id="' . $query->id . '" class="custom-switch-input change-status">
+                <span class="custom-switch-indicator"></span>
+              </label>';
                 } else {
                     $button = '<label class="custom-switch mt-2">
-                    <input type="checkbox" name="custom-switch-checkbox" data-id="' . $query->id . '" class="custom-switch-input change-status">
-                    <span class="custom-switch-indicator"></span>
-                  </label>';
+                <input type="checkbox" name="custom-switch-checkbox" data-id="' . $query->id . '" class="custom-switch-input change-status">
+                <span class="custom-switch-indicator"></span>
+              </label>';
                 }
                 return $button;
             })
@@ -74,7 +74,16 @@ class ProductDataTable extends DataTable
                         break;
                 }
             })
-            ->rawColumns(['action', 'image', 'status', 'type'])
+            ->addColumn('vendor' , function($query){
+                return $query->vendor->shop_name;
+            })
+            ->addColumn('approve', function($query){
+                return "<select class='form-control is_approve' data-id='$query->id'>
+                <option value='0'>Pending</option>
+                <option selected value='1'>Approved</option>
+                </select>";
+            })
+            ->rawColumns(['action', 'image', 'status', 'type' , 'approve'])
             ->setRowId('id');
     }
 
@@ -83,7 +92,7 @@ class ProductDataTable extends DataTable
      */
     public function query(Product $model): QueryBuilder
     {
-        return $model->where('vendor_id' , Auth::user()->vendor->id)->newQuery();
+        return $model->where('vendor_id','!=',Auth::user()->vendor->id)->where('is_approved' , 1)->newQuery();
     }
 
     /**
@@ -92,7 +101,7 @@ class ProductDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('product-table')
+            ->setTableId('sellerproduct-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
@@ -115,11 +124,13 @@ class ProductDataTable extends DataTable
     {
         return [
             Column::make('id'),
+            Column::make('vendor'),
             Column::make('image')->width(100),
             Column::make('name'),
             Column::make('price'),
             Column::make('type')->width(100),
             Column::make('status'),
+            Column::make('approve')->width(80),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
@@ -133,6 +144,6 @@ class ProductDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Product_' . date('YmdHis');
+        return 'SellerProduct_' . date('YmdHis');
     }
 }
