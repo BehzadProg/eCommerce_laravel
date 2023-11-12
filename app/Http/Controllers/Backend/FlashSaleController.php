@@ -43,7 +43,7 @@ class FlashSaleController extends Controller
 
         $flashSale = FlashSale::first();
         $flashSaleItem = new FlashSaleItem();
-        $flashSaleItem->product_id = $request->product_id;
+        $flashSaleItem->product_id = $request->product;
         $flashSaleItem->flash_sale_id = $flashSale->id;
         $flashSaleItem->show_at_home = $request->show_at_home;
         $flashSaleItem->status = $request->status;
