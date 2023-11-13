@@ -77,7 +77,7 @@
 
                             <span class="wsus__minus">- {{calculateDiscountPercend($item->product->price,$item->product->offer_price)}} % </span>
                             @endif
-                            <a class="wsus__pro_link" href="product_details.html">
+                            <a class="wsus__pro_link" href="{{route('product-detail' , $item->product->slug)}}">
                                 <img src="{{asset(env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH'). $item->product->thumb_image)}}" alt="product" class="img-fluid w-100 img_1" />
                                 <img src="
                                 @if (isset($item->product->productImageGalleries[0]->image))
@@ -103,7 +103,7 @@
                                     <i class="fas fa-star-half-alt"></i>
                                     <span>(133 review)</span>
                                 </p>
-                                <a class="wsus__pro_name" href="#">{{$item->product->name}}</a>
+                                <a class="wsus__pro_name" href="{{route('product-detail' , $item->product->slug)}}">{{$item->product->name}}</a>
                                 @if (checkDiscount($item->product))
 
                                 <p class="wsus__price">${{$item->product->offer_price}}<del>${{$item->product->price}}</del></p>
