@@ -110,7 +110,7 @@ function productType(string $type){
             return 'Featured';
             break;
         case 'best_product':
-            return 'Best</i>';
+            return 'Best';
             break;
         case 'top_product':
             return 'Top';

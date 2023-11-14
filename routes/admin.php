@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SellerProductController;
+use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 
@@ -72,3 +73,7 @@ Route::post('flash-sale/add-product' , [FlashSaleController::class , 'addProduct
 Route::put('flash-sale/show-at-home/change' , [FlashSaleController::class , 'changeShowAtHome'])->name('flash-sale.show-at-home.change');
 Route::put('flash-sale/change-status',[FlashSaleController::class , 'changeStatus'])->name('flash-sale.change-status');
 Route::delete('flash-sale/{id}/destroy',[FlashSaleController::class , 'destroy'])->name('flash-sale.destroy');
+
+/** Setting Route */
+Route::get('settings' , [SettingController::class , 'index'])->name('setting.index');
+Route::put('general-setting-update' , [SettingController::class , 'generalSettingUpdate'])->name('general-setting-update');
