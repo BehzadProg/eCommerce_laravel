@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\ProductVariantItemController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SellerProductController;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\ShippingRuleController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 
@@ -78,6 +79,10 @@ Route::delete('flash-sale/{id}/destroy',[FlashSaleController::class , 'destroy']
 /** coupon route */
 Route::put('coupons/change-status',[couponController::class , 'changeStatus'])->name('coupon.change-status');
 Route::resource('coupons' , couponController::class);
+
+/** Shipping Rule route */
+Route::put('shipping-rule/change-status',[ShippingRuleController::class , 'changeStatus'])->name('shippingRule.change-status');
+Route::resource('shipping-rule' , ShippingRuleController::class);
 
 /** Setting Route */
 Route::get('settings' , [SettingController::class , 'index'])->name('setting.index');
