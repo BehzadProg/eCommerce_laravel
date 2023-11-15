@@ -1,5 +1,7 @@
 @extends('vendor.layouts.master')
-@section('title', '- Edit Variant-Item')
+@section('title')
+{{$settings->site_name}} - Edit Variant-Item
+@endsection
 @section('content')
 
 

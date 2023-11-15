@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
-@section('title' , 'Reset-password')
+@section('title')
+{{$settings->site_name}} - Reset-password
+@endsection
 @section('content')
     <!--============================
                     BREADCRUMB START

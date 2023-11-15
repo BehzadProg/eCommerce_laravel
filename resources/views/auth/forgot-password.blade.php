@@ -1,7 +1,8 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Forgot-password')
-
+@section('title')
+{{$settings->site_name}} - Forgot-password
+@endsection
 @section('content')
     <!--============================
             FORGET PASSWORD START

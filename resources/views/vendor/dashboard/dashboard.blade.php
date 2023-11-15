@@ -1,5 +1,7 @@
 @extends('vendor.layouts.master')
-@section('title' , 'Vendor Dashboard')
+@section('title')
+{{$settings->site_name}} - Vendor Dashboard
+@endsection
 @section('content')
 <section id="wsus__dashboard">
     <div class="container-fluid">

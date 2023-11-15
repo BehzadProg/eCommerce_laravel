@@ -1,5 +1,7 @@
 @extends('frontend.dashboard.layouts.master')
-@section('title' , '- Edit User Address')
+@section('title')
+{{$settings->site_name}} - Edit Address
+@endsection
 @section('content')
 <section id="wsus__dashboard">
     <div class="container-fluid">

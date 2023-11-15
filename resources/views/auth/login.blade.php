@@ -1,6 +1,8 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Login/Register')
+@section('title')
+{{$settings->site_name}} - Login/Register
+@endsection
 
 @section('content')
     <!--============================

@@ -1,5 +1,7 @@
 @extends('vendor.layouts.master')
-@section('title', '- My Profile')
+@section('title')
+{{$settings->site_name}} - My Profile
+@endsection
 @section('content')
     <!--=============================
                 DASHBOARD START
