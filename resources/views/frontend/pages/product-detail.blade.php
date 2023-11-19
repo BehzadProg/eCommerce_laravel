@@ -255,7 +255,7 @@
                                 <div class="wsus__quentity">
                                     <h5>quentity :</h5>
                                     <div class="select_number">
-                                        <input class="number_area" type="text" name="qty" min="1" max="100"
+                                        <input class="number_area" type="text" name="qty" min="1" max="{{$product->qty}}"
                                             value="1" />
                                     </div>
 
@@ -627,6 +627,7 @@
                 }
             });
 
+            // add into cart
             $('.shopping-cart-form').on('submit', function(e) {
             e.preventDefault();
             let formData = $(this).serialize();
@@ -636,13 +637,29 @@
                 data: formData,
                 url: "{{ route('add-to-cart') }}",
                 success: function(data) {
-
+                    getCartCount();
+                    toastr.success(data.message)
                 },
                 error: function(data) {
 
                 }
             })
         })
+
+        // get cart count
+
+        function getCartCount(){
+            $.ajax({
+                method: 'GET',
+                url: "{{ route('cart-count') }}",
+                success: function(data) {
+                    $('#cart-count').text(data);
+                },
+                error: function(data) {
+
+                }
+            })
+        }
     })
 </script>
 @endpush

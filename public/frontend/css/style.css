@@ -9527,3 +9527,15 @@ a:not([href]):not([class]):hover {
     background: #08C;
     color: #fff;
   }
+
+.product_qty_wraper {
+    display: flex;
+  }
+
+  .product_qty_wraper > .product-qty {
+    width: 45px;
+    height: 40px;
+    padding-left: 15px;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
