@@ -37,7 +37,7 @@
                     <div class="wsus__cart_list">
                         <div class="table-responsive">
                             <table>
-                                <tbody>
+                                <tbody class="cart_section">
                                     <tr class="d-flex">
                                         <th class="wsus__pro_img">
                                             product item
@@ -64,7 +64,8 @@
                                         </th>
                                     </tr>
                                     @foreach ($cartItems as $item)
-                                        <tr class="d-flex">
+
+                                        <tr class="d-flex cart_data" id="item_{{$item->rowId}}">
                                             <td class="wsus__pro_img"><img
                                                     src="{{ asset(env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH') . $item->options->image) }}"
                                                     alt="product" class="img-fluid w-100">
@@ -98,9 +99,10 @@
                                             </td>
 
                                             <td class="wsus__pro_icon">
-                                                <a href="{{route('cart.remove-product' , $item->rowId)}}"><i class="far fa-times"></i></a>
+                                                <a href="#" data-id="{{$item->rowId}}" class="remove_cart_product"><i class="far fa-times"></i></a>
                                             </td>
                                         </tr>
+
                                     @endforeach
 
                                     @if (count($cartItems) == 0)
@@ -115,7 +117,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3">
+                <div class="col-xl-3 cart_check_out {{count($cartItems) == 0 ? 'd-none' : ''}}">
                     <div class="wsus__cart_list_footer_button" id="sticky_sidebar">
                         <h6>total cart</h6>
                         <p>subtotal: <span>$124.00</span></p>
@@ -272,6 +274,46 @@
                                 console.log(error);
                             }
                         })
+                    }
+                })
+            })
+
+            function getCartCount() {
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('cart-count') }}",
+                    success: function(data) {
+                        $('#cart-count').text(data);
+                    },
+                    error: function(data) {
+
+                    }
+                })
+            }
+
+            $('.remove_cart_product').on('click' , function(e){
+                e.preventDefault();
+                let rowId = $(this).data('id');
+
+                $.ajax({
+                    method: 'POST',
+                    url: "{{ route('remove-cart-product') }}",
+                    data:{
+                        rowId: rowId
+                    },
+                    success: function(data) {
+
+                       let productId = '#item_'+rowId;
+                       $(productId).remove();
+                       getCartCount();
+                       if($('.cart_section').find('.cart_data').length == 0){
+                        $('#cart-count').addClass('d-none');
+                        $('.cart_check_out').addClass('d-none');
+                        $('.cart_section').append('<tr class="d-flex"><td style="width: 100%">Cart is empty!</td></tr>')
+                       }
+                    },
+                    error: function(data) {
+                        console.log(data);
                     }
                 })
             })

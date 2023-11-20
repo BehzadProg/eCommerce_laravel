@@ -121,3 +121,13 @@ function productType(string $type){
             break;
     }
 }
+
+// get sidebar cart total amonut
+function cartTotal(){
+    $total = 0;
+    foreach (\Cart::content() as $product) {
+        $total += ($product->price + $product->options->variants_total) * $product->qty;
+    }
+
+    return $total;
+}
