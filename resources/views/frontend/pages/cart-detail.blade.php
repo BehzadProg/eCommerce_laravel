@@ -4,8 +4,8 @@
 @endsection
 @section('content')
     <!--============================
-            BREADCRUMB START
-        ==============================-->
+                BREADCRUMB START
+            ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -13,7 +13,7 @@
                     <div class="col-12">
                         <h4>cart View</h4>
                         <ul>
-                            <li><a href="#">home</a></li>
+                            <li><a href="{{ route('home') }}">home</a></li>
                             <li><a href="#">peoduct</a></li>
                             <li><a href="#">cart view</a></li>
                         </ul>
@@ -23,13 +23,13 @@
         </div>
     </section>
     <!--============================
-            BREADCRUMB END
-        ==============================-->
+                BREADCRUMB END
+            ==============================-->
 
 
     <!--============================
-            CART VIEW PAGE START
-        ==============================-->
+                CART VIEW PAGE START
+            ==============================-->
     <section id="wsus__cart_view">
         <div class="container">
             <div class="row">
@@ -37,7 +37,7 @@
                     <div class="wsus__cart_list">
                         <div class="table-responsive">
                             <table>
-                                <tbody class="cart_section">
+                                <tbody>
                                     <tr class="d-flex">
                                         <th class="wsus__pro_img">
                                             product item
@@ -64,8 +64,7 @@
                                         </th>
                                     </tr>
                                     @foreach ($cartItems as $item)
-
-                                        <tr class="d-flex cart_data" id="item_{{$item->rowId}}">
+                                        <tr class="d-flex">
                                             <td class="wsus__pro_img"><img
                                                     src="{{ asset(env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH') . $item->options->image) }}"
                                                     alt="product" class="img-fluid w-100">
@@ -85,42 +84,44 @@
                                             </td>
 
                                             <td class="wsus__pro_tk">
-                                                <h6 id="{{$item->rowId}}">{{ $settings->currency_icon . ' ' . ($item->price + $item->options->variants_total) * $item->qty }}
+                                                <h6 id="{{ $item->rowId }}">
+                                                    {{ $settings->currency_icon . ' ' . ($item->price + $item->options->variants_total) * $item->qty }}
                                                 </h6>
                                             </td>
 
                                             <td class="wsus__pro_select">
                                                 <div class="product_qty_wraper">
                                                     <button class="btn btn-danger product-decrement">-</button>
-                                                    <input class="product-qty" data-rowid="{{$item->rowId}}" type="text" min="1" max="10"
-                                                        value="{{$item->qty}}" readonly />
+                                                    <input class="product-qty" data-rowid="{{ $item->rowId }}"
+                                                        type="text" min="1" max="10"
+                                                        value="{{ $item->qty }}" readonly />
                                                     <button class="btn btn-success product-increment">+</button>
                                                 </div>
                                             </td>
 
                                             <td class="wsus__pro_icon">
-                                                <a href="#" data-id="{{$item->rowId}}" class="remove_cart_product"><i class="far fa-times"></i></a>
+                                                <a href="{{ route('cart.remove-product', $item->rowId) }}"><i
+                                                        class="far fa-times"></i></a>
                                             </td>
                                         </tr>
-
                                     @endforeach
 
                                     @if (count($cartItems) == 0)
-                                    <tr class="d-flex">
-                                        <td style="width: 100%">
-                                            Cart is empty!
-                                        </td>
-                                    </tr>
+                                        <tr class="d-flex">
+                                            <td style="width: 100%">
+                                                Cart is empty!
+                                            </td>
+                                        </tr>
                                     @endif
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 cart_check_out {{count($cartItems) == 0 ? 'd-none' : ''}}">
+                <div class="col-xl-3 cart_check_out {{ count($cartItems) == 0 ? 'd-none' : '' }}">
                     <div class="wsus__cart_list_footer_button" id="sticky_sidebar">
                         <h6>total cart</h6>
-                        <p>subtotal: <span>$124.00</span></p>
+                        <p>subtotal: <span id="total-cart">{{ $settings->currency_icon }}{{ cartTotal() }}</span></p>
                         <p>delivery: <span>$00.00</span></p>
                         <p>discount: <span>$10.00</span></p>
                         <p class="total"><span>total:</span> <span>$134.00</span></p>
@@ -170,8 +171,8 @@
         </div>
     </section>
     <!--============================
-              CART VIEW PAGE END
-        ==============================-->
+                  CART VIEW PAGE END
+            ==============================-->
 @endsection
 
 @push('scripts')
@@ -198,10 +199,14 @@
                         quantity: quantity,
                     },
                     success: function(data) {
-                        if(data.status == 'success'){
-                            let productId = '#'+ rowId;
-                            let totalAmount = "{{$settings->currency_icon}} " + data.totalPrice;
+                        if (data.status === 'success') {
+                            let productId = '#' + rowId;
+                            let totalAmount = "{{ $settings->currency_icon }} " + data
+                                .totalPrice;
                             $(productId).text(totalAmount);
+                            renderCartSubTotal()
+                        } else if (data.status === 'stock_limit') {
+                            toastr.warning(data.message)
                         }
                     },
                     error: function(data) {
@@ -211,13 +216,13 @@
                 })
             })
 
-             /** decrement product quantity */
-             $('.product-decrement').on('click', function() {
+            /** decrement product quantity */
+            $('.product-decrement').on('click', function() {
                 let input = $(this).siblings('.product-qty');
                 let quantity = parseInt(input.val()) - 1;
                 let rowId = input.data('rowid');
 
-                if(quantity < 1){
+                if (quantity < 1) {
                     quantity = 1;
                 }
                 input.val(quantity);
@@ -230,10 +235,14 @@
                         quantity: quantity,
                     },
                     success: function(data) {
-                        if(data.status == 'success'){
-                            let productId = '#'+ rowId;
-                            let totalAmount = "{{$settings->currency_icon}} " + data.totalPrice;
+                        if (data.status == 'success') {
+                            let productId = '#' + rowId;
+                            let totalAmount = "{{ $settings->currency_icon }} " + data
+                                .totalPrice;
                             $(productId).text(totalAmount);
+                            renderCartSubTotal()
+                        } else if (data.status === 'stock_limit') {
+                            toastr.warning(data.message)
                         }
                     },
                     error: function(data) {
@@ -244,7 +253,7 @@
             })
 
             /** clear all cart */
-            $('.clear-cart').on('click' , function(e){
+            $('.clear-cart').on('click', function(e) {
                 e.preventDefault();
 
                 Swal.fire({
@@ -255,22 +264,22 @@
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes, Clear it !'
-                    }).then((result) => {
+                }).then((result) => {
                     if (result.isConfirmed) {
 
                         $.ajax({
                             type: 'GET',
-                            url: "{{route('clear-cart')}}",
+                            url: "{{ route('clear-cart') }}",
 
-                            success: function(data){
+                            success: function(data) {
 
-                                if(data.status == 'success'){
+                                if (data.status == 'success') {
 
                                     window.location.reload();
                                 }
 
                             },
-                            error: function(xhr, status, error){
+                            error: function(xhr, status, error) {
                                 console.log(error);
                             }
                         })
@@ -278,45 +287,19 @@
                 })
             })
 
-            function getCartCount() {
+            // get cart subTotal amount for dom
+            function renderCartSubTotal() {
                 $.ajax({
                     method: 'GET',
-                    url: "{{ route('cart-count') }}",
+                    url: "{{ route('cart.sidebar-product-total') }}",
                     success: function(data) {
-                        $('#cart-count').text(data);
+                        $('#total-cart').text("{{$settings->currency_icon}}"+data)
                     },
                     error: function(data) {
 
                     }
                 })
             }
-
-            $('.remove_cart_product').on('click' , function(e){
-                e.preventDefault();
-                let rowId = $(this).data('id');
-
-                $.ajax({
-                    method: 'POST',
-                    url: "{{ route('remove-cart-product') }}",
-                    data:{
-                        rowId: rowId
-                    },
-                    success: function(data) {
-
-                       let productId = '#item_'+rowId;
-                       $(productId).remove();
-                       getCartCount();
-                       if($('.cart_section').find('.cart_data').length == 0){
-                        $('#cart-count').addClass('d-none');
-                        $('.cart_check_out').addClass('d-none');
-                        $('.cart_section').append('<tr class="d-flex"><td style="width: 100%">Cart is empty!</td></tr>')
-                       }
-                    },
-                    error: function(data) {
-                        console.log(data);
-                    }
-                })
-            })
         })
     </script>
 @endpush

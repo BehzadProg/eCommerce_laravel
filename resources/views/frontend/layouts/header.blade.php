@@ -36,9 +36,7 @@
                         <li><a href="wishlist.html"><i class="fal fa-heart"></i><span>05</span></a></li>
                         <li><a href="compare.html"><i class="fal fa-random"></i><span>03</span></a></li>
                         <li><a class="wsus__cart_icon" href="#"><i class="fal fa-shopping-bag"></i>
-                                @if (Cart::content()->count() > 0)
-                                    <span id="cart-count">{{ Cart::content()->count() }}</span>
-                                @endif
+                                    <span id="cart-count" class="{{Cart::content()->count() ? '' : 'd-none'}}">{{ Cart::content()->count() }}</span>
                             </a></li>
                     </ul>
                 </div>
