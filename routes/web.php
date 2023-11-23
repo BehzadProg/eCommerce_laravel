@@ -50,6 +50,9 @@ Route::get('cart-products' , [CartController::class , 'fetchCartProduct'])->name
 Route::post('remove-cart-product' , [CartController::class , 'removeCartProduct'])->name('remove-cart-product');
 Route::get('cart/sidebar-product-total' , [CartController::class , 'cartTotal'])->name('cart.sidebar-product-total');
 
+Route::get('apply-coupon' , [CartController::class , 'applyCoupon'])->name('apply-coupon');
+Route::get('coupon-calculation' , [CartController::class , 'couponCalculation'])->name('coupon-calculation');
+
 Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' => 'user.'] , function(){
 
     Route::get('dashboard' , [UserDashboardController::class , 'index'])->name('dashboard');

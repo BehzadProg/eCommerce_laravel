@@ -122,17 +122,16 @@
                     <div class="wsus__cart_list_footer_button" id="sticky_sidebar">
                         <h6>total cart</h6>
                         <p>subtotal: <span id="total-cart">{{ $settings->currency_icon }}{{ cartTotal() }}</span></p>
-                        <p>delivery: <span>$00.00</span></p>
-                        <p>discount: <span>$10.00</span></p>
-                        <p class="total"><span>total:</span> <span>$134.00</span></p>
+                        <p>Coupon(-): <span id="discount_amount">{{$settings->currency_icon}}{{getCartDiscount()}}</span></p>
+                        <p class="total"><span>total:</span> <span id="cart-total">{{ $settings->currency_icon }}{{getMainCartTotal()}}</span></p>
 
-                        <form>
-                            <input type="text" placeholder="Coupon Code">
+                        <form id="coupon-cart">
+                            <input type="text" placeholder="Coupon Code" name="coupon_code" value="{{Session()->has('discount') ? Session()->get('discount')['coupon_code'] : ''}}">
                             <button type="submit" class="common_btn">apply</button>
                         </form>
                         <a class="common_btn mt-4 w-100 text-center" href="check_out.html">checkout</a>
-                        <a class="common_btn mt-1 w-100 text-center" href="product_grid_view.html"><i
-                                class="fab fa-shopify"></i> go shop</a>
+                        <a class="common_btn mt-1 w-100 text-center" href="{{route('home')}}"><i
+                                class="fab fa-shopify"></i> keep Shopping</a>
                     </div>
                 </div>
             </div>
@@ -204,7 +203,8 @@
                             let totalAmount = "{{ $settings->currency_icon }} " + data
                                 .totalPrice;
                             $(productId).text(totalAmount);
-                            renderCartSubTotal()
+                            renderCartSubTotal();
+                            getCouponCalculation();
                         } else if (data.status === 'stock_limit') {
                             toastr.warning(data.message)
                         }
@@ -240,7 +240,8 @@
                             let totalAmount = "{{ $settings->currency_icon }} " + data
                                 .totalPrice;
                             $(productId).text(totalAmount);
-                            renderCartSubTotal()
+                            renderCartSubTotal();
+                            getCouponCalculation();
                         } else if (data.status === 'stock_limit') {
                             toastr.warning(data.message)
                         }
@@ -296,7 +297,46 @@
                         $('#total-cart').text("{{$settings->currency_icon}}"+data)
                     },
                     error: function(data) {
+                        console.log(data);
+                    }
+                })
+            }
 
+            //apply coupon code
+            $('#coupon-cart').on('submit' , function(e){
+                e.preventDefault();
+                let formData = $(this).serialize();
+                  $.ajax({
+                    method: 'GET',
+                    url: "{{ route('apply-coupon') }}",
+                    data: formData,
+                    success: function(data) {
+                        if(data.status === 'error'){
+                            toastr.warning(data.message)
+                        }else if(data.status === 'success'){
+                            getCouponCalculation()
+                            toastr.success(data.message)
+                        }
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                })
+            })
+
+            function getCouponCalculation(){
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('coupon-calculation') }}",
+                    success: function(data) {
+                        if(data.status === 'success'){
+
+                            $('#discount_amount').text("{{$settings->currency_icon}}"+data.discount);
+                            $('#cart-total').text("{{$settings->currency_icon}}"+data.cart_total);
+                        }
+                    },
+                    error: function(data) {
+                        console.log(data);
                     }
                 })
             }

@@ -28,6 +28,9 @@ class couponDataTable extends DataTable
              <a href="' . route('admin.coupons.destroy', $query->id) . '" class="btn btn-outline-danger delete-item ml-2"><i class="fas fa-trash-alt"></i></a>';
             })
             ->addColumn('discount' , function($query){
+                if($query->discount_type === 'percent'){
+                    return '% ' .$query->discount;
+                }elseif($query->discount_type === 'amount')
                 return GeneralSetting::first()->currency_icon. ' ' .$query->discount;
             })
             ->addColumn('status', function ($query) {
@@ -86,6 +89,7 @@ class couponDataTable extends DataTable
         return [
             Column::make('id')->width(40),
             Column::make('name'),
+            Column::make('code'),
             Column::make('discount_type'),
             Column::make('discount'),
             Column::make('start_date'),

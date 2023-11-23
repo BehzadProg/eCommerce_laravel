@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 
 function generateFileName($name , $privateName)
 {
@@ -130,4 +131,39 @@ function cartTotal(){
     }
 
     return $total;
+}
+
+
+// get payable total amount
+function getMainCartTotal() {
+    $cartSubTotal = cartTotal();
+    if(Session::has('discount')){
+        $coupon = Session::get('discount');
+        if($coupon['coupon_type'] === 'amount'){
+            $total = $cartSubTotal - $coupon['discount'];
+            return $total;
+        }elseif($coupon['coupon_type'] === 'percent'){
+            $discount = $cartSubTotal - ($cartSubTotal * $coupon['discount'] / 100);
+            $total = $cartSubTotal - $discount;
+            return $total;
+        }
+    }else{
+        return cartTotal();
+    }
+}
+
+// get coupon discount amount
+function getCartDiscount() {
+    $cartSubTotal = cartTotal();
+    if(Session::has('discount')){
+        $coupon = Session::get('discount');
+        if($coupon['coupon_type'] === 'amount'){
+            return $coupon['discount'];
+        }elseif($coupon['coupon_type'] === 'percent'){
+            $discount = $cartSubTotal - ($cartSubTotal * $coupon['discount'] / 100);
+            return $discount;
+        }
+    }else{
+        return 0;
+    }
 }
