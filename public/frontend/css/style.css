@@ -9459,10 +9459,10 @@ a:not([href]):not([class]):hover {
     margin-bottom: 10px;
 }
 
-.form-check-input{
+.form-check-input.change-status {
     width: 40px !important;
     height: 20px !important;
-}
+  }
 .form-switch {
     padding-left: 3.5em !important;
 }

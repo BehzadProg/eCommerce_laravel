@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\CheckOutController;
+use App\Http\Controllers\Backend\PaymentCotroller;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
@@ -49,7 +51,7 @@ Route::get('cart-count' , [CartController::class , 'getCartCount'])->name('cart-
 Route::get('cart-products' , [CartController::class , 'fetchCartProduct'])->name('fetch-cart');
 Route::post('remove-cart-product' , [CartController::class , 'removeCartProduct'])->name('remove-cart-product');
 Route::get('cart/sidebar-product-total' , [CartController::class , 'cartTotal'])->name('cart.sidebar-product-total');
-
+// coupon route
 Route::get('apply-coupon' , [CartController::class , 'applyCoupon'])->name('apply-coupon');
 Route::get('coupon-calculation' , [CartController::class , 'couponCalculation'])->name('coupon-calculation');
 
@@ -63,4 +65,12 @@ Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' =>
 
     /** user address route */
     Route::resource('address' , UserAddressController::class);
+
+    /** check out route */
+    Route::get('checkout' , [CheckOutController::class , 'index'])->name('checkout');
+    Route::post('checkout/address-create' , [CheckOutController::class , 'createAddress'])->name('checkout.address.create');
+    Route::post('checkout/submit-form' , [CheckOutController::class , 'checkoutFormSubmit'])->name('checkout.form.submit');
+
+    /** payment route */
+    Route::get('payment' , [PaymentCotroller::class , 'index'])->name('payment');
 });

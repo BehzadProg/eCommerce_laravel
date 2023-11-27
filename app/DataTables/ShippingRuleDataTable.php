@@ -45,7 +45,7 @@ class ShippingRuleDataTable extends DataTable
                 if($query->type == 'min_cost'){
                     return '<i class="badge badge-primary">Minimum Order Amount</i>';
                 }else{
-                    return '<i class="badge badge-warning">Flate Amount</i>';;
+                    return '<i class="badge badge-warning">Flat Amount</i>';;
                 }
             })
             ->addColumn('status', function ($query) {
