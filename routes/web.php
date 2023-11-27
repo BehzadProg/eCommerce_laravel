@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminController;
-use App\Http\Controllers\Backend\CheckOutController;
-use App\Http\Controllers\Backend\PaymentCotroller;
+use App\Http\Controllers\Frontend\CheckOutController;
+use App\Http\Controllers\Frontend\PaymentCotroller;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
