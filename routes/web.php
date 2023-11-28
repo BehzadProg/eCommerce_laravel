@@ -73,4 +73,10 @@ Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' =>
 
     /** payment route */
     Route::get('payment' , [PaymentCotroller::class , 'index'])->name('payment');
+    Route::get('payment-success' , [PaymentCotroller::class , 'paymentSuccess'])->name('payment.success');
+
+    /** paypal routes */
+    Route::get('paypal/payment' , [PaymentCotroller::class , 'payWithPaypal'])->name('paypal.payment');
+    Route::get('paypal/success' , [PaymentCotroller::class , 'paypalSuccess'])->name('paypal.success');
+    Route::get('paypal/cancel' , [PaymentCotroller::class , 'paypalCancel'])->name('paypal.cancel');
 });
