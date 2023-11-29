@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Session;
 class CheckOutController extends Controller
 {
     public function index(){
+        if(\Cart::content()->count() == 0){
+            return redirect()->route('home');
+        }
         $addresses = UserAddress::where('user_id' , Auth::user()->id)->latest()->get();
         $shippingMethods = ShippingRule::where('status' , 1)->get();
         return view('frontend.pages.checkout' , compact('addresses' , 'shippingMethods'));
