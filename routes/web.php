@@ -79,4 +79,9 @@ Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' =>
     Route::get('paypal/payment' , [PaymentCotroller::class , 'payWithPaypal'])->name('paypal.payment');
     Route::get('paypal/success' , [PaymentCotroller::class , 'paypalSuccess'])->name('paypal.success');
     Route::get('paypal/cancel' , [PaymentCotroller::class , 'paypalCancel'])->name('paypal.cancel');
+
+    /** Stripe routes */
+    Route::post('stripe/payment' , [PaymentCotroller::class , 'payWithStripe'])->name('stripe.payment');
+    Route::get('stripe/success' , [PaymentCotroller::class , 'stripeSuccess'])->name('stripe.success');
+    Route::get('stripe/cancel' , [PaymentCotroller::class , 'stripeCancel'])->name('stripe.cancel');
 });
