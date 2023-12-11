@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\couponController;
 use App\Http\Controllers\Backend\FlashSaleController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\PayIrSettingController;
 use App\Http\Controllers\Backend\PaymentSettingController;
 use App\Http\Controllers\Backend\PaypalController;
@@ -87,6 +88,9 @@ Route::resource('coupons' , couponController::class);
 /** Shipping Rule route */
 Route::put('shipping-rule/change-status',[ShippingRuleController::class , 'changeStatus'])->name('shippingRule.change-status');
 Route::resource('shipping-rule' , ShippingRuleController::class);
+
+/** Orders route */
+Route::resource('order' , OrderController::class);
 
 /** Setting Route */
 Route::get('settings' , [SettingController::class , 'index'])->name('setting.index');
