@@ -82,6 +82,7 @@ Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' =>
 
     /** Stripe routes */
     Route::post('stripe/payment' , [PaymentCotroller::class , 'payWithStripe'])->name('stripe.payment');
-    Route::get('stripe/success' , [PaymentCotroller::class , 'stripeSuccess'])->name('stripe.success');
-    Route::get('stripe/cancel' , [PaymentCotroller::class , 'stripeCancel'])->name('stripe.cancel');
+
+    Route::get('payir/payment' , [PaymentCotroller::class , 'payWithPayIr'])->name('payir.payment');
+    Route::get('payment-verify' , [PaymentCotroller::class , 'paymentVerify'])->name('payment.verify');
 });

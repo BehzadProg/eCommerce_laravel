@@ -46,6 +46,9 @@
                                 <button class="nav-link common_btn" id="v-pills-profile-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-stripe" type="button" role="tab"
                                     aria-controls="v-pills-stripe" aria-selected="false">Stripe</button>
+                                <button class="nav-link common_btn" id="v-pills-profile-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-payir" type="button" role="tab"
+                                    aria-controls="v-pills-payir" aria-selected="false">PayIR</button>
 
                             </div>
                         </div>
@@ -110,6 +113,17 @@
                             </div>
 
                             @include('frontend.pages.payment-gateway.stripe')
+
+                            <div class="tab-pane fade show" id="v-pills-payir" role="tabpanel"
+                            aria-labelledby="v-pills-home-tab">
+                            <div class="row">
+                                <div class="col-xl-12 m-auto">
+                                    <div class="wsus__payment_area">
+                                            <a href="{{route('user.payir.payment')}}" class="nav-link common_btn text-center">Pay with PayIR</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                             <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                                 aria-labelledby="v-pills-profile-tab">

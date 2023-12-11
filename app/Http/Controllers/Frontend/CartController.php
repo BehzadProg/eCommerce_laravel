@@ -37,6 +37,7 @@ class CartController extends Controller
             return response(['status' => 'stock_limit', 'message' => 'Quantity is not available!']);
         }
 
+
         $variants = [];
         $variantTotalAmount = 0;
 
@@ -82,7 +83,7 @@ class CartController extends Controller
         // check product quantity
         if ($product->qty === 0) {
             return response(['status' => 'stock_limit', 'message' => 'Product Stock out!']);
-        } elseif ($product->qty < $request->qty) {
+        } elseif ($product->qty < $request->quantity) {
             return response(['status' => 'stock_limit', 'message' => 'Quantity is not available!']);
         }
 

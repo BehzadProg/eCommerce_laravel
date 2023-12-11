@@ -8,10 +8,12 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\OrderProduct;
+use App\Models\PayIrSetting;
 use Illuminate\Http\Request;
 use App\Models\PaypalSetting;
 use App\Models\StripeSetting;
 use App\Models\GeneralSetting;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -35,6 +37,8 @@ class PaymentCotroller extends Controller
 
     public function storeOrder($paymentMethod , $paymentStatus , $transactionId , $paidAmount , $paidCurrencyName)
     {
+        try {
+            DB::beginTransaction();
         $setting = GeneralSetting::first();
         $order = new Order();
         $order->invocie_id = rand(1 , 999999);
@@ -76,6 +80,14 @@ class PaymentCotroller extends Controller
          $transaction->amount_real_currency = $paidAmount;
          $transaction->amount_real_currency_name = $paidCurrencyName;
          $transaction->save();
+
+         DB::commit();
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            return ['error' => $ex->getMessage()];
+        }
+
+        return ['success' => 'success!'];
 
     }
 
@@ -207,4 +219,98 @@ class PaymentCotroller extends Controller
                     return redirect()->route('user.payment');
                 }
     }
+
+    public function payWithPayIr() {
+        // calculate payable amount depending on currency rate
+        $payirSetting = PayIrSetting::first();
+        $total = getPayableFinalAmount();
+        $payableAmount = round($total * $payirSetting->currency_rate);
+
+        $api = $payirSetting->payir_api_key;
+        $amount = $payableAmount;
+        $redirect = route('user.payment.verify');
+        $result = $this->send($api, $amount, $redirect);
+        $result = json_decode($result);
+        if($result->status) {
+
+            $go = "https://pay.ir/pg/$result->token";
+            return redirect()->to($go);
+        } else {
+                toastr()->error($result->errorMessage);
+                return redirect()->back();
+        }
+    }
+
+    public function paymentVerify(Request $request){
+
+        // calculate payable amount depending on currency rate
+        $payirSetting = PayIrSetting::first();
+        $total = getPayableFinalAmount();
+        $payableAmount = round($total * $payirSetting->currency_rate ,2);
+
+        $api = $payirSetting->payir_api_key;
+        $token = $request->token;
+        $result = json_decode($this->verify($api,$token));
+        if(isset($result->status)){
+            if($result->status == 1){
+                $storeOrder = $this->storeOrder('payIr', 1, $result->transId, $payableAmount, $payirSetting->currency_name);
+                foreach (\Cart::content() as $item) {
+                    $quantity = Product::find($item->id);
+                    $quantity->update([
+                        'qty' => $quantity->qty - $item->qty
+                    ]);
+                }
+                if (array_key_exists('error', $storeOrder)) {
+                    toastr()->error($storeOrder['error']);
+                    return redirect()->back();
+                }
+                 // clear session
+                $this->clearSession();
+                return redirect()->route('user.payment.success');
+            } else {
+                toastr('Someting went wrong status code is:'.$result->status, 'error', 'Error');
+                return redirect()->route('user.payment');
+            }
+        } else {
+            if($request->status == 0){
+                toastr('Someting went wrong status code is: '.$request->status, 'error', 'Error');
+                return redirect()->route('user.payment');
+            }
+        }
+    }
+
+    public function send($api, $amount, $redirect, $mobile = null, $factorNumber = null, $description = null) {
+        return $this->curl_post('https://pay.ir/pg/send', [
+            'api'          => $api,
+            'amount'       => $amount,
+            'redirect'     => $redirect,
+            'mobile'       => $mobile,
+            'factorNumber' => $factorNumber,
+            'description'  => $description,
+        ]);
+    }
+
+    public function curl_post($url, $params)
+{
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, [
+		'Content-Type: application/json',
+	]);
+	$res = curl_exec($ch);
+	curl_close($ch);
+
+	return $res;
+}
+
+public function verify($api, $token) {
+	return $this->curl_post('https://pay.ir/pg/verify', [
+		'api' 	=> $api,
+		'token' => $token,
+	]);
+}
 }

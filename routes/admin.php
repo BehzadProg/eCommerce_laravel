@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\couponController;
 use App\Http\Controllers\Backend\FlashSaleController;
+use App\Http\Controllers\Backend\PayIrSettingController;
 use App\Http\Controllers\Backend\PaymentSettingController;
 use App\Http\Controllers\Backend\PaypalController;
 use App\Http\Controllers\Backend\ProductController;
@@ -95,3 +96,4 @@ Route::put('general-setting-update' , [SettingController::class , 'generalSettin
 Route::get('payment-setting' , [PaymentSettingController::class , 'index'])->name('payment-setting.index');
 Route::resource('paypal-setting' , PaypalController::class)->only('update');
 Route::put('stripe-setting/{id}' , [StripeSettingController::class , 'update'])->name('stripe-setting.update');
+Route::put('payir-setting/{id}' , [PayIrSettingController::class , 'update'])->name('payir-setting.update');
