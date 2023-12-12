@@ -23,7 +23,7 @@ class OrderDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
         ->addColumn('action', function ($query) {
-            return '<a href="' . route('admin.product.edit', $query->id) . '" class="btn btn-outline-primary"><i class="far fa-eye"></i></a>
+            return '<a href="' . route('admin.order.show', $query->id) . '" class="btn btn-outline-primary"><i class="far fa-eye"></i></a>
                <a href="' . route('admin.product.destroy', $query->id) . '" class="btn btn-outline-danger delete-item ml-1"><i class="fas fa-trash-alt"></i></a>
                <a href="' . route('admin.product.destroy', $query->id) . '" class="btn btn-outline-warning delete-item ml-1"><i class="fas fa-truck"></i></a>
                 ';
@@ -38,9 +38,42 @@ class OrderDataTable extends DataTable
                 return date('d-M-Y' , strtotime($query->created_at));
             })
             ->addColumn('order_status', function($query){
-                return '<span class="badge bg-warning">'.$query->order_status.'</span>';
+                 switch ($query->order_status) {
+                    case 'pending':
+                        return "<span class='badge badge-warning'>pending</span>";
+                        break;
+                    case 'processed_and_ready_to_ship':
+                        return "<span class='badge badge-info'>processed</span>";
+                        break;
+                    case 'dropped_off':
+                        return "<span class='badge badge-info'>dropped off</span>";
+                        break;
+                    case 'shipped':
+                        return "<span class='badge badge-info'>shipped</span>";
+                        break;
+                    case 'out_for_delivery':
+                        return "<span class='badge badge-primary'>out for delivery</span>";
+                        break;
+                    case 'delivered':
+                        return "<span class='badge badge-success'>delivered</span>";
+                        break;
+                    case 'canceled':
+                        return "<span class='badge badge-danger'>canceled</span>";
+                        break;
+
+                    default:
+                        # code...
+                        break;
+                };
             })
-            ->rawColumns(['order_status' , 'action'])
+            ->addColumn('payment_status', function($query){
+                if($query->payment_status === 1){
+                    return '<span class="badge badge-success">complete</span>';
+                }else{
+                    return '<span class="badge badge-success">pending</span>';
+                }
+            })
+            ->rawColumns(['order_status' , 'action' , 'payment_status'])
             ->setRowId('id');
     }
 
@@ -87,6 +120,7 @@ class OrderDataTable extends DataTable
             Column::make('product_qty'),
             Column::make('amount'),
             Column::make('order_status'),
+            Column::make('payment_status'),
             Column::make('payment_method')->width(70),
             Column::computed('action')
             ->exportable(false)

@@ -1638,10 +1638,8 @@ tr:first-child > td > .fc-day-grid-event {
   padding: 40px;
 }
 .invoice .invoice-title .invoice-number {
-  float: right;
   font-size: 20px;
   font-weight: 700;
-  margin-top: -45px;
 }
 .invoice hr {
   margin-top: 40px;
