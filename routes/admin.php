@@ -23,6 +23,7 @@ use App\Http\Controllers\Backend\ShippingRuleController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\StripeSettingController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\TransactionController;
 
 Route::get('dashboard' , [AdminController::class , 'dashboard'])->name('dashboard');
 
@@ -100,6 +101,9 @@ Route::get('order-out-for-delivery' , [OrderController::class , 'showOutForDeliv
 Route::get('order-delivered' , [OrderController::class , 'showDeliveredOrders'])->name('order-delivered');
 Route::get('order-canceled' , [OrderController::class , 'showCanceledOrders'])->name('order-canceled');
 Route::resource('order' , OrderController::class);
+
+/** Transaction Route */
+Route::get('transaction' , [TransactionController::class , 'index'])->name('transaction');
 
 /** Setting Route */
 Route::get('settings' , [SettingController::class , 'index'])->name('setting.index');

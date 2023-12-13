@@ -34,6 +34,9 @@
                     <li class="{{setActive(['admin.order-canceled'])}}"><a class="nav-link" href="{{route('admin.order-canceled')}}">Canceled Orders</a></li>
                 </ul>
             </li>
+
+            <li class="{{setActive(['admin.transaction'])}}"><a class="nav-link" href="{{route('admin.transaction')}}"><i class="far fa-square"></i> <span>All Transaction</span></a></li>
+
             <li class="dropdown {{setActive(['admin.brand.*' , 'admin.product.*' , 'admin.seller-product.index' , 'admin.seller-pending-product.index' , 'admin.product-image-gallery.index' , 'admin.product-variants.*' , 'admin.product-variant-item.*'])}}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Manage Products</span></a>
