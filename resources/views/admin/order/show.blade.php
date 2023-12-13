@@ -142,10 +142,13 @@
                           <div class="invoice-detail-name">Shipping (+)</div>
                           <div class="invoice-detail-value">{{$order->currency_icon}}{{@$shipping->cost}}</div>
                         </div>
+                        @if (isset($coupon))
+
                         <div class="invoice-detail-item">
                           <div class="invoice-detail-name">Coupon discount (-)</div>
                           <div class="invoice-detail-value">{{$coupon->coupon_type === 'percent' ? '%' : $order->currency_icon}}{{$coupon->discount}}</div>
                         </div>
+                        @endif
                         <hr class="mt-2 mb-2">
                         <div class="invoice-detail-item">
                           <div class="invoice-detail-name">Total</div>

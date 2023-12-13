@@ -20,11 +20,18 @@
                 </ul>
             </li>
 
-            <li class="dropdown {{setActive(['admin.order.*'])}}">
+            <li class="dropdown {{setActive(['admin.order.*' , 'admin.order-pending' , 'admin.order-processed' , 'admin.order-dropped-off' , 'admin.order-shipped' , 'admin.order-out-for-delivery' , 'admin.order-delivered' , 'admin.order-canceled'])}}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Orders</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{setActive(['admin.order.*'])}}"><a class="nav-link" href="{{route('admin.order.index')}}">All Orders</a></li>
+                    <li class="{{setActive(['admin.order-pending'])}}"><a class="nav-link" href="{{route('admin.order-pending')}}">Pending Orders</a></li>
+                    <li class="{{setActive(['admin.order-processed'])}}"><a class="nav-link" href="{{route('admin.order-processed')}}">Processed Orders</a></li>
+                    <li class="{{setActive(['admin.order-dropped-off'])}}"><a class="nav-link" href="{{route('admin.order-dropped-off')}}">Dropped Off Orders</a></li>
+                    <li class="{{setActive(['admin.order-shipped'])}}"><a class="nav-link" href="{{route('admin.order-shipped')}}">Shipped Orders</a></li>
+                    <li class="{{setActive(['admin.order-out-for-delivery'])}}"><a class="nav-link" href="{{route('admin.order-out-for-delivery')}}">Out For Delivery Orders</a></li>
+                    <li class="{{setActive(['admin.order-delivered'])}}"><a class="nav-link" href="{{route('admin.order-delivered')}}">Delivered Orders</a></li>
+                    <li class="{{setActive(['admin.order-canceled'])}}"><a class="nav-link" href="{{route('admin.order-canceled')}}">Canceled Orders</a></li>
                 </ul>
             </li>
             <li class="dropdown {{setActive(['admin.brand.*' , 'admin.product.*' , 'admin.seller-product.index' , 'admin.seller-pending-product.index' , 'admin.product-image-gallery.index' , 'admin.product-variants.*' , 'admin.product-variant-item.*'])}}">

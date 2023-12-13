@@ -1,9 +1,9 @@
 @extends('admin.layouts.master')
-@section('title' , '- Orders')
+@section('title' , '- Pending Orders')
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Orders</h1>
+        <h1>Pending Orders</h1>
     </div>
 
     <div class="section-body">
@@ -11,7 +11,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>All Orders</h4>
+                        <h4>All Pending Orders</h4>
                     </div>
                     <div class="card-body">
                         {{ $dataTable->table() }}
