@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Order;
+use App\Models\UserOrder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,7 @@ use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
-class VendorOrderDataTable extends DataTable
+class UserOrderDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -24,10 +25,7 @@ class VendorOrderDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
         ->addColumn('action', function ($query) {
-            return '<a href="' . route('vendor.order.show', $query->id) . '" class="btn btn-outline-primary"><i class="far fa-eye"></i></a>';
-            })
-            ->addColumn('customer', function($query){
-                return $query->user->name;
+            return '<a href="' . route('user.order.show', $query->id) . '" class="btn btn-outline-primary"><i class="far fa-eye"></i></a>';
             })
             ->addColumn('amount', function($query){
                 return $query->currency_icon.$query->amount;
@@ -71,9 +69,6 @@ class VendorOrderDataTable extends DataTable
                     return '<span class="badge bg-warning">pending</span>';
                 }
             })
-            ->addColumn('product_qty' , function($query){
-                return $query->orderProducts->where('vendor_id' , Auth::user()->vendor->id)->count();
-            })
             ->rawColumns(['order_status' , 'action' , 'payment_status'])
             ->setRowId('id');
     }
@@ -83,9 +78,7 @@ class VendorOrderDataTable extends DataTable
      */
     public function query(Order $model): QueryBuilder
     {
-        return $model::whereHas('orderProducts' , function($query){
-            $query->where('vendor_id' , Auth::user()->vendor->id);
-        })->newQuery();
+        return $model->where('user_id' , Auth::user()->id)->newQuery();
     }
 
     /**
@@ -94,7 +87,7 @@ class VendorOrderDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('vendororder-table')
+                    ->setTableId('userorder-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -118,12 +111,12 @@ class VendorOrderDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('invocie_id'),
-            Column::make('customer'),
             Column::make('date'),
             Column::make('product_qty'),
             Column::make('amount'),
             Column::make('order_status'),
             Column::make('payment_status'),
+            Column::make('payment_method'),
             Column::computed('action')
             ->exportable(false)
             ->printable(false)
@@ -137,6 +130,6 @@ class VendorOrderDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'VendorOrder_' . date('YmdHis');
+        return 'UserOrder_' . date('YmdHis');
     }
 }
