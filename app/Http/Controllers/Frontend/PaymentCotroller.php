@@ -254,12 +254,12 @@ class PaymentCotroller extends Controller
         if(isset($result->status)){
             if($result->status == 1){
                 $storeOrder = $this->storeOrder('payIr', 1, $result->transId, $payableAmount, $payirSetting->currency_name);
-                foreach (\Cart::content() as $item) {
-                    $quantity = Product::find($item->id);
-                    $quantity->update([
-                        'qty' => $quantity->qty - $item->qty
-                    ]);
-                }
+                // foreach (\Cart::content() as $item) {
+                //     $quantity = Product::find($item->id);
+                //     $quantity->update([
+                //         'qty' => $quantity->qty - $item->qty
+                //     ]);
+                // }
                 if (array_key_exists('error', $storeOrder)) {
                     toastr()->error($storeOrder['error']);
                     return redirect()->back();

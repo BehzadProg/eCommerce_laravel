@@ -24,8 +24,7 @@ class VendorOrderDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
         ->addColumn('action', function ($query) {
-            return '<a href="' . route('admin.order.show', $query->id) . '" class="btn btn-outline-primary"><i class="far fa-eye"></i></a>
-               <a href="' . route('admin.order.destroy', $query->id) . '" class="btn btn-outline-danger delete-item ml-1"><i class="fas fa-trash-alt"></i></a>';
+            return '<a href="' . route('vendor.order.show', $query->id) . '" class="btn btn-outline-primary"><i class="far fa-eye"></i></a>';
             })
             ->addColumn('customer', function($query){
                 return $query->user->name;
@@ -125,7 +124,7 @@ class VendorOrderDataTable extends DataTable
             Column::computed('action')
             ->exportable(false)
             ->printable(false)
-            ->width(100)
+            ->width(80)
             ->addClass('text-center'),
         ];
     }
