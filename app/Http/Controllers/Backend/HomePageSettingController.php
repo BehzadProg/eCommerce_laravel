@@ -18,7 +18,12 @@ class HomePageSettingController extends Controller
 
     public function updatePopularCategorySection(Request $request)
     {
-        // dd($request->all());
+        $request->validate([
+            'cat_one' => 'required',
+            'cat_two' => 'required',
+            'cat_three' => 'required',
+            'cat_four' => 'required',
+        ]);
         $data = [
             [
                 'category' => $request->cat_one,

@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 
+
 function generateFileName($name , $privateName)
 {
     $year = Carbon::now()->year;
@@ -180,4 +181,9 @@ function getShippingFee(){
 // get payable final Amount
 function getPayableFinalAmount(){
     return getMainCartTotal() + getShippingFee();
+}
+
+// text limitaion
+function limitText($text , $limit = 20){
+    return \Str::limit($text, $limit);
 }
