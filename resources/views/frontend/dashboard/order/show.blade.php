@@ -90,14 +90,10 @@
                                                                 total
                                                             </th>
                                                         </tr>
-                                                        @php
-                                                            $total = 0;
-                                                        @endphp
                                                         @foreach ($order->orderProducts as $product)
                                                                 @php
                                                                     $variants = json_decode($product->variants);
-                                                                    $total += ($product->unit_price * $product->qty) + ($product->variant_total * $product->qty)
-                                                                    @endphp
+                                                                @endphp
                                                                 <tr>
                                                                     <td class="name">
                                                                         <p>{{ $product->product_name }}</p>
