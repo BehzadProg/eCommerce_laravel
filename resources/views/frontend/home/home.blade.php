@@ -43,7 +43,7 @@
     <!--============================
         SINGLE BANNER START
     ==============================-->
-    {{-- @include('frontend.home.sections.single-banner') --}}
+    @include('frontend.home.sections.single-banner')
     <!--============================
         SINGLE BANNER END
     ==============================-->
@@ -52,7 +52,7 @@
     <!--============================
         HOT DEALS START
     ==============================-->
-    {{-- @include('frontend.home.sections.hot-deals') --}}
+    @include('frontend.home.sections.hot-deals')
     <!--============================
         HOT DEALS END
     ==============================-->

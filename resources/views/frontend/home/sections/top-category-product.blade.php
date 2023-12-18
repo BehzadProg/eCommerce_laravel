@@ -100,10 +100,3 @@
         </div>
     </div>
 </section>
-@push('scripts')
-<script>
-    $(document).ready(function(){
-        $('.auto_click').click();
-    })
-</script>
-@endpush
