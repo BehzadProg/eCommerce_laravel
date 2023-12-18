@@ -11,9 +11,10 @@ class HomePageSettingController extends Controller
 {
     public function index()
     {
-        $categories = Category::where('status' , 1)->get();
-        $popularCategorySection = HomePageSetting::where('key' , 'popular_category_section')->first();
-        return view('admin.home-page-setting.index' , compact('categories' , 'popularCategorySection'));
+        $categories = Category::where('status', 1)->get();
+        $popularCategorySection = HomePageSetting::where('key', 'popular_category_section')->first();
+        $productSliderSectionOne = HomePageSetting::where('key', 'product_slider_section_one')->first();
+        return view('admin.home-page-setting.index', compact('categories', 'popularCategorySection' , 'productSliderSectionOne'));
     }
 
     public function updatePopularCategorySection(Request $request)
@@ -23,6 +24,11 @@ class HomePageSettingController extends Controller
             'cat_two' => 'required',
             'cat_three' => 'required',
             'cat_four' => 'required',
+        ], [
+            'cat_one.required' => 'Category One is required',
+            'cat_two.required' => 'Category Two is required',
+            'cat_three.required' => 'Category Three is required',
+            'cat_four.required' => 'Category Four is required',
         ]);
         $data = [
             [
@@ -56,7 +62,32 @@ class HomePageSettingController extends Controller
             ]
         );
 
-        toastr('Updated Successfully' , 'success');
+        toastr('Updated Successfully', 'success');
+
+        return redirect()->back();
+    }
+
+    function updateProductSliderSectionOne(Request $request)
+    {
+        $request->validate([
+            'category' => 'required',
+        ]);
+        $data = [
+            'category' => $request->category,
+            'sub_category' => $request->sub_category,
+            'child_category' => $request->child_category,
+        ];
+
+        HomePageSetting::updateOrCreate(
+            [
+                'key' => 'product_slider_section_one'
+            ],
+            [
+                'value' => json_encode($data)
+            ]
+        );
+
+        toastr('Updated Successfully', 'success');
 
         return redirect()->back();
     }

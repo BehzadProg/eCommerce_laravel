@@ -60,7 +60,7 @@
                 </ul>
             </li>
 
-            <li class="dropdown {{setActive(['admin.slider.*'])}}">
+            <li class="dropdown {{setActive(['admin.slider.*' , 'admin.home-page-setting'])}}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Manage Website</span></a>
                 <ul class="dropdown-menu">

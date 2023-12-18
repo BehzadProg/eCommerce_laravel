@@ -110,9 +110,10 @@ Route::get('transaction' , [TransactionController::class , 'index'])->name('tran
 Route::get('settings' , [SettingController::class , 'index'])->name('setting.index');
 Route::put('general-setting-update' , [SettingController::class , 'generalSettingUpdate'])->name('general-setting-update');
 
-/** Setting Route */
+/** Home Page Setting Route */
 Route::get('home-page-setting' , [HomePageSettingController::class , 'index'])->name('home-page-setting');
 Route::put('popular-category-section' , [HomePageSettingController::class , 'updatePopularCategorySection'])->name('popular-category-section');
+Route::put('product-slider-section-one' , [HomePageSettingController::class , 'updateProductSliderSectionOne'])->name('product-slider-section-one');
 
 /** Payment Setting Route */
 Route::get('payment-setting' , [PaymentSettingController::class , 'index'])->name('payment-setting.index');
