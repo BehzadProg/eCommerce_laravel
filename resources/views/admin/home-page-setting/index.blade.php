@@ -17,6 +17,7 @@
                             <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab">Popular Category</a>
                             <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab">Product Slider Section One</a>
                             <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab">Product Slider Section Two</a>
+                            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-three" role="tab">Product Slider Section Three</a>
                           </div>
                         </div>
                         <div class="col-9">
@@ -26,6 +27,8 @@
                             @include('admin.home-page-setting.section.product-slider-section-one')
 
                             @include('admin.home-page-setting.section.product-slider-section-two')
+
+                            @include('admin.home-page-setting.section.product-slider-section-three')
 
                           </div>
                         </div>

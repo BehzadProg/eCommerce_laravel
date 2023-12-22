@@ -70,11 +70,11 @@
 
                         @foreach ($product as $item)
                             <div class="col-xl-2 col-6 col-sm-6 col-md-4 col-lg-3  category-{{$key}}">
-                                <a class="wsus__hot_deals__single" href="#">
+                                <a target="_blank" class="wsus__hot_deals__single" href="{{route('product-detail', $item->slug)}}">
                                     <div class="wsus__hot_deals__single_img">
                                         <img src="{{asset(env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH').$item->thumb_image)}}" alt="{{$item->name}}" class="img-fluid w-100">
                                     </div>
-                                    <div class="wsus__hot_deals__single_text">
+                                    <div class="wsus__hot_deals__single_text mt-2">
                                         <h5>{!! limitText($item->name , 15) !!}</h5>
                                         <p class="wsus__rating">
                                             <i class="fas fa-star"></i>
