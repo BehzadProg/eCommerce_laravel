@@ -40,7 +40,7 @@
                             <li><a href="#"><i class="far fa-random"></i></a>
                         </ul>
                         <div class="wsus__product_details">
-                            <a class="wsus__category" href="#">{{ $item->product->category->name }} </a>
+                            <a class="wsus__category" href="{{route('product.index', ['category' => $item->product->category->slug])}}">{{ $item->product->category->name }} </a>
                             <p class="wsus__pro_rating">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -71,7 +71,7 @@
                                                         {{ $variantItem->name }}</option>
                                             @endforeach
                                         </select>
-                                    
+
                                 @endforeach
 
                                 <input type="hidden" name="qty" min="1" max="10" value="1" />

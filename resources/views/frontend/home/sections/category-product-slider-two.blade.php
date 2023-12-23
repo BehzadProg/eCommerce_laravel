@@ -66,7 +66,7 @@
                         <li><a href="#"><i class="far fa-random"></i></a>
                     </ul>
                     <div class="wsus__product_details">
-                        <a class="wsus__category" href="#">{{ $product->category->name }} </a>
+                        <a class="wsus__category" href="{{route('product.index', ['category' => $product->category->slug])}}">{{ $product->category->name }} </a>
                         <p class="wsus__pro_rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -157,7 +157,7 @@
                         <div class="col-xl-6 col-12 col-sm-12 col-md-12 col-lg-6">
                             <div class="wsus__pro_details_text">
                                 <a class="title"
-                                    href="{{ route('product-detail', $product->slug) }}">{{ $product->name }}</a>
+                                    href="{{ route('product-detail', $product->slug) }}">{{ limitText($product->name , 55) }}</a>
                                 <p class="wsus__stock_area"><span class="in_stock">in stock</span> (167 item)
                                 </p>
                                 @if (checkDiscount($product))
