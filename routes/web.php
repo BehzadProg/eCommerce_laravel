@@ -39,7 +39,9 @@ Route::get('admin/login' , [AdminController::class , 'login'])->name('admin.logi
 
 Route::get('flash-sale' , [FlashSaleController::class , 'index'])->name('flash-sale.index');
 
-/** Product Detailes Route */
+/** Product Route */
+Route::get('products' , [FrontendProductController::class , 'productIndex'])->name('product.index');
+Route::get('products-change-view-list' , [FrontendProductController::class , 'changeViewList'])->name('products-change-view-list');
 Route::get('product-detail/{slug}' , [FrontendProductController::class , 'showProduct'])->name('product-detail');
 
 /** Cart routes */

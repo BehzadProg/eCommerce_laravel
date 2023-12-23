@@ -80,14 +80,14 @@
                             <span class="wsus__minus">- {{calculateDiscountPercend($item->product->price,$item->product->offer_price)}} % </span>
                             @endif
                             <a class="wsus__pro_link" href="{{route('product-detail' , $item->product->slug)}}">
-                                <img src="{{asset(env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH'). $item->product->thumb_image)}}" alt="product" class="img-fluid w-100 img_1" />
+                                <img src="{{asset(env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH'). $item->product->thumb_image)}}" alt="{{$item->product->name}}" class="img-fluid w-100 img_1" />
                                 <img src="
                                 @if (isset($item->product->productImageGalleries[0]->image))
                                 {{asset(env('ADMIN_PRODUCT_GALLERY_IMAGE_UPLOAD_PATH'). $item->product->productImageGalleries[0]->image)}}
                                 @else
                                 {{asset(env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH'). $item->product->thumb_image)}}
                                 @endif
-                                " alt="product" class="img-fluid w-100 img_2" />
+                                " alt="{{$item->product->name}}" class="img-fluid w-100 img_2" />
                             </a>
                             <ul class="wsus__single_pro_icon">
                                 <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $item->product->id }}"><i
