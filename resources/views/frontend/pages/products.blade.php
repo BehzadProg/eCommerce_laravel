@@ -151,7 +151,7 @@
                             </div>
                         </div>
                         <div class="tab-content" id="v-pills-tabContent">
-                            <div class="tab-pane fade {{ session()->has('product_list_style') && session()->get('product_list_style') == 'grid' ? 'show active' : '' }} {{ !session()->has('product_list_style') ? 'active' : '' }}"
+                            <div class="tab-pane fade {{ session()->has('product_list_style') && session()->get('product_list_style') == 'grid' ? 'show active' : '' }} {{ !session()->has('product_list_style') ? 'show active' : '' }}"
                                 id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                 <div class="row">
                                     @foreach ($products as $product)
@@ -278,7 +278,7 @@
                                                         <p class="wsus__price">
                                                             {{ $settings->currency_icon }}{{ $product->price }}</p>
                                                     @endif
-                                                    <p class="list_description">{!! $product->short_description !!}</p>
+                                                    <p class="list_description">{!! limitText($product->short_description , 160) !!}</p>
 
                                                     <ul class="wsus__single_pro_icon">
                                                         <form class="shopping-cart-form">
