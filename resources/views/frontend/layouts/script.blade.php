@@ -119,5 +119,57 @@
             })
         }
 
+        //add to wishlist
+        $('.add_to_wishlist').on('click' , function(e){
+            e.preventDefault();
+            let id = $(this).data('id');
+            $.ajax({
+                method: 'GET',
+                url: "{{route('user.wishlist.store')}}",
+                data: {id:id},
+                success: function(data){
+                    if(data.status === 'success'){
+                        $('#wishlist-count').text(data.count)
+                        $('#wishlist-count').removeClass('d-none');
+                        getWishlistCount();
+                        toastr.success(data.message)
+                    }else if(data.status === 'info'){
+                        toastr.info(data.message)
+                    }
+                },
+                error: function(data){
+                    console.log(data);
+                }
+            })
+        })
+
+        //remove from wishlist
+        $('.remove-wishlist').on('click' , function(e){
+            e.preventDefault();
+            let id = $(this).data('id');
+
+            $.ajax({
+                method: 'POST',
+                url: "{{route('user.wishlist.remove')}}",
+                data:{id:id},
+                success: function(data){
+                    if(data.status === 'success'){
+                        $('#wishlist-count').text(data.count)
+                        let productId = '#wishlist-cart_'+id
+                        $(productId).remove();
+                        toastr.success(data.message)
+                        if($('#wishlist_empty').find('tr').length <= 1){
+                            window.location.href = data.redirect;
+                            $('#wishlist-count').addClass('d-none');
+                            $('#wishlist_empty').append('<tr><td style="text-align:center"><p>Your Wish List is empty!</p></td></tr>')
+                       }
+
+                    }
+                },
+                error: function(data){
+                    console.log(data);
+                }
+            })
+        })
     })
 </script>

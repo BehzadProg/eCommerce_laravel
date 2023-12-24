@@ -276,7 +276,7 @@
                                 <ul class="wsus__button_area">
                                     <li><button type="submit" class="add_cart" href="#">add to cart</button></li>
                                     <li><a class="buy_now" href="#">buy now</a></li>
-                                    <li><a href="#"><i class="fal fa-heart"></i></a></li>
+                                    <li><a href="#" data-id="{{$product->id}}" class="add_to_wishlist"><i class="fal fa-heart"></i></a></li>
                                     <li><a href="#"><i class="far fa-random"></i></a></li>
                                 </ul>
                             </form>
