@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\couponController;
 use App\Http\Controllers\Backend\FlashSaleController;
+use App\Http\Controllers\Backend\FooterGridTwoController;
 use App\Http\Controllers\Backend\FooterInfoController;
 use App\Http\Controllers\Backend\FooterSocialsController;
 use App\Http\Controllers\Backend\HomePageSettingController;
@@ -126,6 +127,11 @@ Route::put('footer-info-update/{id}' , [FooterInfoController::class , 'update'])
 /** Footer Socials Route */
 Route::put('footer-social/change-status',[FooterSocialsController::class , 'changeStatus'])->name('footer-social.change-status');
 Route::resource('footer-social' , FooterSocialsController::class);
+
+/** Footer Grid Two Route */
+Route::put('footer-grid-two/change-status',[FooterGridTwoController::class , 'changeStatus'])->name('footer-grid-two.change-status');
+Route::put('footer-grid-two/change-title',[FooterGridTwoController::class , 'changeGridTwoTitle'])->name('footer-grid-two-title.update');
+Route::resource('footer-grid-two' , FooterGridTwoController::class);
 
 /** Payment Setting Route */
 Route::get('payment-setting' , [PaymentSettingController::class , 'index'])->name('payment-setting.index');
