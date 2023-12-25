@@ -58,6 +58,8 @@ Route::get('cart/sidebar-product-total' , [CartController::class , 'cartTotal'])
 // coupon route
 Route::get('apply-coupon' , [CartController::class , 'applyCoupon'])->name('apply-coupon');
 Route::get('coupon-calculation' , [CartController::class , 'couponCalculation'])->name('coupon-calculation');
+//add to wishlist
+Route::get('wishlist/add-product' , [WishListController::class , 'addToWishList'])->name('wishlist.store');
 
 Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' => 'user.'] , function(){
 
@@ -76,7 +78,6 @@ Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' =>
 
     /** wishlist routes */
     Route::get('wishlist' , [WishListController::class , 'index'])->name('wishlist.index');
-    Route::get('wishlist/add-product' , [WishListController::class , 'addToWishList'])->name('wishlist.store');
     Route::post('wishlist-remove' , [WishListController::class , 'destroy'])->name('wishlist.remove');
 
     /** check out route */

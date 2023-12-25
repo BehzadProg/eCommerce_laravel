@@ -33,8 +33,12 @@
                         </div>
                     </div>
                     <ul class="wsus__icon_area">
-                        <li><a href="{{route('user.wishlist.index')}}"><i class="fal fa-heart"></i><span id="wishlist-count" class="{{\App\Models\WishList::where('user_id' , Auth::user()->id)->count() > 0 ? '' : 'd-none'}}">
-                            {{\App\Models\WishList::where('user_id' , Auth::user()->id)->count()}}
+                        <li><a href="{{route('user.wishlist.index')}}"><i class="fal fa-heart"></i>
+                            @if (auth()->check())
+                            <span id="wishlist-count" class="{{\App\Models\WishList::where('user_id' , Auth::user()->id)->count() > 0 ? '' : 'd-none'}}">
+                            {{\App\Models\Wishlist::where('user_id', auth()->user()->id)->count()}}
+                            @endif
+
                         </span></a></li>
                         <li><a href="compare.html"><i class="fal fa-random"></i></a></li>
                         <li><a class="wsus__cart_icon" href="#"><i class="fal fa-shopping-bag"></i>

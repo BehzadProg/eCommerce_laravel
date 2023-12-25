@@ -125,13 +125,12 @@
             let id = $(this).data('id');
             $.ajax({
                 method: 'GET',
-                url: "{{route('user.wishlist.store')}}",
+                url: "{{route('wishlist.store')}}",
                 data: {id:id},
                 success: function(data){
                     if(data.status === 'success'){
                         $('#wishlist-count').text(data.count)
                         $('#wishlist-count').removeClass('d-none');
-                        getWishlistCount();
                         toastr.success(data.message)
                     }else if(data.status === 'info'){
                         toastr.info(data.message)

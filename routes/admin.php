@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\couponController;
 use App\Http\Controllers\Backend\FlashSaleController;
+use App\Http\Controllers\Backend\FooterInfoController;
 use App\Http\Controllers\Backend\HomePageSettingController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\PayIrSettingController;
@@ -116,6 +117,10 @@ Route::put('popular-category-section' , [HomePageSettingController::class , 'upd
 Route::put('product-slider-section-one' , [HomePageSettingController::class , 'updateProductSliderSectionOne'])->name('product-slider-section-one');
 Route::put('product-slider-section-two' , [HomePageSettingController::class , 'updateProductSliderSectionTwo'])->name('product-slider-section-two');
 Route::put('product-slider-section-three' , [HomePageSettingController::class , 'updateProductSliderSectionThree'])->name('product-slider-section-three');
+
+/** Footer Info Route */
+Route::get('footer-info' , [FooterInfoController::class , 'index'])->name('footer-info.index');
+Route::put('footer-info-update/{id}' , [FooterInfoController::class , 'update'])->name('footer-info.update');
 
 /** Payment Setting Route */
 Route::get('payment-setting' , [PaymentSettingController::class , 'index'])->name('payment-setting.index');
