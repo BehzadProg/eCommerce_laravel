@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\couponController;
 use App\Http\Controllers\Backend\FlashSaleController;
 use App\Http\Controllers\Backend\FooterInfoController;
+use App\Http\Controllers\Backend\FooterSocialsController;
 use App\Http\Controllers\Backend\HomePageSettingController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\PayIrSettingController;
@@ -121,6 +122,10 @@ Route::put('product-slider-section-three' , [HomePageSettingController::class , 
 /** Footer Info Route */
 Route::get('footer-info' , [FooterInfoController::class , 'index'])->name('footer-info.index');
 Route::put('footer-info-update/{id}' , [FooterInfoController::class , 'update'])->name('footer-info.update');
+
+/** Footer Socials Route */
+Route::put('footer-social/change-status',[FooterSocialsController::class , 'changeStatus'])->name('footer-social.change-status');
+Route::resource('footer-social' , FooterSocialsController::class);
 
 /** Payment Setting Route */
 Route::get('payment-setting' , [PaymentSettingController::class , 'index'])->name('payment-setting.index');
