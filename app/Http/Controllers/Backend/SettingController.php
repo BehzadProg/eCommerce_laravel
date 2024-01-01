@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Models\GeneralSetting;
 use App\Http\Controllers\Controller;
+use App\Models\EmailConfigration;
 use Illuminate\Support\Facades\Session;
 
 class SettingController extends Controller
 {
     public function index(){
         $generalSetting = GeneralSetting::first();
-        return view('admin.setting.index' , compact('generalSetting'));
+        $emailConfigration = EmailConfigration::first();
+        return view('admin.setting.index' , compact('generalSetting' , 'emailConfigration'));
     }
 
     public function generalSettingUpdate(Request $request) {
@@ -33,6 +35,33 @@ class SettingController extends Controller
                 'currency_name' => $request->currency_name,
                 'currency_icon' => $request->currency_icon,
                 'time_zone' => $request->time_zone,
+            ]
+        );
+
+        toastr('Updated Successfully' , 'success');
+        return redirect()->back();
+    }
+
+    public function EmailConfigrationUpdate(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'host' => 'required|max:200',
+            'username' => 'required|max:200',
+            'password' => 'required|max:200',
+            'port' => 'required|max:200',
+            'encription' => 'required',
+        ]);
+
+        EmailConfigration::updateOrCreate(
+            ['id' => 1],
+            [
+                'email' => $request->email,
+                'host' => $request->host,
+                'username' => $request->username,
+                'password' => $request->password,
+                'port' => $request->port,
+                'encription' => $request->encription,
             ]
         );
 
