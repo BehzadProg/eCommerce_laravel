@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\couponController;
 use App\Http\Controllers\Backend\FlashSaleController;
+use App\Http\Controllers\Backend\FooterGridThreeController;
 use App\Http\Controllers\Backend\FooterGridTwoController;
 use App\Http\Controllers\Backend\FooterInfoController;
 use App\Http\Controllers\Backend\FooterSocialsController;
@@ -132,6 +133,11 @@ Route::resource('footer-social' , FooterSocialsController::class);
 Route::put('footer-grid-two/change-status',[FooterGridTwoController::class , 'changeStatus'])->name('footer-grid-two.change-status');
 Route::put('footer-grid-two/change-title',[FooterGridTwoController::class , 'changeGridTwoTitle'])->name('footer-grid-two-title.update');
 Route::resource('footer-grid-two' , FooterGridTwoController::class);
+
+/** Footer Grid Three Route */
+Route::put('footer-grid-three/change-status',[FooterGridThreeController::class , 'changeStatus'])->name('footer-grid-three.change-status');
+Route::put('footer-grid-three/change-title',[FooterGridThreeController::class , 'changeGridThreeTitle'])->name('footer-grid-three-title.update');
+Route::resource('footer-grid-three' , FooterGridThreeController::class);
 
 /** Payment Setting Route */
 Route::get('payment-setting' , [PaymentSettingController::class , 'index'])->name('payment-setting.index');
