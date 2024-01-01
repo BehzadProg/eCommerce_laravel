@@ -15,6 +15,7 @@ class ProfileController extends Controller
     public function updateProfile(Request $request){
         $request->validate([
             'name' => 'required|max:100',
+            'username' => 'required|max:100',
             'email' => 'required|email|unique:users,email,'.Auth::user()->id,
             'image' => 'mimes:png,jpg,jpeg|max:2048',
         ]);
@@ -22,9 +23,10 @@ class ProfileController extends Controller
         $profile = Auth::user();
         $imagePath = handleUpload('image',$profile,env('ADMIN_PROFILE_IMAGE_UPLOAD_PATH') , 'Admin_profile');
         $profile->name = $request->name;
+        $profile->username = $request->username;
         $profile->email = $request->email;
         $profile->image = (!empty($imagePath) ? $imagePath : $profile->image);
-        $profile->save();
+        $profile->Save();
 
         toastr()->success('Profile Updated Successfully');
         return redirect()->back();

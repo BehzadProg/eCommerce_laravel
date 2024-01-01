@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-
+@section('title' , '- Profile')
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -42,6 +42,16 @@
                                             <code>{{ $errors->first('name') }}</code>
                                         @endif
                                     </div>
+
+                                    <div class="form-group col-md-8 col-12">
+                                        <label>Username</label>
+                                        <input type="text" name="username" class="form-control"
+                                            value="{{ Auth::user()->username }}">
+                                        @if ($errors->has('username'))
+                                            <code>{{ $errors->first('username') }}</code>
+                                        @endif
+                                    </div>
+
                                     <div class="form-group col-md-8 col-12">
                                         <label>Email</label>
                                         <input type="text" name="email" class="form-control"
