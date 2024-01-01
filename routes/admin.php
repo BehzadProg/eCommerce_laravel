@@ -113,6 +113,7 @@ Route::get('transaction' , [TransactionController::class , 'index'])->name('tran
 /** Setting Route */
 Route::get('settings' , [SettingController::class , 'index'])->name('setting.index');
 Route::put('general-setting-update' , [SettingController::class , 'generalSettingUpdate'])->name('general-setting-update');
+Route::get('setting-change-view-list' , [SettingController::class , 'changeViewList'])->name('setting-change-view-list');
 
 /** Home Page Setting Route */
 Route::get('home-page-setting' , [HomePageSettingController::class , 'index'])->name('home-page-setting');

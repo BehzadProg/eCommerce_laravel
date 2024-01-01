@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
-use App\Models\GeneralSetting;
 use Illuminate\Http\Request;
+use App\Models\GeneralSetting;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class SettingController extends Controller
 {
@@ -37,5 +38,10 @@ class SettingController extends Controller
 
         toastr('Updated Successfully' , 'success');
         return redirect()->back();
+    }
+
+    public function changeViewList(Request $request)
+    {
+        Session::put('setting_list_style', $request->style);
     }
 }

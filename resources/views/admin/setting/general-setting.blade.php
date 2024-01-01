@@ -1,4 +1,4 @@
-<div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+<div class="tab-pane fade {{session()->has('setting_list_style') && session()->get('setting_list_style') == 'home' ? 'show active' : ''}} {{ !session()->has('setting_list_style') ? 'show active' : '' }}" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
 
     <div class="card boarder">
         <div class="card-body">
