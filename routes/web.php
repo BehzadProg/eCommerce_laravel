@@ -1,19 +1,20 @@
 <?php
 
-use App\Http\Controllers\Backend\AdminController;
-use App\Http\Controllers\Frontend\CheckOutController;
-use App\Http\Controllers\Frontend\PaymentCotroller;
-use App\Http\Controllers\Frontend\CartController;
-use App\Http\Controllers\Frontend\FlashSaleController;
-use App\Http\Controllers\Frontend\FrontendProductController;
-use App\Http\Controllers\Frontend\Homecontroller;
-use App\Http\Controllers\Frontend\UserAddressController;
-use App\Http\Controllers\Frontend\UserDashboardController;
-use App\Http\Controllers\Frontend\UserOrderController;
-use App\Http\Controllers\Frontend\UserProfileController;
-use App\Http\Controllers\Frontend\WishListController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\Homecontroller;
+use App\Http\Controllers\Frontend\PaymentCotroller;
+use App\Http\Controllers\Frontend\CheckOutController;
+use App\Http\Controllers\Frontend\WishListController;
+use App\Http\Controllers\Frontend\FlashSaleController;
+use App\Http\Controllers\Frontend\UserOrderController;
+use App\Http\Controllers\Frontend\NewsLetterController;
+use App\Http\Controllers\Frontend\UserAddressController;
+use App\Http\Controllers\Frontend\UserProfileController;
+use App\Http\Controllers\Frontend\UserDashboardController;
+use App\Http\Controllers\Frontend\FrontendProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,10 @@ Route::get('apply-coupon' , [CartController::class , 'applyCoupon'])->name('appl
 Route::get('coupon-calculation' , [CartController::class , 'couponCalculation'])->name('coupon-calculation');
 //add to wishlist
 Route::get('wishlist/add-product' , [WishListController::class , 'addToWishList'])->name('wishlist.store');
+
+/** Newsletter */
+Route::post('news-letter-request' , [NewsLetterController::class , 'newsLetterRequest'])->name('news-letter-request');
+Route::get('news-subcriber-verify/{token}' , [NewsLetterController::class , 'newLetterSubcriberVerify'])->name('subcriber-verify');
 
 Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' => 'user.'] , function(){
 
