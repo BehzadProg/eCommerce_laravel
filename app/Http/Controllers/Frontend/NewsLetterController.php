@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Helper\MailHelper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Mail\SubscriptionVerification;
 use App\Models\NewsLetterSubscriber;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\SubscriptionVerification;
 
 class NewsLetterController extends Controller
 {

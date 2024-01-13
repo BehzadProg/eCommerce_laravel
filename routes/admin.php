@@ -28,6 +28,7 @@ use App\Http\Controllers\Backend\ShippingRuleController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\StripeSettingController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\SubscriberController;
 use App\Http\Controllers\Backend\TransactionController;
 
 Route::get('dashboard' , [AdminController::class , 'dashboard'])->name('dashboard');
@@ -122,6 +123,11 @@ Route::put('popular-category-section' , [HomePageSettingController::class , 'upd
 Route::put('product-slider-section-one' , [HomePageSettingController::class , 'updateProductSliderSectionOne'])->name('product-slider-section-one');
 Route::put('product-slider-section-two' , [HomePageSettingController::class , 'updateProductSliderSectionTwo'])->name('product-slider-section-two');
 Route::put('product-slider-section-three' , [HomePageSettingController::class , 'updateProductSliderSectionThree'])->name('product-slider-section-three');
+
+/** Subscriber Route */
+Route::get('subscriber' , [SubscriberController::class , 'index'])->name('subscriber.index');
+Route::delete('subscriber/{id}' , [SubscriberController::class , 'destroy'])->name('subscriber.destroy');
+Route::post('subscriber-send-mail' , [SubscriberController::class , 'sendEmail'])->name('subscriber-send-mail');
 
 /** Footer Info Route */
 Route::get('footer-info' , [FooterInfoController::class , 'index'])->name('footer-info.index');
