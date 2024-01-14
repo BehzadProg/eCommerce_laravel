@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminVendorProfileController;
+use App\Http\Controllers\Backend\AdvertisementController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
@@ -123,6 +124,11 @@ Route::put('popular-category-section' , [HomePageSettingController::class , 'upd
 Route::put('product-slider-section-one' , [HomePageSettingController::class , 'updateProductSliderSectionOne'])->name('product-slider-section-one');
 Route::put('product-slider-section-two' , [HomePageSettingController::class , 'updateProductSliderSectionTwo'])->name('product-slider-section-two');
 Route::put('product-slider-section-three' , [HomePageSettingController::class , 'updateProductSliderSectionThree'])->name('product-slider-section-three');
+
+/** Advertisement Routes */
+Route::get('advertisement' , [AdvertisementController::class , 'index'])->name('advertisement.index');
+Route::get('advertisement-change-view-list' , [AdvertisementController::class , 'changeViewList'])->name('advertisement-change-view-list');
+Route::put('advertisement/homepage-banner-section-one' , [AdvertisementController::class , 'homepageBannerSectionOne'])->name('homepage-banner-section-one');
 
 /** Subscriber Route */
 Route::get('subscriber' , [SubscriberController::class , 'index'])->name('subscriber.index');

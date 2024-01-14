@@ -81,6 +81,8 @@
                 </ul>
             </li>
 
+            <li class="{{setActive(['admin.advertisement.*'])}}"><a class="nav-link" href="{{route('admin.advertisement.index')}}"><i class="far fa-square"></i> <span>Advertisement</span></a></li>
+
             <li class="{{setActive(['admin.subscriber.*'])}}"><a class="nav-link" href="{{route('admin.subscriber.index')}}"><i class="far fa-square"></i> <span>Subscribers</span></a></li>
 
             <li class="{{setActive(['admin.setting.*'])}}"><a class="nav-link" href="{{route('admin.setting.index')}}"><i class="far fa-square"></i> <span>Settings</span></a></li>
