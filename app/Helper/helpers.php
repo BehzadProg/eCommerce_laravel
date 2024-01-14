@@ -1,8 +1,8 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-
 
 function generateFileName($name , $privateName)
 {
@@ -61,6 +61,24 @@ function handleMultiUpload($inputName, $pathFile, $privateName)
     } catch (\Exception $e) {
         throw $e;
     }
+}
+
+// handle update image for advertisement banners
+function updateImage(Request $request, $inputName, $path, $oldPath=null)
+{
+    if($request->hasFile($inputName)){
+        if(\File::exists(public_path($oldPath))){
+            \File::delete(public_path($oldPath));
+        }
+
+        $image = $request->{$inputName};
+        $ext = $image->getClientOriginalExtension();
+        $imageName = 'Advertising_banner_'.uniqid().'.'.$ext;
+
+        $image->move(public_path($path), $imageName);
+
+       return $imageName;
+   }
 }
 
 function deleteFileIfExist($filePath)

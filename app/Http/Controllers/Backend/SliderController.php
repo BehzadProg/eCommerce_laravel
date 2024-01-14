@@ -36,7 +36,7 @@ class SliderController extends Controller
             'banner' => 'required|image|max:2000',
             'btn_text' => 'max:200',
             'btn_url' => 'url|nullable',
-            'priority' => 'required|integer',
+            'priority' => 'required|integer|unique:sliders,priority',
             'status' => 'required',
         ]);
 
@@ -84,7 +84,7 @@ class SliderController extends Controller
             'banner' => 'image|max:2000',
             'btn_text' => 'max:200',
             'btn_url' => 'url|nullable',
-            'priority' => 'required|integer',
+            'priority' => 'required|integer|unique:sliders,priority',
             'status' => 'required',
         ]);
 

@@ -129,6 +129,7 @@ Route::put('product-slider-section-three' , [HomePageSettingController::class , 
 Route::get('advertisement' , [AdvertisementController::class , 'index'])->name('advertisement.index');
 Route::get('advertisement-change-view-list' , [AdvertisementController::class , 'changeViewList'])->name('advertisement-change-view-list');
 Route::put('advertisement/homepage-banner-section-one' , [AdvertisementController::class , 'homepageBannerSectionOne'])->name('homepage-banner-section-one');
+Route::put('advertisement/homepage-banner-section-two' , [AdvertisementController::class , 'homepageBannerSectionTwo'])->name('homepage-banner-section-two');
 
 /** Subscriber Route */
 Route::get('subscriber' , [SubscriberController::class , 'index'])->name('subscriber.index');
