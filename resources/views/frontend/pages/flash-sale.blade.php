@@ -34,26 +34,22 @@
             <div class="wsus__offer_details_area">
                 <div class="row">
                     <div class="col-xl-6 col-md-6">
+                        @if ($flashsale_banner_section->banner_one->status == 1)
                         <div class="wsus__offer_details_banner">
-                            <img src="{{asset('frontend/images/offer_banner_2.png')}}" alt="offrt img" class="img-fluid w-100">
-                            <div class="wsus__offer_details_banner_text">
-                                <p>apple watch</p>
-                                <span>up 50% 0ff</span>
-                                <p>for all poduct</p>
-                                <p><b>today only</b></p>
-                            </div>
+                            <a href="{{$flashsale_banner_section->banner_one->banner_url}}" target="_blank">
+                                <img class="img-fluid" src="{{asset(env('ADVERTISEMENT_BANNER_IMAGE_UPLOAD_PATH').$flashsale_banner_section->banner_one->banner_image)}}" alt="img">
+                            </a>  
                         </div>
+                        @endif
                     </div>
                     <div class="col-xl-6 col-md-6">
+                        @if ($flashsale_banner_section->banner_two->status == 1)
                         <div class="wsus__offer_details_banner">
-                            <img src="{{asset('frontend/images/offer_banner_3.png')}}" alt="offrt img" class="img-fluid w-100">
-                            <div class="wsus__offer_details_banner_text">
-                                <p>xiaomi power bank</p>
-                                <span>up 37% 0ff</span>
-                                <p>for all poduct</p>
-                                <p><b>today only</b></p>
-                            </div>
+                            <a href="{{$flashsale_banner_section->banner_two->banner_url}}" target="_blank">
+                                <img class="img-fluid" src="{{asset(env('ADVERTISEMENT_BANNER_IMAGE_UPLOAD_PATH').$flashsale_banner_section->banner_two->banner_image)}}" alt="img">
+                            </a>  
                         </div>
+                        @endif
                     </div>
                 </div>
 

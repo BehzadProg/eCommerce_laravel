@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Brand;
-use App\Models\ChildCategory;
 use App\Models\SubCategory;
+use Illuminate\Http\Request;
+use App\Models\Advertisement;
+use App\Models\ChildCategory;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
 class FrontendProductController extends Controller
@@ -97,7 +98,9 @@ class FrontendProductController extends Controller
 
         $categories = Category::where('status', 1)->get();
         $brands = Brand::where(['status' => 1, 'is_featured' => 1])->get();
-        return view('frontend.pages.products', compact('products', 'categories', 'brands'));
+        $productpage_banner_section = Advertisement::where('key' , 'productpage_banner_section')->first();
+        $productpage_banner_section = json_decode($productpage_banner_section?->value);
+        return view('frontend.pages.products', compact('products', 'categories', 'brands' , 'productpage_banner_section'));
     }
 
     public function changeViewList(Request $request)
@@ -108,6 +111,8 @@ class FrontendProductController extends Controller
     public function showProduct(string $slug)
     {
         $product = Product::with(['vendor', 'category', 'productImageGalleries', 'variants', 'brand'])->where('slug', $slug)->where('status', 1)->first();
-        return view('frontend.pages.product-detail', compact('product'));
+        $productDetails_page_banner_section = Advertisement::where('key' , 'productDetails_page_banner_section')->first();
+        $productDetails_page_banner_section = json_decode($productDetails_page_banner_section?->value);
+        return view('frontend.pages.product-detail', compact('product' , 'productDetails_page_banner_section'));
     }
 }

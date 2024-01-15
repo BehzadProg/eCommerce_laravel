@@ -308,18 +308,14 @@
                                         <!-- <p>Lorem Ipsum is simply dummy text of the printing</p> -->
                                     </div>
                                 </li>
-                            </ul>
+                            </ul>        
+                            @if ($productDetails_page_banner_section->banner_one->status == 1)
                             <div class="wsus__det_sidebar_banner">
-                                <img src="{{ asset('frontend/images/blog_1.jpg') }}" alt="banner"
-                                    class="img-fluid w-100">
-                                <div class="wsus__det_sidebar_banner_text_overlay">
-                                    <div class="wsus__det_sidebar_banner_text">
-                                        <p>Black Friday Sale</p>
-                                        <h4>Up To 70% Off</h4>
-                                        <a href="#" class="common_btn">shope now</a>
-                                    </div>
-                                </div>
+                                <a href="{{$productDetails_page_banner_section->banner_one->banner_url}}" target="_blank">
+                                    <img class="img-fluid" src="{{asset(env('ADVERTISEMENT_BANNER_IMAGE_UPLOAD_PATH').$productDetails_page_banner_section->banner_one->banner_image)}}" alt="img">
+                                </a>                        
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

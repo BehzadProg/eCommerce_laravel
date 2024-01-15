@@ -6,18 +6,13 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-12 col-lg-12">
+                @if ($homepage_banner_section_one->banner_one->status == 1) 
                 <div class="wsus__monthly_top_banner">
-                    <div class="wsus__monthly_top_banner_img">
-                        <img src="{{asset('frontend/images/monthly_top_img3.jpg')}}" alt="img" class="img-fluid w-100">
-                        <span></span>
-                    </div>
-                    <div class="wsus__monthly_top_banner_text">
-                        <h4>Black Friday Sale</h4>
-                        <h3>Up To <span>70% Off</span></h3>
-                        <H6>Everything</H6>
-                        <a class="shop_btn" href="#">shop now</a>
-                    </div>
+                        <a href="{{$homepage_banner_section_one->banner_one->banner_url}}" target="_blank">
+                            <img class="img-fluid w-100"  src="{{asset(env('ADVERTISEMENT_BANNER_IMAGE_UPLOAD_PATH').$homepage_banner_section_one->banner_one->banner_image)}}" alt="img">
+                        </a>
                 </div>
+                @endif
             </div>
         </div>
         <div class="row">

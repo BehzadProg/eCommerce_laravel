@@ -7,6 +7,7 @@ use App\Models\Slider;
 use App\Models\Product;
 use App\Models\FlashSale;
 use Illuminate\Http\Request;
+use App\Models\Advertisement;
 use App\Models\FlashSaleItem;
 use App\Models\HomePageSetting;
 use App\Http\Controllers\Controller;
@@ -24,6 +25,16 @@ class Homecontroller extends Controller
         $productSliderSectionOne = HomePageSetting::where('key' , 'product_slider_section_one')->first();
         $productSliderSectionTwo = HomePageSetting::where('key' , 'product_slider_section_two')->first();
         $productSliderSectionThree = HomePageSetting::where('key' , 'product_slider_section_three')->first();
+
+        //advertising banners
+        $homepage_banner_section_one = Advertisement::where('key' , 'homepage_banner_section_one')->first();
+        $homepage_banner_section_one = json_decode($homepage_banner_section_one?->value);
+        $homepage_banner_section_two = Advertisement::where('key' , 'homepage_banner_section_two')->first();
+        $homepage_banner_section_two = json_decode($homepage_banner_section_two?->value);
+        $homepage_banner_section_three = Advertisement::where('key' , 'homepage_banner_section_three')->first();
+        $homepage_banner_section_three = json_decode($homepage_banner_section_three?->value);
+        $homepage_banner_section_four = Advertisement::where('key' , 'homepage_banner_section_four')->first();
+        $homepage_banner_section_four = json_decode($homepage_banner_section_four?->value);
         return view(
             'frontend.home.home',
             compact(
@@ -35,7 +46,11 @@ class Homecontroller extends Controller
                 'productBaseType',
                 'productSliderSectionOne',
                 'productSliderSectionTwo',
-                'productSliderSectionThree'
+                'productSliderSectionThree',
+                'homepage_banner_section_one',
+                'homepage_banner_section_two',
+                'homepage_banner_section_three',
+                'homepage_banner_section_four'
             )
         );
     }

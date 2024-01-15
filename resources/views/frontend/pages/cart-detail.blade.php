@@ -140,30 +140,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-6">
+                    @if ($cartview_banner_section->banner_one->status == 1)
                     <div class="wsus__single_banner_content">
-                        <div class="wsus__single_banner_img">
-                            <img src="{{ asset('frontend/images/single_banner_2.jpg') }}" alt="banner"
-                                class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__single_banner_text">
-                            <h6>sell on <span>35% off</span></h6>
-                            <h3>smart watch</h3>
-                            <a class="shop_btn" href="#">shop now</a>
-                        </div>
+                        <a href="{{$cartview_banner_section->banner_one->banner_url}}" target="_blank">
+                            <img class="img-fluid" src="{{asset(env('ADVERTISEMENT_BANNER_IMAGE_UPLOAD_PATH').$cartview_banner_section->banner_one->banner_image)}}" alt="img">
+                        </a>  
                     </div>
+                    @endif
                 </div>
                 <div class="col-xl-6 col-lg-6">
+                    @if ($cartview_banner_section->banner_two->status == 1)
+                        
                     <div class="wsus__single_banner_content single_banner_2">
-                        <div class="wsus__single_banner_img">
-                            <img src="{{ asset('frontend/images/single_banner_3.jpg') }}" alt="banner"
-                                class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__single_banner_text">
-                            <h6>New Collection</h6>
-                            <h3>Cosmetics</h3>
-                            <a class="shop_btn" href="#">shop now</a>
-                        </div>
+                        <a href="{{$cartview_banner_section->banner_two->banner_url}}" target="_blank">
+                            <img class="img-fluid" src="{{asset(env('ADVERTISEMENT_BANNER_IMAGE_UPLOAD_PATH').$cartview_banner_section->banner_two->banner_image)}}" alt="img">
+                        </a>  
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

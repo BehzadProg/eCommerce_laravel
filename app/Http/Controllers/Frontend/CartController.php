@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Cart;
+use App\Models\coupon;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\coupon;
+use App\Models\Advertisement;
 use App\Models\ProductVariantItem;
-use Cart;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
@@ -22,7 +23,9 @@ class CartController extends Controller
             toastr('For see your cart you have to add product to your cart' , 'info' , 'Cart Is Empty!');
             return redirect()->route('home');
         }
-        return view('frontend.pages.cart-detail', compact('cartItems'));
+        $cartview_banner_section = Advertisement::where('key' , 'cartview_banner_section')->first();
+        $cartview_banner_section = json_decode($cartview_banner_section?->value);
+        return view('frontend.pages.cart-detail', compact('cartItems' , 'cartview_banner_section'));
     }
 
     /** add item to cart */
