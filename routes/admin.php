@@ -132,6 +132,10 @@ Route::put('advertisement/homepage-banner-section-one' , [AdvertisementControlle
 Route::put('advertisement/homepage-banner-section-two' , [AdvertisementController::class , 'homepageBannerSectionTwo'])->name('homepage-banner-section-two');
 Route::put('advertisement/homepage-banner-section-three' , [AdvertisementController::class , 'homepageBannerSectionThree'])->name('homepage-banner-section-three');
 Route::put('advertisement/homepage-banner-section-four' , [AdvertisementController::class , 'homepageBannerSectionFour'])->name('homepage-banner-section-four');
+Route::put('advertisement/products-page-banner' , [AdvertisementController::class , 'ProductPageBanner'])->name('product-page-banner');
+Route::put('advertisement/products-details-page-banner' , [AdvertisementController::class , 'ProductDetailsPageBanner'])->name('product-details-page-banner');
+Route::put('advertisement/flashsale-page-banner' , [AdvertisementController::class , 'flashSaleBanner'])->name('flashsale-page-banner');
+Route::put('advertisement/cart-view-banner' , [AdvertisementController::class , 'cartViewBanner'])->name('cart-view-banner');
 
 /** Subscriber Route */
 Route::get('subscriber' , [SubscriberController::class , 'index'])->name('subscriber.index');
