@@ -24,7 +24,7 @@
                                     <div class="form-group col-md-8 col-12">
                                         <div class="mb-3">
                                             <img width="100px"
-                                                src="{{ Auth::user()->image ? asset(env('ADMIN_PROFILE_IMAGE_UPLOAD_PATH') . Auth::user()->image) : asset('backend/assets/img/avatar/avatar-1.png') }}"
+                                                src="{{ Auth::user()->image ? asset(env('PROFILE_IMAGE_UPLOAD_PATH') . Auth::user()->image) : asset('backend/assets/img/avatar/avatar-1.png') }}"
                                                 alt="image">
                                         </div>
                                         <label>Image</label>

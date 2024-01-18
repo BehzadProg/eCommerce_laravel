@@ -23,7 +23,7 @@
                                     <div class="col-md-12">
                                         <div class="col-md-2">
                                             <div class="wsus__dash_pro_img">
-                                                <img src="{{ Auth::user()->image ? asset(env('USER_PROFILE_IMAGE_UPLOAD_PATH').Auth::user()->image) : asset('frontend/images/avatar-1.png')}}" alt="img"
+                                                <img src="{{ Auth::user()->image ? asset(env('PROFILE_IMAGE_UPLOAD_PATH').Auth::user()->image) : asset('frontend/images/avatar-1.png')}}" alt="img"
                                                     class="img-fluid w-100">
                                                 <input type="file" name="image">
                                             </div>

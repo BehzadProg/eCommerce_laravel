@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class ProductReview extends Model
 {
     use HasFactory;
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function productReviewRate() {
+        return $this->hasOne(ProductReviewRate::class);
+    }
+
+    public function productReviewGalleries() {
+        return $this->hasMany(ProductReviewGallery::class);
+    }
 }

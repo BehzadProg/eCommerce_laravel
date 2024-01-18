@@ -4168,8 +4168,8 @@ PRODUCT DETAILS START
 }
 
 .wsus__pro_det_review .wsus__comment_text ul li {
-  width: 70px !important;
-  height: 70px !important;
+  width: 20% !important;
+  height: 20% !important;
   margin-right: 10px;
   float: left;
 }

@@ -13,11 +13,12 @@ class ReviewController extends Controller
 {
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'review' => 'required|min:5|max:1000',
             'rate' => 'required|digits_between:0,5',
-            'image.*' => 'image|max:3000',
+            'image.*' => 'image|max:2048',
+            'image' => 'max:3'
         ]);
 
         $checkReviewExist = ProductReview::where(['user_id' => Auth::user()->id , 'product_id' => $request->product_id])->first();

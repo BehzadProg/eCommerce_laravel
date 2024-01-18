@@ -46,6 +46,7 @@ Route::get('flash-sale' , [FlashSaleController::class , 'index'])->name('flash-s
 Route::get('products' , [FrontendProductController::class , 'productIndex'])->name('product.index');
 Route::get('products-change-view-list' , [FrontendProductController::class , 'changeViewList'])->name('products-change-view-list');
 Route::get('product-detail/{slug}' , [FrontendProductController::class , 'showProduct'])->name('product-detail');
+Route::get('description-view-change' , [FrontendProductController::class , 'changeViewDescription'])->name('description-view-change');
 
 /** Cart routes */
 Route::post('add-to-cart' , [CartController::class , 'addToCart'])->name('add-to-cart');

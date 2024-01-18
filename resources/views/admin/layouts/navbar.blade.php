@@ -138,7 +138,7 @@
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 @if (Auth::user()->image)
                     <img alt="image"
-                        src="{{ asset(env('ADMIN_PROFILE_IMAGE_UPLOAD_PATH') . Auth::user()->image) }}"
+                        src="{{ asset(env('PROFILE_IMAGE_UPLOAD_PATH') . Auth::user()->image) }}"
                         class="rounded-circle mr-1">
                 @else
                     <img alt="image" src="{{ asset('backend/assets/img/avatar/avatar-1.png') }}"

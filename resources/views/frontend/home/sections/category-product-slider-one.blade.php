@@ -33,7 +33,9 @@
             <div class="col-xl-12">
                 <div class="wsus__section_header">
                     <h3>{{ $category->name }}</h3>
-                    <a class="see_btn" href="#">see more <i class="fas fa-caret-right"></i></a>
+                    @if (count($products) > 12)
+                    <a class="see_btn" target="_blank" href="{{route('product.index' , ['category' => $category->slug])}}">see more <i class="fas fa-caret-right"></i></a>
+                    @endif
                 </div>
             </div>
         </div>

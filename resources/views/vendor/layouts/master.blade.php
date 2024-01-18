@@ -42,7 +42,7 @@
   ==============================-->
     <div class="wsus__dashboard_menu">
         <div class="wsusd__dashboard_user">
-            <img src="{{ Auth::user()->image ? asset(env('VENDOR_PROFILE_IMAGE_UPLOAD_PATH') . Auth::user()->image) : asset('frontend/images/avatar-1.png') }}"
+            <img src="{{ Auth::user()->image ? asset(env('PROFILE_IMAGE_UPLOAD_PATH') . Auth::user()->image) : asset('frontend/images/avatar-1.png') }}"
                 alt="img" class="img-fluid">
             <p>{{ Auth::user()->username ? Auth::user()->username : Auth::user()->name }}</p>
         </div>

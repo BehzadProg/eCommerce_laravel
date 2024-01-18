@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Advertisement;
 use App\Models\ChildCategory;
 use App\Http\Controllers\Controller;
+use App\Models\ProductReview;
 use Illuminate\Support\Facades\Session;
 
 class FrontendProductController extends Controller
@@ -113,6 +114,16 @@ class FrontendProductController extends Controller
         $product = Product::with(['vendor', 'category', 'productImageGalleries', 'variants', 'brand'])->where('slug', $slug)->where('status', 1)->first();
         $productDetails_page_banner_section = Advertisement::where('key' , 'productDetails_page_banner_section')->first();
         $productDetails_page_banner_section = json_decode($productDetails_page_banner_section?->value);
-        return view('frontend.pages.product-detail', compact('product' , 'productDetails_page_banner_section'));
+        $productReview = ProductReview::where(['product_id' => $product->id , 'is_approved' => 1])->orderByDesc('id')->paginate(10);
+        $relatedProducts = Product::where('slug' , '!=' , $product->slug)
+        ->where(['category_id' => $product->category_id , 'status' => 1 , 'is_approved' => 1])
+        ->take(8)->get();
+        // dd($relatedProducts);
+        return view('frontend.pages.product-detail', compact('product' , 'productDetails_page_banner_section' , 'productReview' , 'relatedProducts'));
+    }
+
+    public function changeViewDescription(Request $request)
+    {
+        Session::put('description_list_style', $request->style);
     }
 }
