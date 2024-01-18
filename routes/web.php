@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\FrontendProductController;
+use App\Http\Controllers\Frontend\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +85,9 @@ Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' =>
     /** wishlist routes */
     Route::get('wishlist' , [WishListController::class , 'index'])->name('wishlist.index');
     Route::post('wishlist-remove' , [WishListController::class , 'destroy'])->name('wishlist.remove');
+
+    /** product Review routes */
+    Route::post('review' , [ReviewController::class , 'store'])->name('review.store');
 
     /** check out route */
     Route::get('checkout' , [CheckOutController::class , 'index'])->name('checkout');

@@ -141,6 +141,7 @@
     <script src="{{asset('frontend/js/venobox.min.js')}}"></script>
     <!--classycountdown js-->
     <script src="{{asset('frontend/js/jquery.classycountdown.js')}}"></script>
+    <script src="{{asset('frontend/js/rating.js')}}"></script>
 
     <!--main/custom js-->
     <script src="{{asset('frontend/js/main.js')}}"></script>
