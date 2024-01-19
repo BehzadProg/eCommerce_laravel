@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\DataTables\UserProductReviewDataTable;
 use Illuminate\Http\Request;
 use App\Models\ProductReview;
 use App\Http\Controllers\Controller;
@@ -11,6 +12,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
+    public function index(UserProductReviewDataTable $dataTable)
+    {
+        return $dataTable->render('frontend.dashboard.reviews.index');
+    }
+
+
     public function store(Request $request)
     {
 
