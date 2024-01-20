@@ -34,11 +34,11 @@
             <div class="row">
                 <div class="col-xl-12">
                     @if ($productpage_banner_section->banner_one->status == 1)
-                        
+
                     <div class="wsus__pro_page_bammer">
                         <a href="{{$productpage_banner_section->banner_one->banner_url}}" target="_blank">
                             <img class="img-fluid" src="{{asset(env('ADVERTISEMENT_BANNER_IMAGE_UPLOAD_PATH').$productpage_banner_section->banner_one->banner_image)}}" alt="img">
-                        </a>  
+                        </a>
                     </div>
                     @endif
                 </div>
@@ -183,12 +183,17 @@
                                                         href="{{ route('product.index', ['category' => $product->category->slug]) }}">{{ $product->category->name }}
                                                     </a>
                                                     <p class="wsus__pro_rating">
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star-half-alt"></i>
-                                                        <span>(17 review)</span>
+                                                        @php
+                                                        $avgRating = ceil($product->productReviews->avg('rate'));
+                                                        @endphp
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                           @if ($i <= $avgRating)
+                                                              <i class="fas fa-star"></i>
+                                                           @else
+                                                               <i class="far fa-star"></i>
+                                                           @endif
+                                                         @endfor
+                                                       <span>({{$product->productReviews()->count()}} review)</span>
                                                     </p>
                                                     <a class="wsus__pro_name"
                                                         href="{{ route('product-detail', $product->slug) }}"
@@ -257,12 +262,17 @@
                                                         href="{{ route('product.index', ['category' => $product->category->slug]) }}">{{ $product->category->name }}
                                                     </a>
                                                     <p class="wsus__pro_rating">
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star-half-alt"></i>
-                                                        <span>(17 review)</span>
+                                                        @php
+                                                        $avgRating = ceil($product->productReviews->avg('rate'));
+                                                        @endphp
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                           @if ($i <= $avgRating)
+                                                              <i class="fas fa-star"></i>
+                                                           @else
+                                                               <i class="far fa-star"></i>
+                                                           @endif
+                                                         @endfor
+                                                       <span>({{$product->productReviews()->count()}} review)</span>
                                                     </p>
                                                     <a class="wsus__pro_name"
                                                         href="{{ route('product-detail', $product->slug) }}"
@@ -389,12 +399,17 @@
                                             <h4>{{ $settings->currency_icon }}{{ $product->price }}</h4>
                                         @endif
                                         <p class="review">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                            <span>20 review</span>
+                                            @php
+                                            $avgRating = ceil($product->productReviews->avg('rate'));
+                                            @endphp
+                                            @for ($i = 1; $i <= 5; $i++)
+                                               @if ($i <= $avgRating)
+                                                  <i class="fas fa-star"></i>
+                                               @else
+                                                   <i class="far fa-star"></i>
+                                               @endif
+                                             @endfor
+                                           <span>({{$product->productReviews()->count()}} review)</span>
                                         </p>
                                         <p class="description">{!! $product->short_description !!}</p>
 

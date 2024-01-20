@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('vendor_id')->constrained('vendors')->onDelete('cascade');
             $table->integer('user_id');
             $table->string('review');
+            $table->tinyInteger('rate');
             $table->boolean('is_approved')->default(0);
             $table->timestamps();
         });

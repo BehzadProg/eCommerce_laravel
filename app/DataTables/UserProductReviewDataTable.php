@@ -35,7 +35,7 @@ class UserProductReviewDataTable extends DataTable
                return "<a target='_blank' href='".route('product-detail' , $query->product->slug)."'>".$query->product->name."</a>";
             })
             ->addColumn('rate', function($query){
-               return $query->productReviewRate->rate .' '.'Star';
+               return $query->rate .' '.'Star';
             })
             ->rawColumns(['status' , 'product'])
             ->setRowId('id');

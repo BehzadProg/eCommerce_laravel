@@ -32,4 +32,7 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
+    public function productReviews(){
+        return $this->hasMany(ProductReview::class)->where('is_approved' , 1);
+    }
 }

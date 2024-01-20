@@ -85,12 +85,17 @@
                                 <h4>{{ $settings->currency_icon }}{{ $product->price }}</h4>
                             @endif
                             <p class="review">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>20 review</span>
+                                @php
+                                $avgRating = ceil($product->productReviews->avg('rate'));
+                                @endphp
+                                @for ($i = 1; $i <= 5; $i++)
+                                   @if ($i <= $avgRating)
+                                      <i class="fas fa-star"></i>
+                                   @else
+                                       <i class="far fa-star"></i>
+                                   @endif
+                                 @endfor
+                               <span>({{$product->productReviews()->count()}} review)</span>
                             </p>
                             <p class="description">{!! $product->short_description !!}</p>
 
@@ -283,7 +288,7 @@
                                                                     class="img-fluid w-100">
                                                             </div>
                                                             <div class="wsus__comment_text reply">
-                                                                <h6>{{$review->user->name}} <span>{{$review->productReviewRate->rate}} <i
+                                                                <h6>{{$review->user->name}} <span>{{$review->rate}} <i
                                                                             class="fas fa-star"></i></span></h6>
                                                                 <span>{{date('d M Y' , strtotime($review->created_at))}}</span>
                                                                 <p>
@@ -422,12 +427,17 @@
                             <div class="wsus__product_details">
                                 <a class="wsus__category" href="{{route('product.index', ['category' => $product->category->slug])}}">{{ $product->category->name }} </a>
                                 <p class="wsus__pro_rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <span>(133 review)</span>
+                                    @php
+                                    $avgRating = ceil($product->productReviews->avg('rate'));
+                                    @endphp
+                                    @for ($i = 1; $i <= 5; $i++)
+                                       @if ($i <= $avgRating)
+                                          <i class="fas fa-star"></i>
+                                       @else
+                                           <i class="far fa-star"></i>
+                                       @endif
+                                     @endfor
+                                   <span>({{$product->productReviews()->count()}} review)</span>
                                 </p>
                                 <a class="wsus__pro_name"
                                     href="{{ route('product-detail', $product->slug) }}">{{ limitText($product->name , 52) }}</a>
@@ -530,12 +540,17 @@
                                     <h4>{{ $settings->currency_icon }}{{ $product->price }}</h4>
                                 @endif
                                 <p class="review">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <span>20 review</span>
+                                    @php
+                                    $avgRating = ceil($product->productReviews->avg('rate'));
+                                    @endphp
+                                    @for ($i = 1; $i <= 5; $i++)
+                                       @if ($i <= $avgRating)
+                                          <i class="fas fa-star"></i>
+                                       @else
+                                           <i class="far fa-star"></i>
+                                       @endif
+                                     @endfor
+                                   <span>({{$product->productReviews()->count()}} review)</span>
                                 </p>
                                 <p class="description">{!! $product->short_description !!}</p>
 

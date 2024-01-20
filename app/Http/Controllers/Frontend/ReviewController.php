@@ -39,13 +39,8 @@ class ReviewController extends Controller
         $productReview->vendor_id = $request->vendor_id;
         $productReview->user_id = Auth::user()->id;
         $productReview->review = $request->review;
+        $productReview->rate = $request->rate;
         $productReview->save();
-
-        $reviewRate = new ProductReviewRate();
-        $reviewRate->product_review_id = $productReview->id;
-        $reviewRate->rate = $request->rate;
-        $reviewRate->save();
-
 
         $imagePath = handleMultiUpload('image' , env('REVIEW_GALLERY_IMAGE_UPLOAD_PATH') , 'review_image');
         if (!empty($imagePath)) {

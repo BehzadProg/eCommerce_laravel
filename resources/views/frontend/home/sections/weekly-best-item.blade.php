@@ -16,19 +16,19 @@
                     }
                     if (array_keys($lastKey)[0] === 'category') {
                         $category = \App\Models\Category::find($lastKey['category']);
-                        $products = \App\Models\Product::where('category_id', $category->id)
+                        $products = \App\Models\Product::with('productReviews')->where('category_id', $category->id)
                             ->orderBy('id', 'DESC')
                             ->take(6)
                             ->get();
                     } elseif (array_keys($lastKey)[0] === 'sub_category') {
                         $category = \App\Models\SubCategory::find($lastKey['sub_category']);
-                        $products = \App\Models\Product::where('sub_category_id', $category->id)
+                        $products = \App\Models\Product::with('productReviews')->where('sub_category_id', $category->id)
                             ->orderBy('id', 'DESC')
                             ->take(6)
                             ->get();
                     } else {
                         $category = \App\Models\ChildCategory::find($lastKey['child_category']);
-                        $products = \App\Models\Product::where('child_category_id', $category->id)
+                        $products = \App\Models\Product::with('productReviews')->where('child_category_id', $category->id)
                             ->orderBy('id', 'DESC')
                             ->take(6)
                             ->get();
@@ -49,11 +49,17 @@
                                 <div class="wsus__hot_deals__single_text mt-2">
                                     <h5>{!! limitText($item->name , 15) !!}</h5>
                                     <p class="wsus__rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
+                                        @php
+                                        $avgRating = ceil($item->productReviews->avg('rate'));
+                                        @endphp
+                                        @for ($i = 1; $i <= 5; $i++)
+                                           @if ($i <= $avgRating)
+                                              <i class="fas fa-star"></i>
+                                           @else
+                                               <i class="far fa-star"></i>
+                                           @endif
+                                         @endfor
+
                                     </p>
                                     @if (checkDiscount($item))
 

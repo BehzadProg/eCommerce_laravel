@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-12 col-lg-12">
-                @if ($homepage_banner_section_one->banner_one->status == 1) 
+                @if ($homepage_banner_section_one->banner_one->status == 1)
                 <div class="wsus__monthly_top_banner">
                         <a href="{{$homepage_banner_section_one->banner_one->banner_url}}" target="_blank">
                             <img class="img-fluid w-100"  src="{{asset(env('ADVERTISEMENT_BANNER_IMAGE_UPLOAD_PATH').$homepage_banner_section_one->banner_one->banner_image)}}" alt="img">
@@ -72,11 +72,17 @@
                                     <div class="wsus__hot_deals__single_text mt-2">
                                         <h5>{!! limitText($item->name , 15) !!}</h5>
                                         <p class="wsus__rating">
+                                            @php
+                                                $avgRating = ceil($item->productReviews->avg('rate'));
+                                            @endphp
+                                            @for ($i = 1; $i <= 5; $i++)
+                                            @if ($i <= $avgRating)
                                             <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
+                                            @else
+                                            <i class="far fa-star"></i>
+                                            @endif
+                                            @endfor
+
                                         </p>
                                         @if (checkDiscount($item))
 
