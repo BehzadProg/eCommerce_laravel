@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\AdminProductReviewController;
 use App\Http\Controllers\Backend\AdminVendorProfileController;
 use App\Http\Controllers\Backend\AdvertisementController;
 use App\Http\Controllers\Backend\BrandController;
@@ -75,6 +76,10 @@ Route::get('product-variant-item-edit/{productId}/{variantItemId}' , [ProductVar
 Route::put('product-variant-item-update/{variantItemId}' , [ProductVariantItemController::class , 'update'])->name('variant-item.update');
 Route::delete('product-variant-item/{variantItemId}' , [ProductVariantItemController::class , 'destroy'])->name('variant-item.destroy');
 Route::put('product-variant-item/change-status',[ProductVariantItemController::class , 'changeStatus'])->name('variant-item.change-status');
+
+/** Product Review route */
+Route::get('reviews' , [AdminProductReviewController::class , 'index'])->name('review.index');
+Route::put('reviews/change-status',[AdminProductReviewController::class , 'changeStatus'])->name('reviews.change-status');
 
 /** Seller Product Route */
 Route::get('seller-product' , [SellerProductController::class , 'index'])->name('seller-product.index');

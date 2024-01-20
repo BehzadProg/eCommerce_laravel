@@ -37,11 +37,12 @@
 
             <li class="{{setActive(['admin.transaction'])}}"><a class="nav-link" href="{{route('admin.transaction')}}"><i class="far fa-square"></i> <span>All Transaction</span></a></li>
 
-            <li class="dropdown {{setActive(['admin.brand.*' , 'admin.product.*' , 'admin.seller-product.index' , 'admin.seller-pending-product.index' , 'admin.product-image-gallery.index' , 'admin.product-variants.*' , 'admin.product-variant-item.*'])}}">
+            <li class="dropdown {{setActive(['admin.brand.*' , 'admin.product.*' , 'admin.seller-product.index' , 'admin.seller-pending-product.index' , 'admin.product-image-gallery.index' , 'admin.product-variants.*' , 'admin.product-variant-item.*' , 'admin.review.index'])}}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Manage Products</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{setActive(['admin.brand.*'])}}"><a class="nav-link" href="{{route('admin.brand.index')}}">Brands</a></li>
+                    <li class="{{setActive(['admin.review.index'])}}"><a class="nav-link" href="{{route('admin.review.index')}}">Product Reviews</a></li>
                     <li class="{{setActive(['admin.product.*' , 'admin.product-image-gallery.index' ,  'admin.product-variants.*' , 'admin.product-variant-item.*'])}}"><a class="nav-link" href="{{route('admin.product.index')}}">My Products</a></li>
                     <li class="{{setActive(['admin.seller-product.index'])}}"><a class="nav-link" href="{{route('admin.seller-product.index')}}">Seller Products</a></li>
                     <li class="{{setActive(['admin.seller-pending-product.index'])}}"><a class="nav-link" href="{{route('admin.seller-pending-product.index')}}">Seller Pending Products</a></li>
