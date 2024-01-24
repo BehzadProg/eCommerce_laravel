@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Brand;
 use App\Models\Slider;
+use App\Models\Vendor;
 use App\Models\Product;
 use App\Models\FlashSale;
 use Illuminate\Http\Request;
@@ -65,5 +66,21 @@ class Homecontroller extends Controller
         $productBaseType['featured_product'] = Product::where(['product_type' => 'featured_product' , 'is_approved' => 1 , 'status' => 1])->orderBy('id' , 'DESC')->take(8)->get();
 
         return $productBaseType;
+    }
+
+    public function vendorPage()
+    {
+        $vendors = Vendor::paginate(10);
+        return view('frontend.pages.vendor' , compact('vendors'));
+    }
+
+    public function vendorProductPage(string $id)
+    {
+        $products = Product::where(['status' => 1, 'is_approved' => 1 , 'vendor_id' => $id])->orderBy('id', 'DESC')
+        ->paginate(12);
+
+        $vendor = Vendor::findOrFail($id);
+
+        return view('frontend.pages.vendor-product', compact('products' , 'vendor'));
     }
 }

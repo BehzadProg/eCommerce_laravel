@@ -68,6 +68,10 @@ Route::get('wishlist/add-product' , [WishListController::class , 'addToWishList'
 Route::post('news-letter-request' , [NewsLetterController::class , 'newsLetterRequest'])->name('news-letter-request');
 Route::get('news-subcriber-verify/{token}' , [NewsLetterController::class , 'newLetterSubcriberVerify'])->name('subcriber-verify');
 
+/** vendor route */
+Route::get('vendor' , [Homecontroller::class , 'vendorPage'])->name('vendor.index');
+Route::get('vendor-products/{id}' , [Homecontroller::class , 'vendorProductPage'])->name('vendor-product.index');
+
 Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' => 'user.'] , function(){
 
     Route::get('dashboard' , [UserDashboardController::class , 'index'])->name('dashboard');
