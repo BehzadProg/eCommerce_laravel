@@ -32,6 +32,7 @@ use App\Http\Controllers\Backend\PaymentSettingController;
 use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\FooterGridThreeController;
 use App\Http\Controllers\Backend\HomePageSettingController;
+use App\Http\Controllers\Backend\VendorConditionController;
 use App\Http\Controllers\Backend\AdminProductReviewController;
 use App\Http\Controllers\Backend\AdminVendorProfileController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
@@ -150,6 +151,8 @@ Route::put('advertisement/cart-view-banner' , [AdvertisementController::class , 
 Route::get('vendor-request' , [VendorRequestController::class , 'index'])->name('vendor-request.index');
 Route::get('vendor-request/{id}' , [VendorRequestController::class , 'show'])->name('vendor-request.show');
 Route::put('vendor-request/{id}/change-status' , [VendorRequestController::class , 'changeStatus'])->name('vendor-request.change-status');
+Route::get('vendor-condition' , [VendorConditionController::class , 'index'])->name('vendor-condition');
+Route::put('vendor-condition' , [VendorConditionController::class , 'update'])->name('vendor-condition.update');
 /** customer route */
 Route::get('customer' , [CustomerListController::class , 'index'])->name('customer.index');
 Route::put('customer/change-status' , [CustomerListController::class , 'changeStatus'])->name('customer.change-status');

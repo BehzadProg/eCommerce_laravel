@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\VendorCondition;
 use Illuminate\Support\Facades\Auth;
 
 class UserVendorRequestController extends Controller
 {
     public function index()
     {
-        return view('frontend.dashboard.vendor-request.index');
+        $condition = VendorCondition::first();
+        return view('frontend.dashboard.vendor-request.index' , compact('condition'));
     }
 
     public function store(Request $request)

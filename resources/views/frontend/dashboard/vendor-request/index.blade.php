@@ -11,6 +11,10 @@
                     <div class="dashboard_content mt-2 mt-md-0">
                         <h3><i class="far fa-user"></i>Become A Vendor Today</h3>
                         <div class="wsus__dashboard_profile">
+                            <div class="wsus__dash_pro_area mb-3">
+                                <h4>Vendor Terms & Conditions</h4>
+                                {!!@$condition->content!!}
+                            </div>
                             <div class="wsus__dash_pro_area">
                                 <h4>basic information</h4>
 
