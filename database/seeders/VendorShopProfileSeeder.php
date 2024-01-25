@@ -23,6 +23,7 @@ class VendorShopProfileSeeder extends Seeder
         $vendor->email = 'vendor@gmail.com';
         $vendor->address = 'Iran';
         $vendor->description = 'descripton shop';
+        $vendor->status = 1;
         $vendor->save();
     }
 }

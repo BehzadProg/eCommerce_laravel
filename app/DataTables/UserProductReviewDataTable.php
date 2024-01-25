@@ -46,7 +46,7 @@ class UserProductReviewDataTable extends DataTable
      */
     public function query(ProductReview $model): QueryBuilder
     {
-        return $model::with(['product' , 'rate'])->where('user_id' , Auth::user()->id)->newQuery();
+        return $model::with(['product'])->where('user_id' , Auth::user()->id)->newQuery();
     }
 
     /**

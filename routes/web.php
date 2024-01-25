@@ -16,6 +16,7 @@ use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\ReviewController;
+use App\Http\Controllers\Frontend\UserVendorRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +91,10 @@ Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' =>
     /** wishlist routes */
     Route::get('wishlist' , [WishListController::class , 'index'])->name('wishlist.index');
     Route::post('wishlist-remove' , [WishListController::class , 'destroy'])->name('wishlist.remove');
+
+    /** Vendor Request route */
+    Route::get('vendor-request' , [UserVendorRequestController::class , 'index'])->name('vendor-request.index');
+    Route::post('vendor-request' , [UserVendorRequestController::class , 'store'])->name('vendor-request.store');
 
     /** product Review routes */
     Route::get('reviews' , [ReviewController::class , 'index'])->name('review.index');

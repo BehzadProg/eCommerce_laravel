@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('fb_link')->nullable();
             $table->text('tw_link')->nullable();
             $table->text('insta_link')->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
