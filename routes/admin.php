@@ -1,39 +1,41 @@
 <?php
 
-use App\DataTables\VendorRequestDataTable;
 use Illuminate\Support\Facades\Route;
+use App\DataTables\VendorRequestDataTable;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\couponController;
+use App\Http\Controllers\Backend\PaypalController;
+use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\FlashSaleController;
+use App\Http\Controllers\Backend\FooterInfoController;
+use App\Http\Controllers\Backend\SubscriberController;
+use App\Http\Controllers\Backend\VendorListController;
+use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\TransactionController;
+use App\Http\Controllers\Backend\CustomerListController;
+use App\Http\Controllers\Backend\PayIrSettingController;
+use App\Http\Controllers\Backend\ShippingRuleController;
+use App\Http\Controllers\Backend\AdvertisementController;
+use App\Http\Controllers\Backend\ChildCategoryController;
+use App\Http\Controllers\Backend\FooterGridTwoController;
+use App\Http\Controllers\Backend\FooterSocialsController;
+use App\Http\Controllers\Backend\SellerProductController;
+use App\Http\Controllers\Backend\StripeSettingController;
+use App\Http\Controllers\Backend\VendorRequestController;
+use App\Http\Controllers\Backend\PaymentSettingController;
+use App\Http\Controllers\Backend\ProductVariantController;
+use App\Http\Controllers\Backend\FooterGridThreeController;
+use App\Http\Controllers\Backend\HomePageSettingController;
 use App\Http\Controllers\Backend\AdminProductReviewController;
 use App\Http\Controllers\Backend\AdminVendorProfileController;
-use App\Http\Controllers\Backend\AdvertisementController;
-use App\Http\Controllers\Backend\BrandController;
-use App\Http\Controllers\Backend\CategoryController;
-use App\Http\Controllers\Backend\ChildCategoryController;
-use App\Http\Controllers\Backend\couponController;
-use App\Http\Controllers\Backend\FlashSaleController;
-use App\Http\Controllers\Backend\FooterGridThreeController;
-use App\Http\Controllers\Backend\FooterGridTwoController;
-use App\Http\Controllers\Backend\FooterInfoController;
-use App\Http\Controllers\Backend\FooterSocialsController;
-use App\Http\Controllers\Backend\HomePageSettingController;
-use App\Http\Controllers\Backend\OrderController;
-use App\Http\Controllers\Backend\PayIrSettingController;
-use App\Http\Controllers\Backend\PaymentSettingController;
-use App\Http\Controllers\Backend\PaypalController;
-use App\Http\Controllers\Backend\ProductController;
-use App\Http\Controllers\Backend\ProductImageGalleryController;
-use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
-use App\Http\Controllers\Backend\ProfileController;
-use App\Http\Controllers\Backend\SellerProductController;
-use App\Http\Controllers\Backend\SettingController;
-use App\Http\Controllers\Backend\ShippingRuleController;
-use App\Http\Controllers\Backend\SliderController;
-use App\Http\Controllers\Backend\StripeSettingController;
-use App\Http\Controllers\Backend\SubCategoryController;
-use App\Http\Controllers\Backend\SubscriberController;
-use App\Http\Controllers\Backend\TransactionController;
-use App\Http\Controllers\Backend\VendorRequestController;
+use App\Http\Controllers\Backend\ProductImageGalleryController;
 
 Route::get('dashboard' , [AdminController::class , 'dashboard'])->name('dashboard');
 
@@ -148,6 +150,12 @@ Route::put('advertisement/cart-view-banner' , [AdvertisementController::class , 
 Route::get('vendor-request' , [VendorRequestController::class , 'index'])->name('vendor-request.index');
 Route::get('vendor-request/{id}' , [VendorRequestController::class , 'show'])->name('vendor-request.show');
 Route::put('vendor-request/{id}/change-status' , [VendorRequestController::class , 'changeStatus'])->name('vendor-request.change-status');
+/** customer route */
+Route::get('customer' , [CustomerListController::class , 'index'])->name('customer.index');
+Route::put('customer/change-status' , [CustomerListController::class , 'changeStatus'])->name('customer.change-status');
+/** vendors route */
+Route::get('vendor' , [VendorListController::class , 'index'])->name('vendor.index');
+Route::put('vendor/change-status' , [VendorListController::class , 'changeStatus'])->name('vendor.change-status');
 
 /** Subscriber Route */
 Route::get('subscriber' , [SubscriberController::class , 'index'])->name('subscriber.index');
