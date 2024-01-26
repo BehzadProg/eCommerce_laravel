@@ -38,6 +38,7 @@ use App\Http\Controllers\Backend\AdminProductReviewController;
 use App\Http\Controllers\Backend\AdminVendorProfileController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
+use App\Http\Controllers\Backend\TermAndConditionController;
 
 Route::get('dashboard' , [AdminController::class , 'dashboard'])->name('dashboard');
 
@@ -164,6 +165,10 @@ Route::put('vendor/change-status' , [VendorListController::class , 'changeStatus
 /** about route */
 Route::get('about' , [AboutController::class , 'index'])->name('about.index');
 Route::put('about/update' , [AboutController::class , 'update'])->name('about.update');
+
+/** about route */
+Route::get('terms-and-conditons' , [TermAndConditionController::class , 'index'])->name('terms-and-conditons.index');
+Route::put('terms-and-conditons/update' , [TermAndConditionController::class , 'update'])->name('terms-and-conditons.update');
 
 /** Subscriber Route */
 Route::get('subscriber' , [SubscriberController::class , 'index'])->name('subscriber.index');

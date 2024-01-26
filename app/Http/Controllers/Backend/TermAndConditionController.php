@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\About;
+use App\Models\TermAndCondition;
 use Illuminate\Http\Request;
 
-class AboutController extends Controller
+class TermAndConditionController extends Controller
 {
     public function index(){
-        $about = About::first();
-        return view('admin.about.index' , compact('about'));
+        $condition = TermAndCondition::first();
+        return view('admin.termAndContion.index' , compact('condition'));
     }
 
     public function update(Request $request)
@@ -19,7 +19,7 @@ class AboutController extends Controller
             'content' => 'required'
         ]);
 
-        About::updateOrCreate(
+        TermAndCondition::updateOrCreate(
             ['id' => 1],
             [
                 'content' => $request->content
