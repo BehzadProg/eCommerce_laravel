@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\FrontendProductController;
+use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\UserVendorRequestController;
 
@@ -72,6 +73,9 @@ Route::get('news-subcriber-verify/{token}' , [NewsLetterController::class , 'new
 /** vendor route */
 Route::get('vendor' , [Homecontroller::class , 'vendorPage'])->name('vendor.index');
 Route::get('vendor-products/{id}' , [Homecontroller::class , 'vendorProductPage'])->name('vendor-product.index');
+
+/** about us route */
+Route::get('about' , [PageController::class , 'about'])->name('about.index');
 
 Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' => 'user.'] , function(){
 

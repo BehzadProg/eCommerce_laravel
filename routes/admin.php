@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\DataTables\VendorRequestDataTable;
+use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\OrderController;
@@ -159,6 +160,10 @@ Route::put('customer/change-status' , [CustomerListController::class , 'changeSt
 /** vendors route */
 Route::get('vendor' , [VendorListController::class , 'index'])->name('vendor.index');
 Route::put('vendor/change-status' , [VendorListController::class , 'changeStatus'])->name('vendor.change-status');
+
+/** about route */
+Route::get('about' , [AboutController::class , 'index'])->name('about.index');
+Route::put('about/update' , [AboutController::class , 'update'])->name('about.update');
 
 /** Subscriber Route */
 Route::get('subscriber' , [SubscriberController::class , 'index'])->name('subscriber.index');

@@ -120,7 +120,7 @@
                         <li><a href="daily_deals.html">campain</a></li>
                         <li class="wsus__relative_li"><a href="#">pages <i class="fas fa-caret-down"></i></a>
                             <ul class="wsus__menu_droapdown">
-                                <li><a href="about_us.html">about</a></li>
+                                <li><a href="{{route('about.index')}}">about</a></li>
                                 <li><a href="team.html">team</a></li>
                             </ul>
                         </li>
