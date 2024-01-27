@@ -36,6 +36,7 @@ use App\Http\Controllers\Backend\HomePageSettingController;
 use App\Http\Controllers\Backend\VendorConditionController;
 use App\Http\Controllers\Backend\AdminProductReviewController;
 use App\Http\Controllers\Backend\AdminVendorProfileController;
+use App\Http\Controllers\Backend\ManageUserController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
 use App\Http\Controllers\Backend\TermAndConditionController;
@@ -161,6 +162,10 @@ Route::put('customer/change-status' , [CustomerListController::class , 'changeSt
 /** vendors route */
 Route::get('vendor' , [VendorListController::class , 'index'])->name('vendor.index');
 Route::put('vendor/change-status' , [VendorListController::class , 'changeStatus'])->name('vendor.change-status');
+
+/** manage user route */
+Route::get('manage-user' , [ManageUserController::class , 'index'])->name('manage-user.index');
+Route::post('manage-user' , [ManageUserController::class , 'store'])->name('manage-user.store');
 
 /** about route */
 Route::get('about' , [AboutController::class , 'index'])->name('about.index');

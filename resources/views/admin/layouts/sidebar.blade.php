@@ -85,14 +85,14 @@
                 </ul>
             </li>
 
-            <li class="dropdown {{setActive(['admin.vendor-request.*' , 'admin.customer.index' , 'admin.vendor.index'])}}">
+            <li class="dropdown {{setActive(['admin.vendor-request.*' , 'admin.customer.index' , 'admin.vendor.index' , 'admin.manage-user.index'])}}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Users</span></a>
                 <ul class="dropdown-menu">
+                    <li class="{{setActive(['admin.manage-user.index'])}}"><a class="nav-link" href="{{route('admin.manage-user.index')}}">Manage User</a></li>
                     <li class="{{setActive(['admin.vendor-request.*'])}}"><a class="nav-link" href="{{route('admin.vendor-request.index')}}">Vendor Pending</a></li>
                     <li class="{{setActive(['admin.vendor.index'])}}"><a class="nav-link" href="{{route('admin.vendor.index')}}">Vendor List</a></li>
                     <li class="{{setActive(['admin.customer.index'])}}"><a class="nav-link" href="{{route('admin.customer.index')}}">Customer List</a></li>
-
 
                 </ul>
             </li>

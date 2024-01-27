@@ -137,6 +137,7 @@
                 },
                 success: function(data){
                     if(data.status == 'success'){
+                        $('#contact-form')[0].reset();
                         $('.submit-form').text('Send Now');
                         $('.submit-form').attr('disabled' , false);
                         toastr.success(data.message)
