@@ -82,6 +82,7 @@ Route::get('terms-and-conditions' , [PageController::class , 'termsAndConditions
 
 /** contact us route */
 Route::get('contact-us' , [PageController::class , 'contactUs'])->name('contact-us.index');
+Route::post('contact-us' , [PageController::class , 'handleContactUs'])->name('handle-contact-us');
 
 Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' => 'user.'] , function(){
 
