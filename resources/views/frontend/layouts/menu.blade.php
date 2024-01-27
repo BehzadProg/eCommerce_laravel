@@ -126,8 +126,10 @@
                         <li><a href="track_order.html">track order</a></li>
                     </ul>
                     <ul class="wsus__menu_item wsus__menu_item_right">
-                        <li><a href="contact.html">contact</a></li>
-                        <li><a href="dsahboard.html">my account</a></li>
+                        <li><a href="{{route('contact-us.index')}}">contact</a></li>
+                        @auth
+                        <li><a href="{{route('user.dashboard')}}">my account</a></li>
+                        @endauth
                         <li><a href="{{route('login')}}">login</a></li>
                     </ul>
                 </div>

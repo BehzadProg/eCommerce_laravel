@@ -10,6 +10,10 @@
 
       <li><a class="active" href="{{route('vendor.dashboard')}}"><i class="fas fa-tachometer"></i>Your Vendor Dashboard</a></li>
       @endif
+      @if (Auth()->user()->role === 'admin')
+
+      <li><a class="active" href="{{route('admin.dashboard')}}"><i class="fas fa-tachometer"></i>Your Admin Dashboard</a></li>
+      @endif
       <li><a href="{{route('user.order.index')}}"><i class="fas fa-list-ul"></i> Orders</a></li>
       <li><a href="{{route('user.review.index')}}"><i class="far fa-star"></i> Reviews</a></li>
       <li><a href="{{route('user.profile')}}"><i class="far fa-user"></i> My Profile</a></li>

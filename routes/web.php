@@ -80,6 +80,9 @@ Route::get('about' , [PageController::class , 'about'])->name('about.index');
 /** terms & conditions route */
 Route::get('terms-and-conditions' , [PageController::class , 'termsAndConditions'])->name('terms-and-conditions.index');
 
+/** contact us route */
+Route::get('contact-us' , [PageController::class , 'contactUs'])->name('contact-us.index');
+
 Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' => 'user.'] , function(){
 
     Route::get('dashboard' , [UserDashboardController::class , 'index'])->name('dashboard');

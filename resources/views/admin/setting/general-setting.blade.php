@@ -30,6 +30,28 @@
                 </div>
 
                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Contact Phone</label>
+                    <div class="col-sm-12 col-md-7">
+                        <input name="contact_phone" type="text" value="{{@$generalSetting->contact_phone}}" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Contact Address</label>
+                    <div class="col-sm-12 col-md-7">
+                        <input name="contact_address" type="text" value="{{@$generalSetting->contact_address}}" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Google Map Url</label>
+                    <div class="col-sm-12 col-md-7">
+                        <input name="map" type="text" value="{{@$generalSetting->map}}" class="form-control">
+                    </div>
+                </div>
+                <hr>
+
+                <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Default Currency Name</label>
                     <div class="col-sm-12 col-md-7">
                       <select name="currency_name" class="form-control selectric select2">
