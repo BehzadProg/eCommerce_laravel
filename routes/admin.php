@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\DataTables\VendorRequestDataTable;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\AdminListController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\couponController;
@@ -166,6 +167,11 @@ Route::put('vendor/change-status' , [VendorListController::class , 'changeStatus
 /** manage user route */
 Route::get('manage-user' , [ManageUserController::class , 'index'])->name('manage-user.index');
 Route::post('manage-user' , [ManageUserController::class , 'store'])->name('manage-user.store');
+
+/** admin list route */
+Route::get('admin-list' , [AdminListController::class , 'index'])->name('admin-list.index');
+Route::put('admin-list/change-status' , [AdminListController::class , 'changeStatus'])->name('admin-list.change-status');
+Route::delete('admin-list/{id}' , [AdminListController::class , 'destroy'])->name('admin-list.destroy');
 
 /** about route */
 Route::get('about' , [AboutController::class , 'index'])->name('about.index');
