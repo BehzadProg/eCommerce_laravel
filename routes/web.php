@@ -16,6 +16,7 @@ use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\PageController;
+use App\Http\Controllers\Frontend\ProductTrackController;
 use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\UserVendorRequestController;
 
@@ -83,6 +84,10 @@ Route::get('terms-and-conditions' , [PageController::class , 'termsAndConditions
 /** contact us route */
 Route::get('contact-us' , [PageController::class , 'contactUs'])->name('contact-us.index');
 Route::post('contact-us' , [PageController::class , 'handleContactUs'])->name('handle-contact-us');
+
+/** product track route */
+Route::get('product-track' , [ProductTrackController::class , 'index'])->name('product-track.index');
+Route::get('order-tracking' , [ProductTrackController::class , 'trackOrder'])->name('order-tracking');
 
 Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' => 'user.'] , function(){
 
