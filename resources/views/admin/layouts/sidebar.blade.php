@@ -73,6 +73,15 @@
                 </ul>
             </li>
 
+            <li class="dropdown {{setActive(['admin.blog-category.*'])}}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                    <span>Manage Blog</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{setActive(['admin.blog-category.*'])}}"><a class="nav-link" href="{{route('admin.blog-category.index')}}">Categories</a></li>
+
+                </ul>
+            </li>
+
             <li class="dropdown {{setActive(['admin.footer-info.index' , 'admin.footer-social.*' , 'admin.footer-grid-two.*' , 'admin.footer-grid-three.*'])}}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Footer</span></a>

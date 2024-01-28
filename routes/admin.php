@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\DataTables\VendorRequestDataTable;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\AdminController;
-use App\Http\Controllers\Backend\AdminListController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\couponController;
@@ -14,12 +13,15 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\AdminListController;
 use App\Http\Controllers\Backend\FlashSaleController;
 use App\Http\Controllers\Backend\FooterInfoController;
+use App\Http\Controllers\Backend\ManageUserController;
 use App\Http\Controllers\Backend\SubscriberController;
 use App\Http\Controllers\Backend\VendorListController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\TransactionController;
+use App\Http\Controllers\Backend\BlogCategoryController;
 use App\Http\Controllers\Backend\CustomerListController;
 use App\Http\Controllers\Backend\PayIrSettingController;
 use App\Http\Controllers\Backend\ShippingRuleController;
@@ -35,12 +37,11 @@ use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\FooterGridThreeController;
 use App\Http\Controllers\Backend\HomePageSettingController;
 use App\Http\Controllers\Backend\VendorConditionController;
+use App\Http\Controllers\Backend\TermAndConditionController;
 use App\Http\Controllers\Backend\AdminProductReviewController;
 use App\Http\Controllers\Backend\AdminVendorProfileController;
-use App\Http\Controllers\Backend\ManageUserController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
-use App\Http\Controllers\Backend\TermAndConditionController;
 
 Route::get('dashboard' , [AdminController::class , 'dashboard'])->name('dashboard');
 
@@ -138,6 +139,10 @@ Route::put('popular-category-section' , [HomePageSettingController::class , 'upd
 Route::put('product-slider-section-one' , [HomePageSettingController::class , 'updateProductSliderSectionOne'])->name('product-slider-section-one');
 Route::put('product-slider-section-two' , [HomePageSettingController::class , 'updateProductSliderSectionTwo'])->name('product-slider-section-two');
 Route::put('product-slider-section-three' , [HomePageSettingController::class , 'updateProductSliderSectionThree'])->name('product-slider-section-three');
+
+/** blog category route */
+Route::put('change-status',[BlogCategoryController::class , 'changeStatus'])->name('blog-category.change-status');
+Route::resource('blog-category' , BlogCategoryController::class);
 
 /** Advertisement Routes */
 Route::get('advertisement' , [AdvertisementController::class , 'index'])->name('advertisement.index');
