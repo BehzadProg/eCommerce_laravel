@@ -40,6 +40,7 @@ use App\Http\Controllers\Backend\VendorConditionController;
 use App\Http\Controllers\Backend\TermAndConditionController;
 use App\Http\Controllers\Backend\AdminProductReviewController;
 use App\Http\Controllers\Backend\AdminVendorProfileController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
 
@@ -143,6 +144,9 @@ Route::put('product-slider-section-three' , [HomePageSettingController::class , 
 /** blog category route */
 Route::put('change-status',[BlogCategoryController::class , 'changeStatus'])->name('blog-category.change-status');
 Route::resource('blog-category' , BlogCategoryController::class);
+/** blog route */
+Route::put('blog/change-status',[BlogController::class , 'changeStatus'])->name('blog.change-status');
+Route::resource('blog' , BlogController::class);
 
 /** Advertisement Routes */
 Route::get('advertisement' , [AdvertisementController::class , 'index'])->name('advertisement.index');
