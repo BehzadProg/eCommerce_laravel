@@ -120,6 +120,9 @@ Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' =>
     Route::get('reviews' , [ReviewController::class , 'index'])->name('review.index');
     Route::post('review' , [ReviewController::class , 'store'])->name('review.store');
 
+    /** blog comment routes */
+    Route::post('blog-comment' , [BlogController::class , 'comment'])->name('blog-comment');
+
     /** check out route */
     Route::get('checkout' , [CheckOutController::class , 'index'])->name('checkout');
     Route::post('checkout/address-create' , [CheckOutController::class , 'createAddress'])->name('checkout.address.create');

@@ -80,134 +80,47 @@
                             </div>
                         </div>
                         <div class="wsus__comment_area">
-                            <h4>comment <span>03</span></h4>
-                            <div class="wsus__main_comment">
-                                <div class="wsus__comment_img">
-                                    <img src="images/client_img_1.jpg" alt="user" class="img-fluid w-100">
-                                </div>
-                                <div class="wsus__comment_text replay">
-                                    <h6>Shopnil mahadi <span>09 Jul 2021</span></h6>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate sint
-                                        molestiae eos? Officia, fuga eaque.</p>
-                                    <a href="#" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapsetwo3">replay</a>
-                                    <div class="accordion accordion-flush" id="accordionFlushExample3">
-                                        <div class="accordion-item">
-                                            <div id="flush-collapsetwo3" class="accordion-collapse collapse"
-                                                aria-labelledby="flush-collapsetwo"
-                                                data-bs-parent="#accordionFlushExample">
-                                                <div class="accordion-body">
-                                                    <form>
-                                                        <div class="wsus__riv_edit_single text_area">
-                                                            <i class="far fa-edit"></i>
-                                                            <textarea cols="3" rows="1"
-                                                                placeholder="Your Text"></textarea>
-                                                        </div>
-                                                        <button type="submit" class="common_btn">submit</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
+                            <h4>comment <span>{{$comments->total()}}</span></h4>
+                            @if (count($comments) === 0)
+                            <div style="text-align: center;color:#7a8c95">
+                                Be a first one to comment
+                            </div>
+                            @else
+
+                                @foreach ($comments as $comment)
+
+                                <div class="wsus__main_comment">
+                                    <div class="wsus__comment_img">
+                                        <img src="{{asset(env('PROFILE_IMAGE_UPLOAD_PATH').$comment->user->image)}}" alt="user" class="img-fluid w-100">
+                                    </div>
+                                    <div class="wsus__comment_text replay">
+                                        <h6>{{$comment->user->name}} <span>{{date('d M Y' , strtotime($comment->created_at))}}</span></h6>
+                                        <p>{{$comment->comment}}</p>
+
                                     </div>
                                 </div>
-                            </div>
-                            <div class="wsus__main_comment wsus__com_replay">
-                                <div class="wsus__comment_img">
-                                    <img src="images/client_img_3.jpg" alt="user" class="img-fluid w-100">
-                                </div>
-                                <div class="wsus__comment_text replay">
-                                    <h6>Smith jhon <span>09 Jul 2021</span></h6>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate sint
-                                        molestiae eos? Officia, fuga eaque.</p>
-                                    <a href="#" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapsetwo2">replay</a>
-                                    <div class="accordion accordion-flush" id="accordionFlushExample2">
-                                        <div class="accordion-item">
-                                            <div id="flush-collapsetwo2" class="accordion-collapse collapse"
-                                                aria-labelledby="flush-collapsetwo"
-                                                data-bs-parent="#accordionFlushExample">
-                                                <div class="accordion-body">
-                                                    <form>
-                                                        <div class="wsus__riv_edit_single text_area">
-                                                            <i class="far fa-edit"></i>
-                                                            <textarea cols="3" rows="1"
-                                                                placeholder="Your Text"></textarea>
-                                                        </div>
-                                                        <button type="submit" class="common_btn">submit</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="wsus__main_comment">
-                                <div class="wsus__comment_img">
-                                    <img src="images/client_img_1.jpg" alt="user" class="img-fluid w-100">
-                                </div>
-                                <div class="wsus__comment_text replay">
-                                    <h6>Smith jhon <span>09 Jul 2021</span></h6>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate sint
-                                        molestiae eos? Officia, fuga eaque.</p>
-                                    <a href="#" data-bs-toggle="collapse" data-bs-target="#flush-collapsetwo">replay</a>
-                                    <div class="accordion accordion-flush" id="accordionFlushExample">
-                                        <div class="accordion-item">
-                                            <div id="flush-collapsetwo" class="accordion-collapse collapse"
-                                                aria-labelledby="flush-collapsetwo"
-                                                data-bs-parent="#accordionFlushExample">
-                                                <div class="accordion-body">
-                                                    <form>
-                                                        <div class="wsus__riv_edit_single text_area">
-                                                            <i class="far fa-edit"></i>
-                                                            <textarea cols="3" rows="1"
-                                                                placeholder="Your Text"></textarea>
-                                                        </div>
-                                                        <button type="submit" class="common_btn">submit</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                @endforeach
+
+                            @endif
+
                             <div id="pagination">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <i class="fas fa-chevron-left"></i>
-                                            </a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link page_active" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <i class="fas fa-chevron-right"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                <div class="mt-5">
+                                    @if ($comments->hasPages())
+                                    {{$comments->withQueryString()->links()}}
+                                    @endif
+                                </div>
                             </div>
                         </div>
+
                         <div class="wsus__post_comment">
                             <h4>post a comment</h4>
-                            <form action="#">
+                            <form action="{{route('user.blog-comment')}}" method="POST">
+                                @csrf
                                 <div class="row">
-                                    <div class="col-xl-6">
-                                        <div class="wsus__single_com">
-                                            <input type="text" placeholder="Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6">
-                                        <div class="wsus__single_com">
-                                            <input type="email" placeholder="Email">
-                                        </div>
-                                    </div>
                                     <div class="col-xl-12">
                                         <div class="wsus__single_com">
-                                            <textarea rows="5" placeholder="Your Comment"></textarea>
+                                            <textarea rows="5" placeholder="Your Comment" name="comment"></textarea>
+                                            <input type="hidden" name="blog_id" value="{{$blog->id}}">
                                         </div>
                                     </div>
                                 </div>
@@ -239,53 +152,19 @@
                             </ul>
                         </div>
                         <div class="wsus__blog_post">
-                            <h4>Popular Post</h4>
-                            <div class="wsus__blog_post_single">
-                                <a href="#" class="wsus__blog_post_img">
-                                    <img src="images/location_1.jpg" alt="blog" class="imgofluid w-100">
-                                </a>
-                                <div class="wsus__blog_post_text">
-                                    <a href="#">One Thing Separates Creators</a>
-                                    <p> <span>Jul 29 2021 </span> 2 Comment </p>
-                                </div>
-                            </div>
-                            <div class="wsus__blog_post_single">
-                                <a href="#" class="wsus__blog_post_img">
-                                    <img src="images/location_2.jpg" alt="blog" class="imgofluid w-100">
-                                </a>
-                                <div class="wsus__blog_post_text">
-                                    <a href="#">One Thing Separates Creators</a>
-                                    <p> <span>Jul 29 2021 </span> 2 Comment </p>
-                                </div>
-                            </div>
-                            <div class="wsus__blog_post_single">
-                                <a href="#" class="wsus__blog_post_img">
-                                    <img src="images/location_3.jpg" alt="blog" class="imgofluid w-100">
-                                </a>
-                                <div class="wsus__blog_post_text">
-                                    <a href="#">One Thing Separates Creators</a>
-                                    <p> <span>Jul 29 2021 </span> 2 Comment </p>
-                                </div>
-                            </div>
-                            <div class="wsus__blog_post_single">
-                                <a href="#" class="wsus__blog_post_img">
-                                    <img src="images/location_4.jpg" alt="blog" class="imgofluid w-100">
-                                </a>
-                                <div class="wsus__blog_post_text">
-                                    <a href="#">One Thing Separates Creators</a>
-                                    <p> <span>Jul 29 2021 </span> 2 Comment </p>
-                                </div>
-                            </div>
-                            <div class="wsus__blog_post_single">
-                                <a href="#" class="wsus__blog_post_img">
-                                    <img src="images/location_2.jpg" alt="blog" class="imgofluid w-100">
-                                </a>
-                                <div class="wsus__blog_post_text">
-                                    <a href="#">One Thing Separates Creators</a>
-                                    <p> <span>Jul 29 2021 </span> 2 Comment </p>
-                                </div>
-                            </div>
+                            <h4>Recent Post</h4>
+                            @foreach ($recentBlogs as $recentBlog)
 
+                            <div class="wsus__blog_post_single">
+                                <a href="{{route('blog-details' , $recentBlog->slug)}}" class="wsus__blog_post_img">
+                                    <img src="{{asset(env('BLOG_IMAGE_UPLOAD_PATH').$recentBlog->image)}}" alt="blog" class="imgofluid w-100">
+                                </a>
+                                <div class="wsus__blog_post_text">
+                                    <a href="{{route('blog-details' , $recentBlog->slug)}}">{{limitText($recentBlog->title)}}</a>
+                                    <p> <span>{{date('M d Y' , strtotime($recentBlog->created_at))}}</span> {{$recentBlog->comments->count()}} Comment </p>
+                                </div>
+                            </div>
+                            @endforeach
                         </div>
                         <div class="wsus__popular_tag">
                             <h4>popular tags</h4>
