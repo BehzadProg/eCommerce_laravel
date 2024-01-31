@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\Homecontroller;
 use App\Http\Controllers\Frontend\PaymentCotroller;
@@ -88,6 +89,9 @@ Route::post('contact-us' , [PageController::class , 'handleContactUs'])->name('h
 /** product track route */
 Route::get('product-track' , [ProductTrackController::class , 'index'])->name('product-track.index');
 Route::get('order-tracking' , [ProductTrackController::class , 'trackOrder'])->name('order-tracking');
+
+/** blog details page route */
+Route::get('blog-details/{slug}' , [BlogController::class  , 'belogDetail'])->name('blog-details');
 
 Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' => 'user.'] , function(){
 

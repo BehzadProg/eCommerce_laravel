@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Slider;
 use App\Models\Vendor;
@@ -36,8 +37,11 @@ class Homecontroller extends Controller
         $homepage_banner_section_three = json_decode($homepage_banner_section_three?->value);
         $homepage_banner_section_four = Advertisement::where('key' , 'homepage_banner_section_four')->first();
         $homepage_banner_section_four = json_decode($homepage_banner_section_four?->value);
-        return view(
-            'frontend.home.home',
+
+        //blogs
+        $blogs = Blog::with(['category'])->where('status' , 1)->orderByDesc('id')->take(8)->get();
+
+        return view('frontend.home.home',
             compact(
                 'sliders',
                 'flashSale',
@@ -48,10 +52,13 @@ class Homecontroller extends Controller
                 'productSliderSectionOne',
                 'productSliderSectionTwo',
                 'productSliderSectionThree',
+
                 'homepage_banner_section_one',
                 'homepage_banner_section_two',
                 'homepage_banner_section_three',
-                'homepage_banner_section_four'
+                'homepage_banner_section_four',
+
+                'blogs'
             )
         );
     }
