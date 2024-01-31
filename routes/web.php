@@ -90,8 +90,9 @@ Route::post('contact-us' , [PageController::class , 'handleContactUs'])->name('h
 Route::get('product-track' , [ProductTrackController::class , 'index'])->name('product-track.index');
 Route::get('order-tracking' , [ProductTrackController::class , 'trackOrder'])->name('order-tracking');
 
-/** blog details page route */
+/** blog page route */
 Route::get('blog-details/{slug}' , [BlogController::class  , 'belogDetail'])->name('blog-details');
+Route::get('blog' , [BlogController::class  , 'blog'])->name('blog');
 
 Route::group(['middleware' => ['auth','verified'] , 'prefix' => 'user' , 'as' => 'user.'] , function(){
 

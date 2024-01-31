@@ -67,7 +67,7 @@
                                             <img src="{{asset(env('BLOG_IMAGE_UPLOAD_PATH').$relatedblog->image)}}" alt="blog" class="img-fluid w-100">
                                         </a>
                                         <div class="wsus__blog_text">
-                                            <a class="blog_top red" href="#">{{$relatedblog->category->name}}</a>
+                                            <a class="blog_top red" href="{{route('blog' , ['category' => $relatedblog->category->slug])}}">{{$relatedblog->category->name}}</a>
                                             <div class="wsus__blog_text_center">
                                                 <a href="{{route('blog-details' , $relatedblog->slug)}}">{!!limitText($relatedblog->title , 45)!!}</a>
                                                 <p class="date">{{date('M d Y' , strtotime($relatedblog->created_at))}}</p>
@@ -133,22 +133,18 @@
                     <div class="wsus__blog_sidebar" id="sticky_sidebar">
                         <div class="wsus__blog_search">
                             <h4>search</h4>
-                            <form>
-                                <input type="text" placeholder="Search">
+                            <form action="{{route('blog')}}" method="GET">
+                                <input type="text" placeholder="Search" name="search">
                                 <button type="submit" class="common_btn"><i class="far fa-search"></i></button>
                             </form>
                         </div>
                         <div class="wsus__blog_category">
                             <h4>Categories</h4>
                             <ul>
-                                <li><a href="#">Clothes</a></li>
-                                <li><a href="#">Entertainment</a></li>
-                                <li><a href="#">Fashion</a></li>
-                                <li><a href="#">Lifestyle</a></li>
-                                <li><a href="#">Technology</a></li>
-                                <li><a href="#">Shoes</a></li>
-                                <li><a href="#">electronic</a></li>
-                                <li><a href="#">Others</a></li>
+                                @foreach ($categories as $category)
+
+                                <li><a href="{{route('blog' , ['category' => $category->slug])}}">{{$category->name}}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                         <div class="wsus__blog_post">

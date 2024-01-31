@@ -6,10 +6,31 @@ use App\Models\Blog;
 use App\Models\BlogComment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\BlogCategory;
 use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
+    public function blog(Request $request)
+    {
+        if($request->has('search'))
+        {
+            $blogs = Blog::with(['category'])->where('status' , 1)
+            ->where('title' , 'like' , '%'.$request->search.'%')
+            ->latest()->paginate(12);
+        }elseif($request->has('category')){
+            $category = BlogCategory::where(['slug' => $request->category , 'status' => 1])->firstOrFail();
+            $blogs = Blog::with(['category'])->where('status' , 1)
+            ->where('category_id' , $category->id)
+            ->latest()->paginate(12);
+        }else{
+
+            $blogs = Blog::with(['category'])->where('status' , 1)->latest()->paginate(12);
+        }
+
+        return view('frontend.pages.blog' , compact('blogs'));
+    }
+
     public function belogDetail(string $slug) {
         $blog = Blog::where('slug' , $slug)->firstOrFail();
 
@@ -19,7 +40,9 @@ class BlogController extends Controller
 
         $comments = $blog->comments()->paginate(10);
 
-        return view('frontend.pages.blog-detail' , compact('blog' , 'relatedBlogs' , 'comments' , 'recentBlogs'));
+        $categories = BlogCategory::where('status' , 1)->get();
+
+        return view('frontend.pages.blog-detail' , compact('blog' , 'relatedBlogs' , 'comments' , 'recentBlogs' , 'categories'));
     }
 
     public function comment(Request $request)
