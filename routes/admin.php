@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\DataTables\VendorRequestDataTable;
+use App\Http\Controllers\Admin\BlogCommentController;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\BrandController;
@@ -147,6 +148,8 @@ Route::resource('blog-category' , BlogCategoryController::class);
 /** blog route */
 Route::put('blog/change-status',[BlogController::class , 'changeStatus'])->name('blog.change-status');
 Route::resource('blog' , BlogController::class);
+Route::get('blog-comment' , [BlogCommentController::class , 'index'])->name('blog-comment.index');
+Route::delete('blog-comment/{id}/destroy' , [BlogCommentController::class , 'destroy'])->name('blog-comment.destroy');
 
 /** Advertisement Routes */
 Route::get('advertisement' , [AdvertisementController::class , 'index'])->name('advertisement.index');

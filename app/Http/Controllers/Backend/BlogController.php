@@ -116,6 +116,7 @@ class BlogController extends Controller
     {
         $blog = Blog::findOrFail($id);
         deleteFileIfExist(env('BLOG_IMAGE_UPLOAD_PATH') . $blog->image);
+        $blog->comments()->delete();
         $blog->delete();
 
         return response(['status' => 'success' , 'message' => 'Deleted Successfully']);

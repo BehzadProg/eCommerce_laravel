@@ -53,11 +53,14 @@
                             </ul>
                         </div>
                         <div class="wsus__related_post">
+                            @if (count($relatedBlogs) != 0)
+
                             <div class="row">
                                 <div class="col-xl-12">
                                     <h5>related post</h5>
                                 </div>
                             </div>
+                            @endif
                             <div class="row blog_det_slider">
                                 @foreach ($relatedBlogs as $relatedblog)
 
@@ -161,19 +164,6 @@
                                 </div>
                             </div>
                             @endforeach
-                        </div>
-                        <div class="wsus__popular_tag">
-                            <h4>popular tags</h4>
-                            <ul>
-                                <li><a href="#">Fashion</a></li>
-                                <li><a href="#">Style</a></li>
-                                <li><a href="#">Travel</a></li>
-                                <li><a href="#">Women</a></li>
-                                <li><a href="#">Men</a></li>
-                                <li><a href="#">Hobbies</a></li>
-                                <li><a href="#">Shopping</a></li>
-                                <li><a href="#">Photography</a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
