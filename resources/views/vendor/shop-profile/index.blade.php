@@ -22,7 +22,7 @@
                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Preview
                                                 Banner</label>
                                             <div class="col-sm-12 col-md-7">
-                                                <img class="w-25" src="{{asset(env('VENDOR_SHOP_PROFILE_BANNER_UPLOAD_PATH').$vendor->banner)}}" alt="">
+                                                <img class="w-100" src="{{asset(env('VENDOR_SHOP_PROFILE_BANNER_UPLOAD_PATH').$vendor->banner)}}" alt="">
                                             </div>
                                         </div>
                                     @endif

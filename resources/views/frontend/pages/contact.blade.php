@@ -132,7 +132,7 @@
                 url: "{{route('handle-contact-us')}}",
                 data:data,
                 beforeSend: function(){
-                    $('.submit-form').html('<i class="fas fa-spinner"></i>');
+                    $('.submit-form').html('<i class="fas fa-spinner fa-spin fa-1x"></i>');
                     $('.submit-form').attr('disabled' , true)
                 },
                 success: function(data){
