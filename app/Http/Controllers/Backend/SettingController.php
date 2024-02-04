@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\GeneralSetting;
 use App\Http\Controllers\Controller;
 use App\Models\EmailConfigration;
+use App\Models\LogoSetting;
 use Illuminate\Support\Facades\Session;
 
 class SettingController extends Controller
@@ -13,7 +14,8 @@ class SettingController extends Controller
     public function index(){
         $generalSetting = GeneralSetting::first();
         $emailConfigration = EmailConfigration::first();
-        return view('admin.setting.index' , compact('generalSetting' , 'emailConfigration'));
+        $logoSetting = LogoSetting::first();
+        return view('admin.setting.index' , compact('generalSetting' , 'emailConfigration' , 'logoSetting'));
     }
 
     public function generalSettingUpdate(Request $request) {
@@ -70,6 +72,30 @@ class SettingController extends Controller
 
         toastr('Updated Successfully' , 'success');
         return redirect()->back();
+    }
+
+    public function logoSettingUpdate(Request $request)
+    {
+        $request->validate([
+            'logo' => 'image|max:3000',
+            'favicon' => 'image|max:3000',
+        ]);
+
+        $logoSetting = LogoSetting::first();
+        $logo = handleUpload('logo',$logoSetting,env('SITE_LOGO_IMAGE_UPLOAD_PATH') , 'logo');
+        $favicon = handleUpload('favicon',$logoSetting,env('SITE_LOGO_IMAGE_UPLOAD_PATH') , 'favicon');
+
+        LogoSetting::updateOrCreate(
+            ['id' => 1],
+            [
+                'logo' => (!empty($logo) ? $logo : $logoSetting->logo),
+                'favicon' => (!empty($favicon) ? $favicon : $logoSetting->favicon)
+            ]
+        );
+
+        toastr('Updated Successfully' , 'success');
+        return redirect()->back();
+
     }
 
     public function changeViewList(Request $request)

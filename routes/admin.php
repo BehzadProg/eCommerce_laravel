@@ -133,6 +133,7 @@ Route::get('transaction' , [TransactionController::class , 'index'])->name('tran
 Route::get('settings' , [SettingController::class , 'index'])->name('setting.index');
 Route::put('general-setting-update' , [SettingController::class , 'generalSettingUpdate'])->name('general-setting-update');
 Route::put('email-configration-update' , [SettingController::class , 'EmailConfigrationUpdate'])->name('email-configration-update');
+Route::put('logo-setting-update}' , [SettingController::class , 'logoSettingUpdate'])->name('logo-setting-update');
 Route::get('setting-change-view-list' , [SettingController::class , 'changeViewList'])->name('setting-change-view-list');
 
 /** Home Page Setting Route */

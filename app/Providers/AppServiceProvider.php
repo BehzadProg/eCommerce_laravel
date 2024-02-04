@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\GeneralSetting;
+use App\Models\LogoSetting;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\View;
@@ -27,11 +28,12 @@ class AppServiceProvider extends ServiceProvider
 
         /** set the timezone */
         $generalSetting = GeneralSetting::first();
+        $logoSetting = LogoSetting::first();
         Config::set('app.timezone', $generalSetting->time_zone);
 
         /** share variable at all views */
-        view()->composer('*', function ($view) use ($generalSetting) {
-            $view->with('settings' , $generalSetting);
+        view()->composer('*', function ($view) use ($generalSetting , $logoSetting) {
+            $view->with(['settings' => $generalSetting , 'logoSetting' => $logoSetting]);
         });
     }
 }
