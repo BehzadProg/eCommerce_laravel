@@ -52,6 +52,7 @@
                         <li><a class="{{setActive(['flash-sale.index'])}}" href="{{route('flash-sale.index')}}">flash sales</a></li>
                         <li><a class="{{setActive(['vendor.index'])}}" href="{{route('vendor.index')}}">vendors</a></li>
                         <li><a class="{{setActive(['blog'])}}" href="{{route('blog')}}">blogs</a></li>
+                        <li><a class="{{setActive(['contact-us.index'])}}" href="{{route('contact-us.index')}}">contact</a></li>
                         <li class="wsus__relative_li"><a class="{{setActive(['about.index' , 'terms-and-conditions.index'])}}"  href="#">pages <i class="fas fa-caret-down"></i></a>
                             <ul class="wsus__menu_droapdown">
                                 <li><a href="{{route('about.index')}}">about</a></li>
@@ -59,7 +60,7 @@
                             </ul>
                         </li>
 
-                        <li><a class="{{setActive(['contact-us.index'])}}" href="{{route('contact-us.index')}}">contact</a></li>
+
                     </ul>
                     <ul class="wsus__menu_item wsus__menu_item_right">
                         <li><a class="{{setActive(['product-track.index'])}}" href="{{route('product-track.index')}}">track order</a></li>

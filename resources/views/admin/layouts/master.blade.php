@@ -25,6 +25,10 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/components.css') }}">
+    @if ($settings->layout === 'RTL')
+
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/rtl.css') }}">
+    @endif
     <!-- Start GA -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
      <script>
@@ -54,15 +58,7 @@
                 @yield('content')
 
             </div>
-            <footer class="main-footer">
-                <div class="footer-left">
-                    Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad
-                        Nauval Azhar</a>
-                </div>
-                <div class="footer-right">
-
-                </div>
-            </footer>
+            
         </div>
     </div>
 
@@ -89,6 +85,7 @@
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('backend/assets/js/bootstrap-iconpicker.bundle.min.js')}}"></script>
+    <script src="{{ asset('frontend/js/Font-Awesome.js') }}"></script>
 
     {{-- <!-- Page Specific JS File -->
     <script src="{{ asset('backend/assets/js/page/index-0.js') }}"></script> --}}
