@@ -155,21 +155,6 @@
                                     </div>
 
                                     <div class="form-group row mb-4 wsus__dash_pro_single">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Product Type</label>
-                                        <div class="col-sm-12 col-md-7">
-                                            <select name="product_type" class="form-control selectric">
-                                                <option value="">Select</option>
-                                                <option value="new_arrival">New Arrival</option>
-                                                <option value="featured_product">Featured</option>
-                                                <option value="best_product">Best Product</option>
-                                                <option value="top_product">Top Product</option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group row mb-4 wsus__dash_pro_single">
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
                                         <div class="col-sm-12 col-md-7">
                                             <select name="status" class="form-control selectric">

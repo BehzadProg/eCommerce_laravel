@@ -75,7 +75,7 @@ class VendorProductDataTable extends DataTable
                         break;
 
                     default:
-                        return '<i class="badge bg-secondery">None</i>';
+                        return '<i class="badge bg-secondary">None</i>';
                         break;
                 }
             })

@@ -172,21 +172,6 @@
                                     </div>
 
                                     <div class="form-group row mb-4 wsus__dash_pro_single">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Product Type</label>
-                                        <div class="col-sm-12 col-md-7">
-                                            <select name="product_type" class="form-control selectric">
-                                                <option value="">Select</option>
-                                                <option value="new_arrival" {{$products->product_type == 'new_arrival' ? 'selected' : ''}}>New Arrival</option>
-                                                <option value="featured_product" {{$products->product_type == 'featured_product' ? 'selected' : ''}}>Featured</option>
-                                                <option value="best_product" {{$products->product_type == 'best_product' ? 'selected' : ''}}>Best Product</option>
-                                                <option value="top_product" {{$products->product_type == 'top_product' ? 'selected' : ''}}>Top Product</option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group row mb-4 wsus__dash_pro_single">
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
                                         <div class="col-sm-12 col-md-7">
                                             <select name="status" class="form-control selectric">

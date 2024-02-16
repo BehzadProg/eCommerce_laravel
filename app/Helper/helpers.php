@@ -121,7 +121,7 @@ function calculateDiscountPercend($originalPrice,$discountPrice){
     return round($discountPercent);
 }
 
-function productType(string $type){
+function productType($type){
     switch ($type) {
         case 'new_arrival':
             return 'New';

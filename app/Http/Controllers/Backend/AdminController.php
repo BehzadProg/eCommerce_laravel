@@ -37,12 +37,18 @@ class AdminController extends Controller
 
         $todayEarning = Order::whereDate('created_at' , Carbon::today())
         ->where('order_status' , '!=' , 'canceled')
+        ->where('payment_status' , 1)
         ->sum('sub_total');
 
-        $thisMonthEarning = Order::whereMonth('created_at' , Carbon::now()->month)->where('order_status' , '!=' , 'canceled')
+        $thisMonthEarning = Order::whereMonth('created_at' , Carbon::now()->month)
+        ->where('order_status' , '!=' , 'canceled')
+        ->where('payment_status' , 1)
         ->sum('sub_total');
 
-        $thisYearEarning = Order::whereYear('created_at' , Carbon::now()->year)->where('order_status' , '!=' , 'canceled')->sum('sub_total');
+        $thisYearEarning = Order::whereYear('created_at' , Carbon::now()->year)
+        ->where('order_status' , '!=' , 'canceled')
+        ->where('payment_status' , 1)
+        ->sum('sub_total');
 
         $totalEarning = Order::where('order_status' , '!=' , 'canceled')->sum('sub_total');
 
