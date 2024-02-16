@@ -40,7 +40,7 @@
                             @endif
 
                         </span></a></li>
-                        <li><a href="compare.html"><i class="fal fa-random"></i></a></li>
+                        {{-- <li><a href="compare.html"><i class="fal fa-random"></i></a></li> --}}
                         <li><a class="wsus__cart_icon" href="#"><i class="fal fa-shopping-bag"></i>
                                     <span id="cart-count" class="{{Cart::content()->count() ? '' : 'd-none'}}">{{ Cart::content()->count() }}</span>
                             </a></li>

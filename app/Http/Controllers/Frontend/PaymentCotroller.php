@@ -69,6 +69,11 @@ class PaymentCotroller extends Controller
             $orderProduct->unit_price = $item->price;
             $orderProduct->qty = $item->qty;
             $orderProduct->save();
+
+            //update product quantity
+             $updateQty = $product->qty - $item->qty;
+             $product->qty = $updateQty;
+             $product->save();
          }
 
          //store Transaction details

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\ShippingRule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;

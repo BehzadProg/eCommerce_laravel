@@ -9571,3 +9571,9 @@ a:not([href]):not([class]):hover {
   -ms-transition: all linear 0.3s ease;
   -o-transition: all linear 0.3s ease;
   }
+
+.wsus__hot_deals__single_img img{
+    width: 200px !important;
+    height: 150px !important;
+    object-fit: cover;
+}

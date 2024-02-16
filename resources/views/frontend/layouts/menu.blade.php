@@ -90,13 +90,31 @@
     <section id="wsus__mobile_menu">
         <span class="wsus__mobile_menu_close"><i class="fal fa-times"></i></span>
         <ul class="wsus__mobile_menu_header_icon d-inline-flex">
+            <li><a href="{{route('user.wishlist.index')}}"><i class="fal fa-heart"></i>
+                @if (auth()->check())
+                <span id="wishlist-count" class="{{\App\Models\WishList::where('user_id' , Auth::user()->id)->count() > 0 ? '' : 'd-none'}}">
+                {{\App\Models\Wishlist::where('user_id', auth()->user()->id)->count()}}
+                @endif
 
-            <li><a href="wishlist.html"><i class="far fa-heart"></i> <span>2</span></a></li>
+                @auth
+                <li><a href="@if (Auth()->user()->role === 'admin')
+                    {{route('admin.dashboard')}}
+                    @elseif (Auth()->user()->role === 'vendor')
+                    {{route('vendor.dashboard')}}
+                    @elseif (Auth()->user()->role === 'user')
+                    {{route('user.dashboard')}}
+                @endif"><i class="fal fa-user"></i></a></li>
 
-            <li><a href="compare.html"><i class="far fa-random"></i> </i><span>3</span></a></li>
+                @else
+
+                <li><a href="{{route('login')}}"><i class="fal fa-user"></i></a></li>
+                @endauth
+
+            </span>
+            {{-- <li><a href="compare.html"><i class="far fa-random"></i> </i><span>3</span></a></li> --}}
         </ul>
-        <form>
-            <input type="text" placeholder="Search">
+        <form action="{{route('product.index')}}">
+            <input type="text" placeholder="Search..." name="search" value="{{request()->search}}">
             <button type="submit"><i class="far fa-search"></i></button>
         </form>
 
@@ -128,7 +146,7 @@
                                             <ul>
                                                 @foreach ($categoryItem->subCategories as $subItem)
 
-                                                <li><a href="#">{{$subItem->name}}</a></li>
+                                                <li><a href="{{route('product.index' , ['subcategory' => $subItem->slug])}}">{{$subItem->name}}</a></li>
                                                 @endforeach
 
                                             </ul>
@@ -146,25 +164,11 @@
                 <div class="wsus__mobile_menu_main_menu">
                     <div class="accordion accordion-flush" id="accordionFlushExample2">
                         <ul>
-                            <li><a href="index.html">home</a></li>
-                            <li><a href="#" class="accordion-button collapsed" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseThree" aria-expanded="false"
-                                    aria-controls="flush-collapseThree">shop</a>
-                                <div id="flush-collapseThree" class="accordion-collapse collapse"
-                                    data-bs-parent="#accordionFlushExample2">
-                                    <div class="accordion-body">
-                                        <ul>
-                                            <li><a href="#">men's</a></li>
-                                            <li><a href="#">wemen's</a></li>
-                                            <li><a href="#">kid's</a></li>
-                                            <li><a href="#">others</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li><a href="{{route('vendor.index')}}">vendor</a></li>
-                            <li><a href="blog.html">blog</a></li>
-                            <li><a href="daily_deals.html">campain</a></li>
+                            <li><a href="{{url('/')}}">home</a></li>
+                            <li><a href="{{route('flash-sale.index')}}">flash sales</a></li>
+                            <li><a href="{{route('vendor.index')}}">vendors</a></li>
+                            <li><a href="{{route('blog')}}">blogs</a></li>
+                            <li><a href="{{route('contact-us.index')}}">contact</a></li>
                             <li><a href="#" class="accordion-button collapsed" data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseThree101" aria-expanded="false"
                                     aria-controls="flush-collapseThree101">pages</a>
@@ -172,14 +176,13 @@
                                     data-bs-parent="#accordionFlushExample2">
                                     <div class="accordion-body">
                                         <ul>
-                                            <li><a href="about_us.html">about</a></li>
-                                            <li><a href="team.html">team</a></li>
+                                            <li><a href="{{route('about.index')}}">about</a></li>
+                                            <li><a href="{{route('terms-and-conditions.index')}}">Terms and conditions</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="track_order.html">track order</a></li>
-                            <li><a href="daily_deals.html">daily deals</a></li>
+                            <li><a href="{{route('product-track.index')}}">track order</a></li>
                         </ul>
                     </div>
                 </div>

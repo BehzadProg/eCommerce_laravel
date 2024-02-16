@@ -134,10 +134,10 @@
 
                                 <ul class="wsus__button_area">
                                     <li><button type="submit" class="add_cart" href="#">add to cart</button></li>
-                                    <li><a class="buy_now" href="#">buy now</a></li>
-                                    <li><a href="#" data-id="{{ $product->id }}" class="add_to_wishlist"><i
+                                    <li></li>
+                                    <li><a href="javascript:;" data-id="{{ $product->id }}" class="add_to_wishlist"><i
                                                 class="fal fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="far fa-random"></i></a></li>
+                                    {{-- <li><a href="#"><i class="far fa-random"></i></a></li> --}}
                                 </ul>
                             </form>
                             <p class="brand_model"><span>Category :</span> {{ $product->category->name }}</p>
@@ -146,29 +146,7 @@
                     </div>
                     <div class="col-xl-3 col-md-12 mt-md-5 mt-lg-0">
                         <div class="wsus_pro_det_sidebar" id="sticky_sidebar">
-                            <ul>
-                                <li>
-                                    <span><i class="fal fa-truck"></i></span>
-                                    <div class="text">
-                                        <h4>Return Available</h4>
-                                        <!-- <p>Lorem Ipsum is simply dummy text of the printing</p> -->
-                                    </div>
-                                </li>
-                                <li>
-                                    <span><i class="far fa-shield-check"></i></span>
-                                    <div class="text">
-                                        <h4>Secure Payment</h4>
-                                        <!-- <p>Lorem Ipsum is simply dummy text of the printing</p> -->
-                                    </div>
-                                </li>
-                                <li>
-                                    <span><i class="fal fa-envelope-open-dollar"></i></span>
-                                    <div class="text">
-                                        <h4>Warranty Available</h4>
-                                        <!-- <p>Lorem Ipsum is simply dummy text of the printing</p> -->
-                                    </div>
-                                </li>
-                            </ul>
+                            
                             @if ($productDetails_page_banner_section->banner_one->status == 1)
                                 <div class="wsus__det_sidebar_banner">
                                     <a href="{{ $productDetails_page_banner_section->banner_one->banner_url }}"
