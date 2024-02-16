@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\ChildCategory;
 use App\DataTables\ProductDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\OrderProduct;
 use App\Models\ProductImageGallery;
 use App\Models\ProductVariant;
 use Illuminate\Support\Facades\Auth;
@@ -174,6 +175,9 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         $product = Product::findOrFail($id);
+        if(OrderProduct::where('product_id' , $product->id)->count() > 0){
+            return response([ 'status' => 'error','message' => 'This product have orders you can\'t delete it']);
+        }
         $productGallery = ProductImageGallery::where('product_id' , $product->id)->get();
         deleteFileIfExist(env('ADMIN_PRODUCT_IMAGE_UPLOAD_PATH') . $product->thumb_image);
         foreach($productGallery as $image){
