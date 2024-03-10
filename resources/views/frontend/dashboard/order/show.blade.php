@@ -127,7 +127,10 @@
                                         </div>
                                         <div class="wsus__invoice_footer">
                                             <p><span>Sub Total :</span> {{ $order->currency_icon }} {{number_format($order->sub_total)}} </p>
-                                            <p><span>Coupon(-) :</span> {{$coupon->coupon_type === 'percent' ? '%' : $order->currency_icon}}{{$coupon->discount}} </p>
+                                            @if($coupon)
+
+                                            <p><span>Coupon(-) :</span> {{@$coupon->coupon_type === 'percent' ? '%' : $order->currency_icon}}{{@$coupon->discount}} </p>
+                                            @endif
                                             <p><span>Shipping Fee(+) :</span> {{ $order->currency_icon }} {{number_format($shipping->cost)}} </p>
                                             <p><span>Total Amount :</span> {{ $order->currency_icon }} {{number_format($order->amount)}} </p>
                                         </div>
